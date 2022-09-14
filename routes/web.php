@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::get('/', function () {
-//     return view('home');
+//     return view('dashboard.index');
 // });
 
 Route::get('/',[\App\Http\Controllers\HomepageController::class,'index']);
@@ -22,6 +22,6 @@ Route::get('/about',[\App\Http\Controllers\HomepageController::class,'about']);
 Route::get('/kontak',[\App\Http\Controllers\HomepageController::class,'kontak']);
 Route::get('/kategori',[\App\Http\Controllers\HomepageController::class,'kategori']);
 
-Route::prefix(['prefix' => 'admin'], function () {
-    Route::get('/', 'DashboardController@index');
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/', [\App\Http\Controllers\DashboardController::class,'index']);
 });
