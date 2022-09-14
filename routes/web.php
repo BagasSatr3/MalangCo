@@ -18,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/',[\App\Http\Controllers\HomepageController::class,'index']);
+Route::get('/about',[\App\Http\Controllers\HomepageController::class,'about']);
+Route::get('/kontak',[\App\Http\Controllers\HomepageController::class,'kontak']);
+Route::get('/kategori',[\App\Http\Controllers\HomepageController::class,'kategori']);
