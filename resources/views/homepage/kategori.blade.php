@@ -23,7 +23,7 @@
     <div class="col-md-4">
       <div class="card mb-4 shadow-sm">
         <a href="{{ URL::to('kategori/dua') }}">
-          <img src="{{asset('images/slide1.jpg') }}" alt="foto kategori" class="card-img-top">
+          <img src="{{asset('images/slide2.jpg') }}" alt="foto kategori" class="card-img-top">
         </a>
         <div class="card-body">
           <a href="{{ URL::to('kategori/dua') }}" class="text-decoration-none">
@@ -36,7 +36,7 @@
     <div class="col-md-4">
       <div class="card mb-4 shadow-sm">
         <a href="{{ URL::to('kategori/tiga') }}">
-          <img src="{{asset('images/slide1.jpg') }}" alt="foto kategori" class="card-img-top">
+          <img src="{{asset('images/slide3.jpg') }}" alt="foto kategori" class="card-img-top">
         </a>
         <div class="card-body">
           <a href="{{ URL::to('kategori/tiga') }}" class="text-decoration-none">

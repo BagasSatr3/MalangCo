@@ -29,11 +29,30 @@
   </div>
   <!-- end carousel -->
 </div>
-@endsection
+<div class="row mt-4">
+    <div class="col">
+      <h5 class="text-center">Toko Online Menggunakan Laravel</h5>
+      <p>
+        Toko adalah demo membangun toko online menggunakan laravel framework. Di dalam demo ini terdapat user bisa menginput data kategori, produk dan transaksi.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic laborum aliquam dolorum sequi nulla maiores quos incidunt veritatis numquam suscipit. Cumque dolore rem obcaecati. Eos quod ad non veritatis assumenda.
+      </p>
+      <p>
+        Toko adalah demo membangun toko online menggunakan laravel framework. Di dalam demo ini terdapat user bisa menginput data kategori, produk dan transaksi.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic laborum aliquam dolorum sequi nulla maiores quos incidunt veritatis numquam suscipit. Cumque dolore rem obcaecati. Eos quod ad non veritatis assumenda.
+      </p>
+      <p class="text-center">
+        <a href="" class="btn btn-outline-secondary">
+          Baca Selengkapnya
+        </a>      
+      </p>
+    </div>
+  </div>
 <!-- kategori produk -->
   <div class="row mt-4">
     <div class="col col-md-12 col-sm-12 mb-4">
-      <h2 class="text-center">Kategori Produk</h2>
+      <br>
+      <br>
+       <h2 class="text-center">Kategori Produk</h2>
     </div>
     <!-- kategori pertama -->
     <div class="col-md-4">
@@ -52,7 +71,7 @@
     <div class="col-md-4">
       <div class="card mb-4 shadow-sm">
         <a href="{{ URL::to('kategori/dua') }}">
-          <img src="{{asset('images/slide1.jpg') }}" alt="foto kategori" class="card-img-top">
+          <img src="{{asset('images/slide2.jpg') }}" alt="foto kategori" class="card-img-top">
         </a>
         <div class="card-body">
           <a href="{{ URL::to('kategori/dua') }}" class="text-decoration-none">
@@ -65,7 +84,7 @@
     <div class="col-md-4">
       <div class="card mb-4 shadow-sm">
         <a href="{{ URL::to('kategori/tiga') }}">
-          <img src="{{asset('images/slide1.jpg') }}" alt="foto kategori" class="card-img-top">
+          <img src="{{asset('images/slide3.jpg') }}" alt="foto kategori" class="card-img-top">
         </a>
         <div class="card-body">
           <a href="{{ URL::to('kategori/tiga') }}" class="text-decoration-none">
@@ -260,22 +279,6 @@
   <!-- end produk terbaru -->
   <!-- tentang toko -->
   <hr>
-  <div class="row mt-4">
-    <div class="col">
-      <h5 class="text-center">Toko Online Menggunakan Laravel</h5>
-      <p>
-        Toko adalah demo membangun toko online menggunakan laravel framework. Di dalam demo ini terdapat user bisa menginput data kategori, produk dan transaksi.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic laborum aliquam dolorum sequi nulla maiores quos incidunt veritatis numquam suscipit. Cumque dolore rem obcaecati. Eos quod ad non veritatis assumenda.
-      </p>
-      <p>
-        Toko adalah demo membangun toko online menggunakan laravel framework. Di dalam demo ini terdapat user bisa menginput data kategori, produk dan transaksi.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic laborum aliquam dolorum sequi nulla maiores quos incidunt veritatis numquam suscipit. Cumque dolore rem obcaecati. Eos quod ad non veritatis assumenda.
-      </p>
-      <p class="text-center">
-        <a href="" class="btn btn-outline-secondary">
-          Baca Selengkapnya
-        </a>      
-      </p>
-    </div>
-  </div>
+  
   <!-- end tentang toko -->
+  @endsection
