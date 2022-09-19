@@ -118,11 +118,6 @@
                 <i class="far fa-heart"></i>
               </button>
             </div>
-            <p class>
-              <a href="" class="btn btn-outline-secondary">
-                Baca Selengkapnya
-              </a>      
-            </p>
             <div class="col-auto">
               <p>
                 <del>Rp. 15.000,00</del>
