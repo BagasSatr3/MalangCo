@@ -104,7 +104,7 @@
     <div class="col-md-4">
       <div class="card mb-4 shadow-sm">
         <a href="{{ URL::to('produk/satu') }}">
-          <img src="{{asset('images/slide3.jpg') }}" alt="foto produk" class="card-img-top">
+          <img src="{{asset('images/slide1.jpg') }}" alt="foto produk" class="card-img-top">
         </a>
         <div class="card-body">
           <a href="{{ URL::to('produk/satu') }}" class="text-decoration-none">
@@ -118,6 +118,11 @@
                 <i class="far fa-heart"></i>
               </button>
             </div>
+            <p class>
+              <a href="" class="btn btn-outline-secondary">
+                Baca Selengkapnya
+              </a>      
+            </p>
             <div class="col-auto">
               <p>
                 <del>Rp. 15.000,00</del>
@@ -133,7 +138,7 @@
     <div class="col-md-4">
       <div class="card mb-4 shadow-sm">
         <a href="{{ URL::to('produk/dua') }}">
-          <img src="{{asset('images/slide3.jpg') }}" alt="foto produk" class="card-img-top">
+          <img src="{{asset('images/slide2.jpg') }}" alt="foto produk" class="card-img-top">
         </a>
         <div class="card-body">
           <a href="{{ URL::to('produk/dua') }}" class="text-decoration-none">
