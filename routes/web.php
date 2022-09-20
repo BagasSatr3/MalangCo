@@ -31,3 +31,6 @@ Route::get('/kategori',[\App\Http\Controllers\HomepageController::class,'kategor
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [\App\Http\Controllers\DashboardController::class,'index']);
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
