@@ -17,10 +17,16 @@ use App\Http\Controllers\DashboardController;
 //     return view('dashboard.index');
 // });
 
+Route::get('/login', function () {
+    return view('login');
+});
+
+
 Route::get('/',[\App\Http\Controllers\HomepageController::class,'index']);
 Route::get('/about',[\App\Http\Controllers\HomepageController::class,'about']);
 Route::get('/kontak',[\App\Http\Controllers\HomepageController::class,'kontak']);
 Route::get('/kategori',[\App\Http\Controllers\HomepageController::class,'kategori']);
+
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', [\App\Http\Controllers\DashboardController::class,'index']);
