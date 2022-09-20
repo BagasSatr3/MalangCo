@@ -110,6 +110,8 @@
           <a href="{{ URL::to('produk/satu') }}" class="text-decoration-none">
             <p class="card-text">
               Produk Pertama
+                <p href="#" class="btn btn-primary stretched-link">Beli  
+              </p>
             </p>
           </a>
           <div class="row mt-4">
@@ -139,6 +141,8 @@
           <a href="{{ URL::to('produk/dua') }}" class="text-decoration-none">
             <p class="card-text">
               Produk Kedua
+              <p href="#" class="btn btn-primary stretched-link">Beli
+              </p>
             </p>
           </a>
           <div class="row mt-4">
@@ -168,6 +172,8 @@
           <a href="{{ URL::to('produk/tiga') }}" class="text-decoration-none">
             <p class="card-text">
               Produk Ketiga
+              <p href="#" class="btn btn-primary stretched-link">Beli
+              </p>
             </p>
           </a>
           <div class="row mt-4">
@@ -204,6 +210,8 @@
           <a href="{{ URL::to('produk/satu') }}" class="text-decoration-none">
             <p class="card-text">
               Produk Pertama
+              <p href="#" class="btn btn-primary stretched-link">Beli
+              </p>
             </p>
           </a>
           <div class="row mt-4">
@@ -231,6 +239,8 @@
           <a href="{{ URL::to('produk/dua') }}" class="text-decoration-none">
             <p class="card-text">
               Produk Kedua
+              <p href="#" class="btn btn-primary stretched-link">Beli
+              </p>
             </p>
           </a>
           <div class="row mt-4">
@@ -256,8 +266,10 @@
         </a>
         <div class="card-body">
           <a href="{{ URL::to('produk/tiga') }}" class="text-decoration-none">
-            <p class="card-text">
+            <p class="text">
               Produk Ketiga
+              <p href="#" class="btn btn-primary stretched-link">Beli
+              </p>
             </p>
           </a>
           <div class="row mt-4">

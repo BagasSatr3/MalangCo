@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="mr-auto navbar-nav"></ul>
       <ul class="navbar-nav">
-        <input type="text" class="border border-radius text-center" placeholder="Search">
+        <input type="text" class="border border-radius text-center"style="500px" placeholder="Search">
         <li class="nav-item active">
           <a class="nav-link" href="/">Home</a>
         </li>
