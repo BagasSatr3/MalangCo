@@ -31,14 +31,12 @@
 </div>
 <div class="row mt-4">
     <div class="col">
-      <h5 class="text-center">Toko Online Menggunakan Laravel</h5>
+      <h5 class="text-center">MALANG`CU Malang is The Best!</h5>
       <p class="text-center">
-        Toko adalah demo membangun toko online menggunakan laravel framework. Di dalam demo ini terdapat user bisa menginput data kategori, produk dan transaksi.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic laborum aliquam dolorum sequi nulla maiores quos incidunt veritatis numquam suscipit. Cumque dolore rem obcaecati. Eos quod ad non veritatis assumenda.
+      Siapa yang tidak kenal dengan Kota Malang? Kota dengan julukan kota dingin ini memang menjadi salah satu tujuan wisata terbaik yang menyajikan suasana sejuk dan hangat dalam waktu bersamaan.
       </p>
       <p class="text-center">
-        Toko adalah demo membangun toko online menggunakan laravel framework. Di dalam demo ini terdapat user bisa menginput data kategori, produk dan transaksi.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic laborum aliquam dolorum sequi nulla maiores quos incidunt veritatis numquam suscipit. Cumque dolore rem obcaecati. Eos quod ad non veritatis assumenda.
+      Malang`Cu adalah website yang menyediakan layanan produk dan jasa khas Malang. Siap untuk petualangan budaya Malang selanjutnya?
       </p>
       <p class="text-center">
         <a href="" class="btn btn-outline-secondary">
@@ -48,6 +46,7 @@
     </div>
   </div>
 <!-- kategori produk -->
+<div class="kategori">
   <div class="row mt-4">
     <div class="col col-md-12 col-sm-12 mb-4">
       <br>
@@ -94,8 +93,10 @@
       </div>
     </div>
   </div>
+  </div>
   <!-- end kategori produk -->
   <!-- produk Promo-->
+  <div class="kategori">
   <div class="row mt-4">
     <div class="col col-md-12 col-sm-12 mb-4">
       <h2 class="text-center">Promo</h2>
@@ -194,14 +195,15 @@
       </div>
     </div>
   </div>
+  </div>
   <!-- end produk promo -->
   <!-- produk Terbaru-->
-  <div class="row mt-4">
+  <!-- <div class="row mt-4">
     <div class="col col-md-12 col-sm-12 mb-4">
       <h2 class="text-center">Terbaru</h2>
-    </div>
+    </div> -->
     <!-- produk pertama -->
-    <div class="col-md-4">
+    <!-- <div class="col-md-4">
       <div class="card mb-4 shadow-sm">
         <a href="{{ URL::to('produk/satu') }}">
           <img src="{{asset('images/slide2.jpg') }}" alt="foto produk" class="card-img-top">
@@ -228,9 +230,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- produk kedua -->
-    <div class="col-md-4">
+    <!-- <div class="col-md-4">
       <div class="card mb-4 shadow-sm">
         <a href="{{ URL::to('produk/dua') }}">
           <img src="{{asset('images/slide2.jpg') }}" alt="foto produk" class="card-img-top">
@@ -257,9 +259,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- produk ketiga -->
-    <div class="col-md-4">
+    <!-- <div class="col-md-4">
       <div class="card mb-4 shadow-sm">
         <a href="{{ URL::to('produk/tiga') }}">
           <img src="{{asset('images/slide2.jpg') }}" alt="foto produk" class="card-img-top">
@@ -287,7 +289,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- end produk terbaru -->
   <!-- tentang toko -->
   <hr>
