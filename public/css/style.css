@@ -89,3 +89,40 @@ nav{
 .kategori .text-center{
     color: #fff;
 }
+
+.navbar-malang {
+  background: #C8A888;
+  
+}
+
+.navbar-malang a {
+    color: #000;
+}
+
+.bg-auth {
+  background: #5f1a1f;
+  color: #fff;
+}
+
+
+.form-auth {
+
+}
+
+.form-input, .form-input:focus  {
+  background-color: #C8A888;
+  color: #fff;
+  border-radius: 25px;
+  padding: 16px 32px;
+}
+
+.form-input::placeholder {
+  color: #fff;
+}
+
+.btn-auth {
+  background-color: #EECD80;
+  color: #000;
+  border-radius: 25px;
+
+}
