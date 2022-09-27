@@ -91,9 +91,9 @@ class KategoriController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'nama_kategori'=>'required',
-            'slug_kategori' => 'required',
-            'deskripsi_kategori' => 'required',
+            'nama_kategori'=>'',
+            'slug_kategori' => '',
+            'deskripsi_kategori' => '',
         ]);
         $itemkategori = Kategori::findOrFail($id);//cari berdasarkan id = $id, 
         // kalo ga ada error page not found 404
@@ -145,7 +145,7 @@ class KategoriController extends Controller
                                 ->first();
         if ($itemkategori) {
             $fileupload = $request->file('image');
-            $folder = 'assets/images';
+            $folder = 'public/assets/images';
             $itemgambar = (new ImageController)->upload($fileupload, $itemuser, $folder);
             $inputan['foto'] = $itemgambar->url;//ambil url file yang barusan diupload
             $itemkategori->update($inputan);

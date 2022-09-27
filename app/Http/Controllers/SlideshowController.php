@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Slideshow;
+use App\Models\Slideshow;
 use Illuminate\Http\Request;
 
 class SlideshowController extends Controller

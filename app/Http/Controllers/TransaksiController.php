@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Cart;
-use App\AlamatPengiriman;
-use App\Order;
+use App\Models\Cart;
+use App\Models\AlamatPengiriman;
+use App\Models\Order;
 
 class TransaksiController extends Controller
 {

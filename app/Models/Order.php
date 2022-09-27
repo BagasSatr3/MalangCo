@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
@@ -20,6 +21,6 @@ class Order extends Model
     ];
 
     public function cart() {
-        return $this->belongsTo('App\Cart', 'cart_id');
+        return $this->belongsTo('App\Models\Cart', 'cart_id');
     }
 }

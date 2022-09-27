@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Produk;
-use App\Kategori;
-use App\Slideshow;
-use App\ProdukPromo;
+use App\Models\Produk;
+use App\Models\Kategori;
+use App\Models\Slideshow;
+use App\Models\ProdukPromo;
 
 class HomepageController extends Controller
 {

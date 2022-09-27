@@ -1,99 +1,83 @@
-@extends('layouts.template')
+@extends('layouts.dashboard')
 @section('content')
-<div class="container">
-  <div class="row mt-4">
-    <div class="col col-lg-8 col-md-8">
-      <div id="carousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-        @foreach($itemproduk->images as $index => $image)
-        @if($index == 0)
-          <div class="carousel-item active">
-              <img src="{{ \Storage::url($image->foto) }}" class="d-block w-100" alt="...">
-          </div>
-        @else
-          <div class="carousel-item">
-              <img src="{{ \Storage::url($image->foto) }}" class="d-block w-100" alt="...">
-          </div>
-        @endif
-        @endforeach
-        </div>
-        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    </div>
-    <!-- deskripsi produk -->
-    <div class="col col-lg-4 col-md-4">
-      <div class="row">
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <span class="small">{{ $itemproduk->kategori->nama_kategori }}</span>
-              <h5>{{ $itemproduk->nama_produk }}</h5>
-              <!-- cek apakah ada promo -->
-              @if($itemproduk->promo != null)
-              <p>
-                Rp. <del>{{ number_format($itemproduk->promo->harga_awal, 2) }}</del>
-                <br />
-                Rp. {{ number_format($itemproduk->promo->harga_akhir, 2) }}
-              </p>
-              @else
-              <p>
-                Rp. {{ number_format($itemproduk->harga, 2) }}
-              </p>
-              @endif
-              <button class="btn btn-sm btn-outline-secondary">
-              <i class="far fa-heart"></i> Tambah ke wishlist
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-4">
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <button class="btn btn-block btn-primary">
-              <i class="fa fa-shopping-cart"></i> Tambahkan Ke Keranjang
-              </button>
-              <button class="btn btn-block btn-danger mt-4">
-              <i class="fa fa-shopping-basket"></i> Beli Sekarang
-              </button>
-            </div>
-            <div class="card-footer">
-              <div class="row mt-4">
-                <div class="col text-center">
-                  <i class="fa fa-truck-moving"></i> 
-                  <p>Pengiriman Cepat</p>
-                </div>
-                <div class="col text-center">
-                  <i class="fa fa-calendar-week"></i> 
-                  <p>Garansi 7 hari</p>
-                </div>
-                <div class="col text-center">
-                  <i class="fa fa-money-bill"></i> 
-                  <p>Pembayaran Aman</p>
-                </div>
-              </div>            
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row mt-4">
-    <div class="col">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col col-lg-6 col-md-6">
       <div class="card">
         <div class="card-header">
-          Deskripsi
+          <h3 class="card-title">Form Produk</h3>
+          <div class="card-tools">
+            <a href="{{ route('produk.index') }}" class="btn btn-sm btn-danger">
+              Tutup
+            </a>
+          </div>
         </div>
         <div class="card-body">
-          {{ $itemproduk->deskripsi_produk }}
+          @if(count($errors) > 0)
+          @foreach($errors->all() as $error)
+              <div class="alert alert-warning">{{ $error }}</div>
+          @endforeach
+          @endif
+          @if ($message = Session::get('error'))
+              <div class="alert alert-warning">
+                  <p>{{ $message }}</p>
+              </div>
+          @endif
+          @if ($message = Session::get('success'))
+              <div class="alert alert-success">
+                  <p>{{ $message }}</p>
+              </div>
+          @endif
+          <form action="{{ route('produk.store') }}" method="post">
+            @csrf
+            <div class="form-group">
+              <label for="kategori_id">Kategori Produk</label>
+              <select name="kategori_id" id="kategori_id" class="form-control">
+                <option value="">Pilih Kategori</option>
+                @foreach($itemkategori as $kategori)
+                <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="kode_produk">Kode Produk</label>
+              <input type="text" name="kode_produk" id="kode_produk" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="nama_produk">Nama Produk</label>
+              <input type="text" name="nama_produk" id="nama_produk" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="slug_produk">Slug Produk</label>
+              <input type="text" name="slug_produk" id="slug_produk" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="deskripsi_produk">Deskripsi</label>
+              <textarea name="deskripsi_produk" id="deskripsi_produk" cols="30" rows="5" class="form-control"></textarea>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="qty">Qty</label>
+                  <input type="text" name="qty" id="qty" class="form-control">
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="satuan">Satuan</label>
+                  <input type="text" name="satuan" id="satuan" class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="harga">Harga</label>
+              <input type="text" name="harga" id="harga" class="form-control">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Simpan</button>
+              <button type="reset" class="btn btn-warning">Reset</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
