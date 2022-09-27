@@ -38,13 +38,6 @@
          <div class="logo">
             MALANG'CU
          </div>
-         <div class="nav-items">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Produk</a></li>
-            <li><a href="{{ URL::to('kategori') }}">Kategori</a></li>
-            <li><a href="{{ URL::to('about') }}">Tentang Kami</a></li>
-            <li><a href="#">Login</a></li>
-         </div>
          <div class="search-icon">
             <span class="fas fa-search"></span>
          </div>
@@ -55,4 +48,12 @@
             <input type="search" class="search-data" placeholder="Search" required>
             <button type="submit" class="fas fa-search"></button>
          </form>
+         <div class="nav-items">
+            <li><a href="/">Home</a></li>
+            <li><a href="#">Produk</a></li>
+            <li><a href="{{ URL::to('kategori') }}">Kategori</a></li>
+            <li><a href="{{ URL::to('kontak') }}">Kontak</a></li>
+            <li><a href="{{ URL::to('about') }}">About</a></li>
+            <li><a href="#">Login</a></li>
+         </div>
       </nav>

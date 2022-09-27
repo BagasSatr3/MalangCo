@@ -9,14 +9,14 @@ nav{
     justify-content: space-between;
     height: 70px;
     padding: 0 100px;
-    margin-bottom: 80px;
+    margin-bottom: 50px;
   }
   nav .logo{
     color: #ffffff;
     font-size: 30px;
     font-weight: 600;
     letter-spacing: -1px;
-    
+    margin-right: 30px;
   }
   nav .nav-items{
     display: flex;
@@ -90,6 +90,17 @@ nav{
     color: #fff;
 }
 
+.carousel .carousel-item{
+  height: 400px;
+  padding-bottom: 10px;
+}
+/* .carousel-item{
+  position: absolute;
+  object-fit: cover;
+  top: 0;
+  bottom: 0;
+  min-height: 400px;
+} */
 .navbar-malang {
   background: #C8A888;
   
@@ -104,10 +115,6 @@ nav{
   color: #fff;
 }
 
-
-.form-auth {
-
-}
 
 .form-input, .form-input:focus  {
   background-color: #C8A888;
@@ -124,5 +131,4 @@ nav{
   background-color: #EECD80;
   color: #000;
   border-radius: 25px;
-
 }

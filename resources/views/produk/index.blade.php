@@ -8,7 +8,7 @@
         <div class="card-header">
           <h4 class="card-title">Produk</h4>
           <div class="card-tools">
-            <a href="{{ route('produk.create') }}" class="btn btn-sm btn-primary">
+            <a href="{{ route('promo.create') }}" class="btn btn-sm btn-primary">
               Baru
             </a>
           </div>
@@ -28,6 +28,16 @@
           </form>
         </div>
         <div class="card-body">
+          @if ($message = Session::get('error'))
+              <div class="alert alert-warning">
+                  <p>{{ $message }}</p>
+              </div>
+          @endif
+          @if ($message = Session::get('success'))
+              <div class="alert alert-success">
+                  <p>{{ $message }}</p>
+              </div>
+          @endif
           <div class="table-responsive">
             <table class="table table-bordered">
               <thead>
@@ -35,98 +45,56 @@
                   <th width="50px">No</th>
                   <th>Gambar</th>
                   <th>Kode</th>
+                  <th>Harga Awal</th>
                   <th>Nama</th>
-                  <th>Jumlah Produk</th>
+                  <th>Diskon</th>
+                  <th>Harga Akhir</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
+                @foreach($itempromo as $promo)
                 <tr>
-                  <td>1</td>
                   <td>
-                    <img src="{{ asset('images/slide1.jpg') }}" alt="produk 1" width='150px'>
-                    <div class="row mt-2">
-                      <div class="col">
-                        <input type="file" name="gambar" id="gambar">
-                      </div>
-                      <div class="col-auto">
-                        <button class="btn btn-sm btn-primary">Upload</button>
-                      </div>
-                    </div>
+                  {{ ++$no }}
                   </td>
-                  <td>KATE-1</td>
-                  <td>Baju Anak</td>
-                  <td>12 Produk</td>
                   <td>
-                    <a href="{{ route('produk.show', 2) }}" class="btn btn-sm btn-primary mr-2 mb-2">
-                      Detail
-                    </a>
-                    <a href="{{ route('produk.edit', 2) }}" class="btn btn-sm btn-primary mr-2 mb-2">
+                    @if($promo->produk->foto != null)
+                    <img src="{{ \Storage::url($promo->produk->foto) }}" alt="{{ $promo->produk->nama_produk }}" width='150px' class="img-thumbnail">
+                    @endif
+                  </td>
+                  <td>
+                  {{ $promo->produk->kode_produk }}
+                  </td>
+                  <td>
+                  {{ $promo->produk->nama_produk }}
+                  </td>
+                  <td>
+                  {{ number_format($promo->harga_awal, 2) }}
+                  </td>
+                  <td>
+                  {{ number_format($promo->diskon_nominal, 2) }} ({{ $promo->diskon_persen }}%)
+                  </td>
+                  <td>
+                  {{ number_format($promo->harga_akhir, 2) }}
+                  </td>
+                  <td>
+                    <a href="{{ route('promo.edit', $promo->id) }}" class="btn btn-sm btn-primary mr-2 mb-2">
                       Edit
                     </a>
-                    <button class="btn btn-sm btn-danger mb-2">
-                      Hapus
-                    </button>
+                    <form action="{{ route('promo.destroy', $promo->id) }}" method="post" style="display:inline;">
+                      @csrf
+                      {{ method_field('delete') }}
+                      <button type="submit" class="btn btn-sm btn-danger mb-2">
+                        Hapus
+                      </button>                    
+                    </form>
                   </td>
                 </tr>
-                <tr>
-                  <td>2</td>
-                  <td>
-                    <img src="{{ asset('images/slide1.jpg') }}" alt="produk 1" width='150px'>
-                    <div class="row mt-2">
-                      <div class="col">
-                        <input type="file" name="gambar" id="gambar">
-                      </div>
-                      <div class="col-auto">
-                        <button class="btn btn-sm btn-primary">Upload</button>
-                      </div>
-                    </div>
-                  </td>
-                  <td>KATE-2</td>
-                  <td>Baju Wanita</td>
-                  <td>20 Produk</td>
-                  <td>
-                    <a href="{{ route('produk.show', 2) }}" class="btn btn-sm btn-primary mr-2 mb-2">
-                      Detail
-                    </a>
-                    <a href="{{ route('produk.edit', 2) }}" class="btn btn-sm btn-primary mr-2 mb-2">
-                      Edit
-                    </a>
-                    <button class="btn btn-sm btn-danger mb-2">
-                      Hapus
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>
-                    <img src="{{ asset('images/slide1.jpg') }}" alt="produk 1" width='150px'>
-                    <div class="row mt-2">
-                      <div class="col">
-                        <input type="file" name="gambar" id="gambar">
-                      </div>
-                      <div class="col-auto">
-                        <button class="btn btn-sm btn-primary">Upload</button>
-                      </div>
-                    </div>
-                  </td>
-                  <td>KATE-3</td>
-                  <td>Baju Wanita</td>
-                  <td>20 Produk</td>
-                  <td>
-                    <a href="{{ route('produk.show', 2) }}" class="btn btn-sm btn-primary mr-2 mb-2">
-                      Detail
-                    </a>
-                    <a href="{{ route('produk.edit', 2) }}" class="btn btn-sm btn-primary mr-2 mb-2">
-                      Edit
-                    </a>
-                    <button class="btn btn-sm btn-danger mb-2">
-                      Hapus
-                    </button>
-                  </td>
-                </tr>
+                @endforeach
               </tbody>
             </table>
+            {{ $itempromo->links() }}
           </div>
         </div>
       </div>
