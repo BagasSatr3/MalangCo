@@ -43,10 +43,6 @@
               <input type="text" name="slug_kategori" id="slug_kategori" class="form-control">
             </div>
             <div class="form-group">
-              <label for="foto">Foto Kategori</label>
-              <input type="file" name="foto" id="foto" class="form-control">
-            </div>
-            <div class="form-group">
               <label for="deskripsi_kategori">Deskripsi</label>
               <textarea name="deskripsi_kategori" id="deskripsi_kategori" cols="30" rows="5" class="form-control"></textarea>
             </div>

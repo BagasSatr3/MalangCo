@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Produk;
 use App\Models\Kategori;
+use App\Models\Image;
+use App\Models\ProdukImage;
 
 class ProdukController extends Controller
 {
@@ -68,7 +70,7 @@ class ProdukController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-      public function show($id)
+    public function show($id)
     {
         $itemproduk = Produk::findOrFail($id);
         $data = array('title' => 'Foto Produk',
@@ -161,7 +163,7 @@ class ProdukController extends Controller
             $inputan = $request->all();
             $inputan['foto'] = $itemgambar->url;//ambil url file yang barusan diupload
             // simpan ke produk image
-            \App\models\ProdukImage::create($inputan);
+            ProdukImage::create($inputan);
             // update banner produk
             $itemproduk->update(['foto' => $itemgambar->url]);
             // end update banner produk
@@ -173,11 +175,11 @@ class ProdukController extends Controller
 
     public function deleteimage(Request $request, $id) {
         // ambil data produk image by id
-        $itemprodukimage = \App\models\ProdukImage::findOrFail($id);
+        $itemprodukimage = ProdukImage::findOrFail($id);
         // ambil produk by produk_id kalau tidak ada maka error 404
         $itemproduk = Produk::findOrFail($itemprodukimage->produk_id);
         // kita cari dulu database berdasarkan url gambar
-        $itemgambar = \App\models\ProdukImage::where('url', $itemprodukimage->foto)->first();
+        $itemgambar = Image::where('url', $itemprodukimage->foto)->first();
         // hapus imagenya
         if ($itemgambar) {
             \Storage::delete($itemgambar->url);
@@ -186,7 +188,7 @@ class ProdukController extends Controller
         // baru update hapus produk image
         $itemprodukimage->delete();
         //ambil 1 buah produk image buat diupdate jadi banner produk
-        $itemsisaprodukimage = \App\models\ProdukImage::where('produk_id', $itemproduk->id)->first();
+        $itemsisaprodukimage = ProdukImage::where('produk_id', $itemproduk->id)->first();
         if ($itemsisaprodukimage) {
             $itemproduk->update(['foto' => $itemsisaprodukimage->foto]);
         } else {

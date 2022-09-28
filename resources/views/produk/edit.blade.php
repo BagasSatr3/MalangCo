@@ -7,7 +7,7 @@
         <div class="card-header">
           <h3 class="card-title">Form Produk</h3>
           <div class="card-tools">
-            <a href="{{ route('promo.index') }}" class="btn btn-sm btn-danger">
+            <a href="{{ route('produk.index') }}" class="btn btn-sm btn-danger">
               Tutup
             </a>
           </div>
@@ -28,45 +28,58 @@
                   <p>{{ $message }}</p>
               </div>
           @endif
-          <form action="{{ route('promo.update', $itempromo->id) }}" method="post">
+          <form action="{{ route('produk.update', $itemproduk->id) }}" method="post">
             {{ method_field('patch') }}
-            @csrf            
+            @csrf
+            <div class="form-group">
+              <label for="kategori_id">Kategori Produk</label>
+              <select name="kategori_id" id="kategori_id" class="form-control">
+                <option value="">Pilih Kategori</option>
+                @foreach($itemkategori as $kategori)
+                <option value="{{ $kategori->id }}" {{ $itemproduk->kategori_id == $kategori->id ? 'selected' : ''}}>{{ $kategori->nama_kategori }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="kode_produk">Kode Produk</label>
+              <input type="text" name="kode_produk" id="kode_produk" value={{ $itemproduk->kode_produk }} class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="nama_produk">Nama Produk</label>
+              <input type="text" name="nama_produk" id="nama_produk" value={{ $itemproduk->nama_produk }} class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="slug_produk">Slug Produk</label>
+              <input type="text" name="slug_produk" id="slug_produk" value={{ $itemproduk->slug_produk }} class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="deskripsi_produk">Deskripsi</label>
+              <textarea name="deskripsi_produk" id="deskripsi_produk" cols="30" rows="5" class="form-control">{{ $itemproduk->deskripsi_produk }}</textarea>
+            </div>
             <div class="row">
               <div class="col">
                 <div class="form-group">
-                  <label for="kode_produk">Kode Produk</label>
-                  <input type="text" name="kode_produk" id="kode_produk" class="form-control" disabled value={{ $itempromo->produk->kode_produk }}>
-                  <input type="hidden" name="produk_id" value={{$itempromo->produk_id}}>
+                  <label for="qty">Qty</label>
+                  <input type="text" name="qty" id="qty" value={{ $itemproduk->qty }} class="form-control">
                 </div>
               </div>
               <div class="col">
                 <div class="form-group">
-                  <label for="nama_produk">Nama Produk</label>
-                  <input type="text" name="nama_produk" id="nama_produk" class="form-control" disabled value={{ $itempromo->produk->nama_produk }}>
+                  <label for="satuan">Satuan</label>
+                  <input type="text" name="satuan" id="satuan" value={{ $itemproduk->satuan }} class="form-control">
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <label for="harga_awal">Harga Awal</label>
-              <input type="text" name="harga_awal" id="harga_awal" class="form-control" value={{ $itempromo->harga_awal }}>
-            </div>
-            <div class="row">
-              <div class="col">
-                <div class="form-group">
-                  <label for="diskon_persen">Diskon Persen</label>
-                  <input type="text" name="diskon_persen" id="diskon_persen" class="form-control" value={{ $itempromo->diskon_persen }}>
-                </div>
-              </div>
-              <div class="col">
-                <div class="form-group">
-                  <label for="diskon_nominal">Diskon Nominal</label>
-                  <input type="text" name="diskon_nominal" id="diskon_nominal" class="form-control" value={{ $itempromo->diskon_nominal }}>
-                </div>
-              </div>
+              <label for="harga">Harga</label>
+              <input type="text" name="harga" id="harga" value={{ $itemproduk->harga }} class="form-control">
             </div>
             <div class="form-group">
-              <label for="harga_akhir">Harga Akhir</label>
-              <input type="text" name="harga_akhir" id="harga_akhir" class="form-control" value={{ $itempromo->harga_akhir }}>
+              <label for="status">Status</label>
+              <select name="status" id="status" class="form-control">
+                <option value="publish" {{ $itemproduk->status == 'publish'? 'selected': ''}}>Publish</option>
+                <option value="unpublish" {{ $itemproduk->status == 'unpublish'? 'selected': ''}}>Unpublish</option>
+              </select>
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-primary">Update</button>
@@ -78,40 +91,4 @@
     </div>
   </div>
 </div>
-<script>
-  // cari nominal diskon
-  $('#diskon_persen').on('keyup', function() {
-    var harga_awal = $('#harga_awal').val();
-    var diskon_persen = $('#diskon_persen').val();
-    var diskon_nominal = diskon_persen / 100 * harga_awal;
-    var harga_akhir = harga_awal - diskon_nominal;
-    $('#diskon_nominal').val(diskon_nominal);
-    $('#harga_akhir').val(harga_akhir);
-  })
-  // cari nominal persen
-  $('#diskon_nominal').on('keyup', function() {
-    var harga_awal = $('#harga_awal').val();
-    var diskon_nominal = $('#diskon_nominal').val();
-    var diskon_persen = diskon_nominal / harga_awal * 100;
-    var harga_akhir = harga_awal - diskon_nominal;
-    $('#diskon_persen').val(diskon_persen);
-    $('#harga_akhir').val(harga_akhir);
-  })
-  // load produk detail
-  $('#produk_id').on('change', function() {
-    var id = $('#produk_id').val();
-    $.ajax({
-      url: '{{ URL::to("admin/loadprodukasync") }}/'+id,
-      type: 'get',
-      dataType: 'json',
-      success: function (data,status) {
-        if (status == 'success') {
-          $('#harga_awal').val(data.itemproduk.harga);
-        }
-      },
-      error : function(x,t,m) {
-      }
-    })
-  })
-</script>
 @endsection

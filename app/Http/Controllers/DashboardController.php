@@ -10,5 +10,4 @@ class DashboardController extends Controller
         $data = array('title' => 'Dashboard');
         return view('dashboard.index', $data);
     }
-
 }
