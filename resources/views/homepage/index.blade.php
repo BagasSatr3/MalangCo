@@ -147,14 +147,12 @@
   <hr>
   <div class="row mt-4">
     <div class="col">
-      <h5 class="text-center">Toko Online Menggunakan Laravel</h5>
-      <p>
-        Toko adalah demo membangun toko online menggunakan laravel framework. Di dalam demo ini terdapat user bisa menginput data kategori, produk dan transaksi.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic laborum aliquam dolorum sequi nulla maiores quos incidunt veritatis numquam suscipit. Cumque dolore rem obcaecati. Eos quod ad non veritatis assumenda.
+      <h5 class="text-center">Malang is The Best!</h5>
+      <p style="text-align:center">
+        Siapa yang tidak kenal dengan kota Malang? Kota dengan julukan kota dingin ini memang menjadi salah satu tujuan wisata terbaik yang menyajikan suasana sejuk dan hangat dalam waktu bersamaan.
       </p>
-      <p>
-        Toko adalah demo membangun toko online menggunakan laravel framework. Di dalam demo ini terdapat user bisa menginput data kategori, produk dan transaksi.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic laborum aliquam dolorum sequi nulla maiores quos incidunt veritatis numquam suscipit. Cumque dolore rem obcaecati. Eos quod ad non veritatis assumenda.
+      <p style="text-align:center"> 
+        Malang`Cu adalah website yang menyediakan layanan produk dan jasa khas Malang. Siap untuk petualangan budaya Malang selanjutnya?
       </p>
       <p class="text-center">
         <a href="" class="btn btn-outline-secondary">
@@ -163,8 +161,8 @@
       </p>
     </div>
   </div>
-<<<<<<< HEAD
-=======
+
+
 <!-- kategori produk -->
 <div class="kategori">
   <div class="row mt-4">
@@ -174,44 +172,33 @@
        <h2 class="text-center">Kategori Produk</h2>
     </div>
     <!-- kategori pertama -->
-    <div class="col-md-4">
+    <div class="col-sm-6">
       <div class="card mb-4 shadow-sm">
         <a href="{{ URL::to('kategori/satu') }}">
           <img src="{{asset('images/slide1.jpg') }}" alt="foto kategori" class="card-img-top">
         </a>
         <div class="card-body">
           <a href="{{ URL::to('kategori/satu') }}" class="text-decoration-none">
-            <p class="card-text">Kategori Pertama</p>
+            <p class="card-text" style="text-align:center">Barang</p>
           </a>
         </div>
       </div>
     </div>
     <!-- kategori kedua -->
-    <div class="col-md-4">
+    <div class="col-sm-6">
       <div class="card mb-4 shadow-sm">
         <a href="{{ URL::to('kategori/dua') }}">
           <img src="{{asset('images/slide2.jpg') }}" alt="foto kategori" class="card-img-top">
         </a>
-        <div class="card-body">
+        <div class="card-body" >
           <a href="{{ URL::to('kategori/dua') }}" class="text-decoration-none">
-            <p class="card-text">Kategori Kedua</p>
+            <p class="card-text" style="text-align:center">Jasa</p>
           </a>
         </div>
       </div>
     </div>
     <!-- kategori ketiga -->
-    <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <a href="{{ URL::to('kategori/tiga') }}">
-          <img src="{{asset('images/slide3.jpg') }}" alt="foto kategori" class="card-img-top">
-        </a>
-        <div class="card-body">
-          <a href="{{ URL::to('kategori/tiga') }}" class="text-decoration-none">
-            <p class="card-text">Kategori Ketiga</p>
-          </a>
-        </div>
-      </div>
-    </div>
+    
   </div>
   </div>
   <!-- end kategori produk -->
@@ -414,7 +401,7 @@
   <!-- tentang toko -->
   <hr>
   
->>>>>>> 74bc974cab758d27db9275b3c2893e4fb33aaa1d
+
   <!-- end tentang toko -->
 </div>
 @endsection
