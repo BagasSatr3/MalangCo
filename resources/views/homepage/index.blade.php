@@ -161,7 +161,7 @@
       </p>
     </div>
   </div>
-<<<<<<< Updated upstream
+
 
 
 <!-- kategori produk -->
@@ -372,8 +372,7 @@
   <hr>
   
 
-=======
->>>>>>> Stashed changes
+
   <!-- end tentang toko -->
 </div>
 @endsection
