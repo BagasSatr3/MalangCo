@@ -138,3 +138,12 @@ nav{
   border-radius: 100px;
   
 }
+
+.card-yellow {
+  background-color: #eecd80;
+}
+
+.card-red {
+  background-color: #5F1A1F;
+  color:#FFF;
+}

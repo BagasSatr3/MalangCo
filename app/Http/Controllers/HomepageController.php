@@ -70,15 +70,26 @@ class HomepageController extends Controller
     }
 
     public function produk(Request $request) {
+        $search = $request->query('q');
+
         $itemproduk = Produk::orderBy('nama_produk', 'desc')
                             ->where('status', 'publish')
                             ->paginate(18);
+
+        $product_search = Produk::orderBy('nama_produk', 'desc')
+                                ->where('status', 'publish')
+                                ->where('nama_produk', 'LIKE', '%'.$search.'%')
+                                ->paginate(18);
+
         $listkategori = Kategori::orderBy('nama_kategori', 'asc')
                                 ->where('status', 'publish')
                                 ->get();
+
         $data = array('title' => 'Produk',
-                    'itemproduk' => $itemproduk,
-                    'listkategori' => $listkategori);
+                    // 'itemproduk' => $itemproduk,
+                    'itemproduk' => $product_search,
+                    'listkategori' => $listkategori,
+                );
         return view('homepage.produk', $data)->with('no', ($request->input('page') - 1) * 18);
     }
 

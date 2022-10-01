@@ -32,7 +32,7 @@
       <div class="row">
         <div class="col">
           <div class="card">
-            <div class="card-body">
+            <div class="card-body card-yellow">
               @if(count($errors) > 0)
               @foreach($errors->all() as $error)
                   <div class="alert alert-warning">{{ $error }}</div>
@@ -80,7 +80,7 @@
       <div class="row mt-4">
         <div class="col">
           <div class="card">
-            <div class="card-body">
+            <div class="card-body card-yellow">
             <form action="{{ route('cartdetail.store') }}" method="POST">
               @csrf
               <input type="hidden" name="produk_id" value={{$itemproduk->id}}>
@@ -92,7 +92,7 @@
               <i class="fa fa-shopping-basket"></i> Beli Sekarang
               </button>
             </div>
-            <div class="card-footer">
+            <div class="card-footer card-yellow">
               <div class="row mt-4">
                 <div class="col text-center">
                   <i class="fa fa-truck-moving"></i> 
@@ -116,10 +116,10 @@
   <div class="row mt-4">
     <div class="col">
       <div class="card">
-        <div class="card-header">
+        <div class="card-header card-red">
           Deskripsi
         </div>
-        <div class="card-body">
+        <div class="card-body card-yellow">
           {{ $itemproduk->deskripsi_produk }}
         </div>
       </div>

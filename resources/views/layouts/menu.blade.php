@@ -51,8 +51,8 @@
          <div class="cancel-icon">
             <span class="fas fa-times"></span>
          </div>
-         <form action="#">
-            <input type="search" class="search-data" placeholder="Search" required>
+         <form action="/produk" method="GET">
+            <input type="search" class="search-data" placeholder="Search" name="q">
             <button type="submit" class="fas fa-search"></button>
          </form>
       </nav>
