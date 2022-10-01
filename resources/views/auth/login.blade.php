@@ -18,12 +18,12 @@
     <div class="bg-auth">
         <div class="row">
             <div class="col">
-                <img src="/images/auth-bg.png" alt="">
+                <img src="/images/auth-bg.png" style="width:600px;height:400px;">
             </div>
             <div class="col">
                 <div class="d-flex flex-column align-items-center">
                     <h1>Login</h1>
-                    <div class="text-center">Hallo kawan Malang`Cu! <br />
+                    <div class="text-center" >Hallo kawan Malang`Cu!
                         Silahkan login di bawah ini!</div>
                     <form method="POST" action="{{ route('login') }}" class="form-auth">
                         @csrf
@@ -53,12 +53,12 @@
                                 {{ __('Remember Me') }}
                             </label>
                         </div>
-
+                        <br>
                         <div>
                             <button type="submit" class="btn btn-auth">
                                 {{ __('Login') }}
                             </button>
-
+                        
                             @if (Route::has('password.request'))
                             <a class="btn btn-link" href="{{ route('password.request') }}">
                                 {{ __('Forgot Your Password?') }}

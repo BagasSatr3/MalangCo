@@ -1,3 +1,4 @@
+/*CSS halaman depan*/
 body{
     background: #c8a888;
 }
@@ -110,6 +111,7 @@ nav{
     color: #000;
 }
 
+/* CSS LOGIN */
 .bg-auth {
   background: #5f1a1f;
   color: #fff;
@@ -120,15 +122,19 @@ nav{
   background-color: #C8A888;
   color: #fff;
   border-radius: 25px;
-  padding: 16px 32px;
+  padding-left: 20px 40px;
+
 }
 
 .form-input::placeholder {
   color: #fff;
+  position: center;
+  
 }
 
 .btn-auth {
   background-color: #EECD80;
   color: #000;
-  border-radius: 25px;
+  border-radius: 100px;
+  
 }
