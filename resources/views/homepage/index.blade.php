@@ -163,7 +163,6 @@
   </div>
 
 
-
 <!-- kategori produk -->
 <div class="kategori">
   <div class="row mt-4">
@@ -174,28 +173,38 @@
     </div>
     <!-- kategori pertama -->
     <div class="col-sm-6">
-      <div class="card mb-4 shadow-sm">
+      <div class="row justify-content-center align-items-center">
+        <div class="card" style="width: 500px;">
         <a href="{{ URL::to('kategori/satu') }}">
           <img src="{{asset('images/slide1.jpg') }}" alt="foto kategori" class="card-img-top">
         </a>
         <div class="card-body">
-          <a href="{{ URL::to('kategori/satu') }}" class="text-decoration-none">
-            <p class="card-text" style="text-align:center">Barang</p>
-          </a>
+          <div class = "button">
+            <p class="text-center">
+            <a href="{{ URL::to('kategori/satu') }}" class="btn btn-primary">Barang</a>
+            </a>
+            </p>
         </div>
+</div>
+</div>
       </div>
     </div>
     <!-- kategori kedua -->
     <div class="col-sm-6">
-      <div class="card mb-4 shadow-sm">
+      <div class="row justify-content-center align-items-center">
+        <div class="card" style="width: 500px;">
         <a href="{{ URL::to('kategori/dua') }}">
           <img src="{{asset('images/slide2.jpg') }}" alt="foto kategori" class="card-img-top">
         </a>
         <div class="card-body" >
-          <a href="{{ URL::to('kategori/dua') }}" class="text-decoration-none">
-            <p class="card-text" style="text-align:center">Jasa</p>
+          <div class = "button">
+          <p class = "text-center">
+          <a href="{{ URL::to('kategori/dua') }}" class="btn btn-primary">Jasa</a>
           </a>
+      </p>
         </div>
+       </div>
+</div>
       </div>
     </div>
     <!-- kategori ketiga -->
@@ -207,21 +216,19 @@
   <div class="kategori">
   <div class="row mt-4">
     <div class="col col-md-12 col-sm-12 mb-4">
-      <h2 class="text-center">Promo</h2>
+      <br>
+      <br>
+       <h2 class="text-center">Promo Produk</h2>
     </div>
     <!-- produk pertama -->
     <div class="col-sm-6">
-      <div class="card mb-4 shadow-sm">
+    <div class="row justify-content-center align-items-center">
+      <div class="card" style="width: 500px;"> 
         <a href="{{ URL::to('produk/satu') }}">
           <img src="{{asset('images/slide1.jpg') }}" alt="foto produk" class="card-img-top">
         </a>
         <div class="card-body">
-          <a href="{{ URL::to('produk/satu') }}" class="text-decoration-none">
-            <p class="card-text">
-              Produk Pertama
-                <p href="#" class="btn btn-primary stretched-link">Beli  
-              </p>
-            </p>
+          <h5 class="card-title">Produk Pertama</h5>
           </a>
           <div class="row mt-4">
             <div class="col">
@@ -235,24 +242,22 @@
                 <br />
                 Rp. 10.000,00
               </p>
+              <a href="#" class="btn btn-primary" style:>Beli</a>
             </div>
           </div>
         </div>
       </div>
     </div>
+    </div>
     <!-- produk kedua -->
     <div class="col-sm-6">
-      <div class="card mb-4 shadow-sm">
+    <div class="row justify-content-center align-items-center">
+      <div class="card" style="width: 500px;">
         <a href="{{ URL::to('produk/dua') }}">
           <img src="{{asset('images/slide2.jpg') }}" alt="foto produk" class="card-img-top">
         </a>
         <div class="card-body">
-          <a href="{{ URL::to('produk/dua') }}" class="text-decoration-none">
-            <p class="card-text">
-              Produk Kedua
-              <p href="#" class="btn btn-primary stretched-link">Beli
-              </p>
-            </p>
+          <h5 class="card-title">Produk Kedua</h5>
           </a>
           <div class="row mt-4">
             <div class="col">
@@ -266,12 +271,16 @@
                 <br />
                 Rp. 10.000,00
               </p>
+              <a href="#" class="btn btn-primary" style:>Beli</a>
             </div>
           </div>
         </div>
       </div>
     </div>
+</div>
   </div>
+  </br>
+</br>
   </div>
   <!-- end produk promo -->
   <!-- produk Terbaru-->
@@ -371,7 +380,6 @@
   <!-- tentang toko -->
   <hr>
   
-
 
   <!-- end tentang toko -->
 </div>
