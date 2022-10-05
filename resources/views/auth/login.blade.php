@@ -22,13 +22,13 @@
             </div>
             <div class="col">
                 <div class="d-flex flex-column align-items-center">
-                    <h1>Login</h1>
+                    <h1>Log In</h1>
                     <div class="text-center" >Hallo kawan Malang`Cu!
                         Silahkan login di bawah ini!</div>
                     <form method="POST" action="{{ route('login') }}" class="form-auth">
                         @csrf
                         <div class="mt-5">
-                            <input id="email" type="email" class="form-input form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email Address">
+                            <input id="email" type="email" class="form-input form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="current-email" autofocus placeholder="Email Address">
 
                             @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -37,7 +37,7 @@
                             @enderror
                         </div>
                         <div class="mt-4">
-                            <input id="password" type="password" class="form-input form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+                            <input id="password" type="password" class="form-input form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" autofocus placeholder="Password">
 
                             @error('password')
                             <span class="invalid-feedback" role="alert">
