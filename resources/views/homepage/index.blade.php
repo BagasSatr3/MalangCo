@@ -176,13 +176,17 @@
     <div class="col-sm-6">
       <div class="row justify-content-center align-items-center">
         <div class="card" style="width: 500px;">
-        <a href="{{ URL::to('kategori/satu') }}">
-          <img src="{{asset('images/slide1.jpg') }}" alt="foto kategori" class="card-img-top">
+        <a href="{{ URL::to('kategori/'.$kategori->slug_kategori) }}">
+          @if($kategori->foto != null)
+          <img src="{{ \Storage::url($kategori->foto) }}" alt="{{ $kategori->nama_kategori }}" class="card-img-top">
+          @else
+          <img src="{{ asset('images/bag.jpg') }}" alt="{{ $kategori->nama_kategori }}" class="card-img-top">
+          @endif
         </a>
         <div class="card-body">
           <div class = "button">
             <p class="text-center">
-            <a href="{{ URL::to('kategori/satu') }}" class="btn">Barang</a>
+            <a href="{{ URL::to('kategori/'.$kategori->slug_kategori) }}" class="btn">Barang</a>
             </a>
             </p>
         </div>
@@ -194,13 +198,17 @@
     <div class="col-sm-6">
       <div class="row justify-content-center align-items-center">
         <div class="card" style="width: 500px;">
-        <a href="{{ URL::to('kategori/dua') }}">
-          <img src="{{asset('images/slide2.jpg') }}" alt="foto kategori" class="card-img-top">
+        <a href= "{{ URL::to('kategori/'.$kategori->slug_kategori) }}">
+          @if($kategori->foto != null)
+          <img src="{{ \Storage::url($kategori->foto) }}" alt="{{ $kategori->nama_kategori }}" class="card-img-top">
+          @else
+          <img src="{{ asset('images/bag.jpg') }}" alt="{{ $kategori->nama_kategori }}" class="card-img-top">
+          @endif
         </a>
         <div class="card-body" >
           <div class = "button">
           <p class = "text-center">
-          <a href="{{ URL::to('kategori/dua') }}" class="btn">Jasa</a>
+          <a href="{{ URL::to('kategori/'.$kategori->slug_kategori) }}" class="btn">Jasa</a>
           </a>
       </p>
         </div>
@@ -214,6 +222,7 @@
   </div>
   <!-- end kategori produk -->
   <!-- produk Promo-->
+  @foreach($itempromo as $promo)
   <div class="kategori">
   <div class="row mt-4">
     <div class="col col-md-12 col-sm-12 mb-4">
@@ -225,11 +234,17 @@
     <div class="col-sm-6">
     <div class="row justify-content-center align-items-center">
       <div class="card" style="width: 500px;"> 
-        <a href="{{ URL::to('produk/satu') }}">
-          <img src="{{asset('images/slide1.jpg') }}" alt="foto produk" class="card-img-top">
+        <a href="{{ URL::to('produk/'.$promo->produk->slug_produk) }}">
+          @if($promo->produk->foto != null)
+          <img src="{{\Storage::url($promo->produk->foto) }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top">
+          @else
+          <img src="{{asset('images/bag.jpg') }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top">
+          @endif
         </a>
         <div class="card-body">
           <h5 class="card-title">Produk Pertama</h5>
+          <a href="{{ URL::to('produk/'.$promo->produk->slug_produk) }}" class="text-decoration-none">
+          <h5 class="card-title">{{ $promo->produk->nama_produk }}</h5>
           </a>
           <div class="row mt-4">
             <div class="col">
