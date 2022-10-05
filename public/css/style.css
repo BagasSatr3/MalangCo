@@ -151,3 +151,16 @@ nav{
 .kategori .card {
   background-color: #C8A888;
 }
+.card-body .button{
+  font-family:Inter;
+  font-size: 2px; 
+  color:#fff;
+}
+.text-center .btn{
+  background-color: #5F1A1F;
+  color: #fff;
+}
+.btn-primary{
+  background-color: #5F1A1F;
+  font-family:Inter;
+}

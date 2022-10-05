@@ -61,6 +61,7 @@
         </div>
       </div>
     </div>
+
     @endforeach
   <!-- end kategori produk -->
   <!-- produk Promo-->
@@ -181,7 +182,7 @@
         <div class="card-body">
           <div class = "button">
             <p class="text-center">
-            <a href="{{ URL::to('kategori/satu') }}" class="btn btn-primary">Barang</a>
+            <a href="{{ URL::to('kategori/satu') }}" class="btn">Barang</a>
             </a>
             </p>
         </div>
@@ -199,7 +200,7 @@
         <div class="card-body" >
           <div class = "button">
           <p class = "text-center">
-          <a href="{{ URL::to('kategori/dua') }}" class="btn btn-primary">Jasa</a>
+          <a href="{{ URL::to('kategori/dua') }}" class="btn">Jasa</a>
           </a>
       </p>
         </div>
