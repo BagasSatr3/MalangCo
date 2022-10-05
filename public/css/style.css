@@ -164,3 +164,30 @@ nav{
   background-color: #5F1A1F;
   font-family:Inter;
 }
+
+/*CSS Reset Password*/
+
+.bg-reset {
+  background: #5f1a1f;
+  color: white;
+}
+.form-control{
+  text-align: center;
+  padding-left: 50px , 50px;
+  width: 500px;
+  height: 50px;
+}
+.btn-primary {
+  background-color: #EECD80;
+  color: #000;
+  border-radius: 50px;
+  padding-left: 30px , 50px;
+  width: 300px;
+  height: 40px;
+}
+.btn-primary::placeholder{
+  color: #fff;
+  position: center;
+}
+
+
