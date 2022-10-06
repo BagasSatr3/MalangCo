@@ -59,13 +59,13 @@
   <hr>
   <div class="row mt-4">
     <div class="col">
-      <h5 class="text-center">Malang is The Best!</h5>
-      <p style="text-align:center">
+      <h3 class="text-center">Malang is The Best!</h5>
+      <h5 style="text-align:center;font-family: Nunito;">
         Siapa yang tidak kenal dengan kota Malang? Kota dengan julukan kota dingin ini memang menjadi salah satu tujuan wisata terbaik yang menyajikan suasana sejuk dan hangat dalam waktu bersamaan.
-      </p>
-      <p style="text-align:center"> 
+      </h5>
+      <h5 style="text-align:center;font-family: Nunito;"> 
         Malang`Cu adalah website yang menyediakan layanan produk dan jasa khas Malang. Siap untuk petualangan budaya Malang selanjutnya?
-      </p>
+      </h5>
       <p class="text-center">
         <a href="" class="btn btn-outline-secondary">
           Baca Selengkapnya
