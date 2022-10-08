@@ -1,7 +1,8 @@
 @extends('layouts.template')
 @section('content')
-<div class="container">
+<div class="">
   <!-- carousel -->
+  <div class="container">
   <div class="row">
     <div class="col">
       <div id="carousel" class="carousel slide" data-ride="carousel">
@@ -37,6 +38,7 @@
       </div>
     </div>
   </div>
+  </div>
   <!-- end carousel -->
   <!-- kategori produk -->
   <!-- <div class="row mt-4">
@@ -57,6 +59,7 @@
   <!-- end produk terbaru -->
   <!-- tentang toko -->
   <hr>
+  <div class="container">
   <div class="row mt-4">
     <div class="col">
       <h3 class="text-center">Malang is The Best!</h5>
@@ -67,11 +70,12 @@
         Malang`Cu adalah website yang menyediakan layanan produk dan jasa khas Malang. Siap untuk petualangan budaya Malang selanjutnya?
       </h5>
       <p class="text-center">
-        <a href="" class="btn btn-outline-secondary">
+        <a href="{{ URL::to('about') }}" class="btn btn-outline-secondary">
           Baca Selengkapnya
         </a>      
       </p>
     </div>
+  </div>
   </div>
 
 
@@ -98,7 +102,7 @@
         <div class="card-body">
           <div class = "button">
             <p class="text-center">
-            <a href="{{ URL::to('kategori/'.$kategori->slug_kategori) }}" class="btn">Barang</a>
+            <a href="{{ URL::to('kategori/'.$kategori->slug_kategori) }}" class="btn" style="width:120px">Barang</a>
             </a>
             </p>
         </div>
@@ -120,7 +124,7 @@
         <div class="card-body" >
           <div class = "button">
           <p class = "text-center">
-          <a href="{{ URL::to('kategori/'.$kategori->slug_kategori) }}" class="btn">Jasa</a>
+          <a href="{{ URL::to('kategori/'.$kategori->slug_kategori) }}" class="btn"  style="width:120px">Jasa</a>
           </a>
       </p>
         </div>
@@ -146,17 +150,15 @@
     <!-- produk pertama -->
     <div class="col-sm-6">
     <div class="row justify-content-center align-items-center">
-      <div class="card" style="width: 500px;"> 
+      <div class="card-promo" style="width: 500px;"> 
         <a href="{{ URL::to('produk/'.$promo->produk->slug_produk) }}">
           @if($promo->produk->foto != null)
-          <img src="{{\Storage::url($promo->produk->foto) }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top">
+          <img src="{{\Storage::url($promo->produk->foto) }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top card-promo-img">
           @else
           <img src="{{asset('images/bag.jpg') }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top">
           @endif
         </a>
         <div class="card-body">
-          <h5 class="card-title">Produk Pertama</h5>
-          <a href="{{ URL::to('produk/'.$promo->produk->slug_produk) }}" class="text-decoration-none">
           <h5 class="card-title">{{ $promo->produk->nama_produk }}</h5>
           </a>
           <div class="row mt-4">
@@ -181,12 +183,12 @@
     <!-- produk kedua -->
     <div class="col-sm-6">
     <div class="row justify-content-center align-items-center">
-      <div class="card" style="width: 500px;">
+      <div class="card-promo">
         <a href="{{ URL::to('produk/dua') }}">
-          <img src="{{asset('images/slide2.jpg') }}" alt="foto produk" class="card-img-top">
+          <img src="{{asset('images/slide2.jpg') }}" alt="foto produk" class="card-img-top card-promo-img">
         </a>
         <div class="card-body">
-          <h5 class="card-title">Produk Kedua</h5>
+        <h5 class="card-title">{{ $promo->produk->nama_produk }}</h5>
           </a>
           <div class="row mt-4">
             <div class="col">

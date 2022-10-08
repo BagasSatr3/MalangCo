@@ -32,27 +32,42 @@
 </nav> -->
 
 <nav>
-         <div class="navbar">
-            <a class="navbar-brand" href="#">
-            <img src="/images/logo.svg" height="50px"/>
-              </a>
-          </div>
-         <div class="nav-items">
-            <li><a href="/">Home</a></li>
-            <li><a href="#">Produk</a></li>
+  <div class="navbar">
+    <a class="navbar-brand" href="#">
+      <img src="/images/logo.svg" height="50px" />
+    </a>
+  </div>
+  <div class="nav-items">
+    <form action="/produk" method="GET" class="form-search">
+      <input type="search" class="search-data" placeholder="Search" name="q">
+      <button type="submit" class="fas fa-search"></button>
+    </form>
+    <!-- <li><a href="/">Home</a></li>
+            <li><a href="#">Produk</a></li> 
             <li><a href="{{ URL::to('kategori') }}">Kategori</a></li>
             <li><a href="{{ URL::to('kontak') }}">Kontak</a></li>
             <li><a href="{{ URL::to('about') }}">About</a></li>
-            <li><a href="#">Login</a></li>
-         </div>
-         <div class="search-icon">
-            <span class="fas fa-search"></span>
-         </div>
-         <div class="cancel-icon">
-            <span class="fas fa-times"></span>
-         </div>
-         <form action="/produk" method="GET">
-            <input type="search" class="search-data" placeholder="Search" name="q">
-            <button type="submit" class="fas fa-search"></button>
-         </form>
-      </nav>
+            <li><a href="#">Login</a></li>-->
+  </div>
+  <div class="search-icon">
+    <span class="fas fa-search"></span>
+  </div>
+  <div class="cancel-icon">
+    <span class="fas fa-times"></span>
+  </div>
+  <ul class="navbar-nav">
+    <li class="nav-item dropdown">
+      <a class="dropdown dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="#">Produk</a>
+        <a class="dropdown-item" href="{{ URL::to('kategori') }}">Kategori</a>
+        <a class="dropdown-item" href="{{ URL::to('about') }}">About</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Login</a>
+      </div>
+    </li>
+  </ul>
+
+</nav>
