@@ -1,8 +1,6 @@
 @extends('layouts.template')
 @section('content')
-<div class="">
   <!-- carousel -->
-  <div class="container">
   <div class="row">
     <div class="col">
       <div id="carousel" class="carousel slide" data-ride="carousel">
@@ -38,29 +36,12 @@
       </div>
     </div>
   </div>
-  </div>
   <!-- end carousel -->
-  <!-- kategori produk -->
-  <!-- <div class="row mt-4">
-    <div class="col col-md-12 col-sm-12 mb-4">
-      <h2 class="text-center">Kategori Produk</h2>
-    </div>
-     -->
-    <!-- kategori pertama -->
-    <!-- <div class="col-md-4">
 
-
-    
-  <!-- end kategori produk -->
-  
-  <!-- end produk promo -->
-  <!-- produk Terbaru-->
-  
-  <!-- end produk terbaru -->
   <!-- tentang toko -->
   <hr>
   <div class="container">
-  <div class="row mt-4">
+  <div class="row my-4">
     <div class="col">
       <h3 class="text-center">Malang is The Best!</h5>
       <h5 style="text-align:center;font-family: Nunito;">
@@ -77,144 +58,72 @@
     </div>
   </div>
   </div>
+<!-- end tentang toko -->
 
-
-<!-- kategori produk -->
-@foreach($itemkategori as $kategori)
-<div class="kategori">
-  <div class="row mt-4">
-    <div class="col col-md-12 col-sm-12 mb-4">
-      <br>
-      <br>
-       <h2 class="text-center">Kategori Produk</h2>
-    </div>
-    <!-- kategori pertama -->
-    <div class="col-sm-6">
-      <div class="row justify-content-center align-items-center">
-        <div class="card" style="width: 500px;">
-        <a href="{{ URL::to('kategori/'.$kategori->slug_kategori) }}">
-          @if($kategori->foto != null)
-          <img src="{{ \Storage::url($kategori->foto) }}" alt="{{ $kategori->nama_kategori }}" class="card-img-top">
-          @else
-          <img src="{{ asset('images/bag.jpg') }}" alt="{{ $kategori->nama_kategori }}" class="card-img-top">
-          @endif
-        </a>
-        <div class="card-body">
-          <div class = "button">
-            <p class="text-center">
-            <a href="{{ URL::to('kategori/'.$kategori->slug_kategori) }}" class="btn" style="width:120px">Barang</a>
-            </a>
-            </p>
-        </div>
-</div>
-</div>
+<!-- kategori -->
+<div class="kategori md-12 col-sm-12 mb-4">
+<h3 class="text-center pt-2">KATEGORI</h3>
+  <div class="row text-center mt-3 p-4">
+      <div class="card mx-5 text-center border-0" style="width: 500px;">
+      <img src="{{ asset('images/bag.jpg') }}" alt="Card image cap" class="card-img-top">
+      <div class="card-body">
+        <a href="" class="btn btn-primary border-0">Barang</a>
       </div>
     </div>
-    <!-- kategori kedua -->
-    <div class="col-sm-6">
-      <div class="row justify-content-center align-items-center">
-        <div class="card" style="width: 500px;">
-        <a href= "{{ URL::to('kategori/'.$kategori->slug_kategori) }}">
-          @if($kategori->foto != null)
-          <img src="{{ \Storage::url($kategori->foto) }}" alt="{{ $kategori->nama_kategori }}" class="card-img-top">
-          @else
-          <img src="{{ asset('images/bag.jpg') }}" alt="{{ $kategori->nama_kategori }}" class="card-img-top">
-          @endif
-        </a>
-        <div class="card-body" >
-          <div class = "button">
-          <p class = "text-center">
-          <a href="{{ URL::to('kategori/'.$kategori->slug_kategori) }}" class="btn"  style="width:120px">Jasa</a>
-          </a>
-      </p>
-        </div>
-       </div>
-</div>
+    <div class="card ml-5 text-center border-0" style="width: 500px;">
+      <img src="{{ asset('images/bag.jpg') }}" alt="Card image cap" class="card-img-top">
+      <div class="card-body">
+        <a href="" class="btn btn-primary border-0">Jasa</a>
       </div>
     </div>
-    @endforeach
-    <!-- kategori ketiga -->
-    
   </div>
-  </div>
-  <!-- end kategori produk -->
-  <!-- produk Promo-->
-  @foreach($itempromo as $promo)
-  <div class="kategori">
+</div>
+<!-- end kategori -->
+
+
+<!-- produk Promo-->
+<div class="kategori md-12 col-sm-12 mb-4">
+<h3 class="text-center pt-2">Promo</h3>
   <div class="row mt-4">
-    <div class="col col-md-12 col-sm-12 mb-4">
-      <br>
-      <br>
-       <h2 class="text-center">Promo Produk</h2>
-    </div>
+    @foreach($itempromo as $promo)
     <!-- produk pertama -->
-    <div class="col-sm-6">
-    <div class="row justify-content-center align-items-center">
-      <div class="card-promo" style="width: 500px;"> 
+    <div class="col-md-4">
+      <div class="card-promo mb-4 shadow-sm">
         <a href="{{ URL::to('produk/'.$promo->produk->slug_produk) }}">
           @if($promo->produk->foto != null)
-          <img src="{{\Storage::url($promo->produk->foto) }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top card-promo-img">
+          <img src="{{\Storage::url($promo->produk->foto) }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top">
           @else
           <img src="{{asset('images/bag.jpg') }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top">
           @endif
         </a>
         <div class="card-body">
-          <h5 class="card-title">{{ $promo->produk->nama_produk }}</h5>
+          <a href="{{ URL::to('produk/'.$promo->produk->slug_produk) }}" class="text-decoration-none">
+            <p class="card-text">
+              {{ $promo->produk->nama_produk }}
+            </p>
           </a>
           <div class="row mt-4">
             <div class="col">
               <button class="btn btn-light">
-                <i class="far fa-heart"></i>
+                Buy
               </button>
             </div>
             <div class="col-auto">
               <p>
-                <del>Rp. 15.000,00</del>
+                <del>Rp. {{ number_format($promo->harga_awal, 2) }}</del>
                 <br />
-                Rp. 10.000,00
+                Rp. {{ number_format($promo->harga_akhir, 2) }}
               </p>
-              <a href="#" class="btn btn-primary" style:>Beli</a>
             </div>
           </div>
         </div>
       </div>
     </div>
     </div>
-    <!-- produk kedua -->
-    <div class="col-sm-6">
-    <div class="row justify-content-center align-items-center">
-      <div class="card-promo">
-        <a href="{{ URL::to('produk/dua') }}">
-          <img src="{{asset('images/slide2.jpg') }}" alt="foto produk" class="card-img-top card-promo-img">
-        </a>
-        <div class="card-body">
-        <h5 class="card-title">{{ $promo->produk->nama_produk }}</h5>
-          </a>
-          <div class="row mt-4">
-            <div class="col">
-              <button class="btn btn-light">
-                <i class="far fa-heart"></i>
-              </button>
-            </div>
-            <div class="col-auto">
-              <p>
-                <del>Rp. 15.000,00</del>
-                <br />
-                Rp. 10.000,00
-              </p>
-              <a href="#" class="btn btn-primary" style:>Beli</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
-@endforeach
-  </div>
-  </br>
-</br>
-  </div>
+    @endforeach
   <!-- end produk promo -->
+
+
   <!-- produk Terbaru-->
   <!-- <div class="row mt-4">
     <div class="col col-md-12 col-sm-12 mb-4">

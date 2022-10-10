@@ -92,16 +92,9 @@ nav{
 }
 
 .carousel .carousel-item{
-  height: 400px;
-  padding-bottom: 10px;
+  padding: 0px 50px 20px 50px;
 }
-/* .carousel-item{
-  position: absolute;
-  object-fit: cover;
-  top: 0;
-  bottom: 0;
-  min-height: 400px;
-} */
+
 .navbar-malang {
   background: #C8A888;
   
@@ -156,13 +149,7 @@ nav{
   font-size: 2px; 
   color:#fff;
 }
-.text-center .btn{
-  background-color: #eecd80;
-}
-.btn-primary{
-  background-color: #5F1A1F;
-  font-family:Inter;
-}
+
 
 /*CSS Reset Password*/
 
