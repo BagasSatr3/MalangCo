@@ -33,7 +33,7 @@
 
 <nav>
   <div class="navbar">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/">
       <img src="/images/logo.svg" height="50px" />
     </a>
   </div>
@@ -43,7 +43,7 @@
       <button type="submit" class="fas fa-search"></button>
     </form>
     <!-- <li><a href="/">Home</a></li>
-            <li><a href="#">Produk</a></li> 
+            <li><a href="#">Produk</a></li>
             <li><a href="{{ URL::to('kategori') }}">Kategori</a></li>
             <li><a href="{{ URL::to('kontak') }}">Kontak</a></li>
             <li><a href="{{ URL::to('about') }}">About</a></li>
@@ -65,9 +65,14 @@
         <a class="dropdown-item" href="{{ URL::to('kategori') }}">Kategori</a>
         <a class="dropdown-item" href="{{ URL::to('about') }}">About</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Login</a>
+          <a class="dropdown-item" href="/login">Login <span class="sr-only">(current)</span></a>
+          <a href="#" class="dropdown-item" onclick="event.preventDefault();
+          document.getElementById('logout-form').submit();">Sign Out<span class="sr-only">(current)</span></a>
       </div>
     </li>
   </ul>
 
 </nav>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+  @csrf
+</form>

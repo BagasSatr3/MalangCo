@@ -26,6 +26,20 @@ class HomepageController extends Controller
         return view('homepage.index', $data);
     }
 
+    public function item() {
+        $itemproduk = Produk::orderBy('created_at', 'desc')->limit(6)->get();
+        $itempromo = ProdukPromo::orderBy('created_at', 'desc')->limit(6)->get();
+        $itemkategori = Kategori::orderBy('nama_kategori', 'asc')->limit(6)->get();
+        $itemslide = Slideshow::get();
+        $data = array('title' => 'Homepage',
+            'itemproduk' => $itemproduk,
+            'itempromo' => $itempromo,
+            'itemkategori' => $itemkategori,
+            'itemslide' => $itemslide,
+        );
+        return view('homepage.item', $data);
+    }
+
     public function about() {
         $data = array('title' => 'Tentang Kami');
         return view('homepage.about', $data);

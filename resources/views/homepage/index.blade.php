@@ -23,7 +23,7 @@
               </div>
           </div>
           @endif
-          @endforeach          
+          @endforeach
         </div>
         <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -36,9 +36,7 @@
       </div>
     </div>
   </div>
-  <!-- end carousel -->
-
-  <!-- tentang toko -->
+  </div>
   <hr>
   <div class="container">
   <div class="row my-4">
@@ -47,181 +45,68 @@
       <h5 style="text-align:center;font-family: Nunito;">
         Siapa yang tidak kenal dengan kota Malang? Kota dengan julukan kota dingin ini memang menjadi salah satu tujuan wisata terbaik yang menyajikan suasana sejuk dan hangat dalam waktu bersamaan.
       </h5>
-      <h5 style="text-align:center;font-family: Nunito;"> 
+      <h5 style="text-align:center;font-family: Nunito;">
         Malang`Cu adalah website yang menyediakan layanan produk dan jasa khas Malang. Siap untuk petualangan budaya Malang selanjutnya?
       </h5>
       <p class="text-center">
         <a href="{{ URL::to('about') }}" class="btn btn-outline-secondary">
           Baca Selengkapnya
-        </a>      
+        </a>
       </p>
     </div>
   </div>
   </div>
 <!-- end tentang toko -->
 
-<!-- kategori -->
-<div class="kategori md-12 col-sm-12 mb-4">
-<h3 class="text-center pt-2">KATEGORI</h3>
-  <div class="row text-center mt-3 p-4">
-      <div class="card mx-5 text-center border-0" style="width: 500px;">
-      <img src="{{ asset('images/bag.jpg') }}" alt="Card image cap" class="card-img-top">
-      <div class="card-body">
-        <a href="" class="btn btn-primary border-0">Barang</a>
-      </div>
-    </div>
-    <div class="card ml-5 text-center border-0" style="width: 500px;">
-      <img src="{{ asset('images/bag.jpg') }}" alt="Card image cap" class="card-img-top">
-      <div class="card-body">
-        <a href="" class="btn btn-primary border-0">Jasa</a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- end kategori -->
 
+<!-- kategori produk -->
 
-<!-- produk Promo-->
-<div class="kategori md-12 col-sm-12 mb-4">
-<h3 class="text-center pt-2">Promo</h3>
-  <div class="row mt-4">
-    @foreach($itempromo as $promo)
-    <!-- produk pertama -->
-    <div class="col-md-4">
-      <div class="card-promo mb-4 shadow-sm">
-        <a href="{{ URL::to('produk/'.$promo->produk->slug_produk) }}">
-          @if($promo->produk->foto != null)
-          <img src="{{\Storage::url($promo->produk->foto) }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top">
-          @else
-          <img src="{{asset('images/bag.jpg') }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top">
-          @endif
-        </a>
-        <div class="card-body">
-          <a href="{{ URL::to('produk/'.$promo->produk->slug_produk) }}" class="text-decoration-none">
-            <p class="card-text">
-              {{ $promo->produk->nama_produk }}
-            </p>
-          </a>
-          <div class="row mt-4">
-            <div class="col">
-              <button class="btn btn-light">
-                Buy
-              </button>
-            </div>
-            <div class="col-auto">
-              <p>
-                <del>Rp. {{ number_format($promo->harga_awal, 2) }}</del>
-                <br />
-                Rp. {{ number_format($promo->harga_akhir, 2) }}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-    @endforeach
-  <!-- end produk promo -->
-
-
-  <!-- produk Terbaru-->
-  <!-- <div class="row mt-4">
+<div class="kategori mx-2">
+  <div class="row mt-4 mb-4">
     <div class="col col-md-12 col-sm-12 mb-4">
-      <h2 class="text-center">Terbaru</h2>
-    </div> -->
-    <!-- produk pertama -->
-    <!-- <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <a href="{{ URL::to('produk/satu') }}">
-          <img src="{{asset('images/slide2.jpg') }}" alt="foto produk" class="card-img-top">
+       <h2 class="text-center pt-3">Pilihlah Kebutuhan Anda</h2>
+    </div>
+    <!-- kategori pertama -->
+    <div class="col-sm-6">
+      <div class="row justify-content-center align-items-center">
+        <div class="card border-0 m-5">
+        <a href="{{ URL::to('item/') }}">
+          <img src="{{ asset('images/bag.jpg') }}" alt="" class="card-img-top">
         </a>
         <div class="card-body">
-          <a href="{{ URL::to('produk/satu') }}" class="text-decoration-none">
-            <p class="card-text">
-              Produk Pertama
-              <p href="#" class="btn btn-primary stretched-link">Beli
-              </p>
+          <div class = "card-title">
+            <p class="text-center">
+            <a href="{{ URL::to('item/') }}" class="btn" style="width:120px">Barang</a>
+
             </p>
-          </a>
-          <div class="row mt-4">
-            <div class="col">
-              <button class="btn btn-light">
-                <i class="far fa-heart"></i>
-              </button>
-            </div>
-            <div class="col-auto">
-              <p>
-                Rp. 10.000,00
-              </p>
-            </div>
-          </div>
         </div>
+</div>
+</div>
       </div>
-    </div> -->
-    <!-- produk kedua -->
-    <!-- <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <a href="{{ URL::to('produk/dua') }}">
-          <img src="{{asset('images/slide2.jpg') }}" alt="foto produk" class="card-img-top">
-        </a>
-        <div class="card-body">
-          <a href="{{ URL::to('produk/dua') }}" class="text-decoration-none">
-            <p class="card-text">
-              Produk Kedua
-              <p href="#" class="btn btn-primary stretched-link">Beli
-              </p>
-            </p>
-          </a>
-          <div class="row mt-4">
-            <div class="col">
-              <button class="btn btn-light">
-                <i class="far fa-heart"></i>
-              </button>
+    </div>
+    <!-- kategori kedua -->
+    <div class="col-sm-6">
+      <div class="row justify-content-center ">
+        <div class="card border-0 m-5">
+            <a href= "{{ URL::to('jasa/') }}">
+                <img src="{{ asset('images/bag.jpg') }}" alt="" class="card-img-top">
+            </a>
+            <div class="card-body"  >
+                <div class = "card-title">
+                    <p class = "text-center">
+                        <a href="{{ URL::to('jasa/') }}" class="btn"  style="width:120px">Jasa</a>
+
+                    </p>
+                </div>
             </div>
-            <div class="col-auto">
-              <p>
-                Rp. 10.000,00
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <!-- produk ketiga -->
-    <!-- <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <a href="{{ URL::to('produk/tiga') }}">
-          <img src="{{asset('images/slide2.jpg') }}" alt="foto produk" class="card-img-top">
-        </a>
-        <div class="card-body">
-          <a href="{{ URL::to('produk/tiga') }}" class="text-decoration-none">
-            <p class="text">
-              Produk Ketiga
-              <p href="#" class="btn btn-primary stretched-link">Beli
-              </p>
-            </p>
-          </a>
-          <div class="row mt-4">
-            <div class="col">
-              <button class="btn btn-light">
-                <i class="far fa-heart"></i>
-              </button>
-            </div>
-            <div class="col-auto">
-              <p>
-                Rp. 10.000,00
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
-  </div> -->
-  <!-- end produk terbaru -->
-  <!-- tentang toko -->
-  <hr>
-  
 
-  <!-- end tentang toko -->
-</div>
+    <!-- kategori ketiga -->
+
+  </div>
+  </div>
+  <!-- end kategori produk -->
+  </div>
 @endsection

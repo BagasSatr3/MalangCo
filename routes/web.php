@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,13 +15,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[\App\Http\Controllers\HomepageController::class,'index']);
 Route::get('/about', [\App\Http\Controllers\HomepageController::class,'about']);
 Route::get('/kontak', [\App\Http\Controllers\HomepageController::class,'kontak']);
-Route::get('/kategori', [\App\Http\Controllers\HomepageController::class,'kategori']);
-Route::get('/kategori/{slug}', [\App\Http\Controllers\HomepageController::class,'kategoribyslug']);
-Route::get('/produk', [\App\Http\Controllers\HomepageController::class,'produk']);
-Route::get('/produk/{id}', [\App\Http\Controllers\HomepageController::class,'produkdetail']);
+//Route::get('/kategori', [\App\Http\Controllers\HomepageController::class,'kategori']);
+//Route::get('/kategori/{slug}', [\App\Http\Controllers\HomepageController::class,'kategoribyslug']);
+//Route::get('/produk', [\App\Http\Controllers\HomepageController::class,'produk']);
+//Route::get('/produk/{id}', [\App\Http\Controllers\HomepageController::class,'produkdetail']);
+
+Route::get('admin/login', [\App\Http\Controllers\AdminAuthControllerController::class,'getLogin'])->name('admin.login');
+Route::post('admin/login', [\App\Http\Controllers\AdminAuthControllerController::class,'postLogin']);
 
 //dashboard admin
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function() {
     Route::get('/', [\App\Http\Controllers\DashboardController::class,'index']);
     Route::resource('kategori',\App\Http\Controllers\KategoriController::class);
     Route::resource('produk',\App\Http\Controllers\ProdukController::class);
@@ -53,6 +55,13 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('checkout',[\App\Http\Controllers\CartController::class,'checkout']);
   });
 
+  Route::group(['prefix' => 'item'], function() {
+    Route::get('/', [\App\Http\Controllers\HomepageController::class,'item']);
+    Route::get('/kategori', [\App\Http\Controllers\HomepageController::class,'kategori']);
+    Route::get('/kategori/{slug}', [\App\Http\Controllers\HomepageController::class,'kategoribyslug']);
+    Route::get('/produk', [\App\Http\Controllers\HomepageController::class,'produk']);
+    Route::get('/produk/{id}', [\App\Http\Controllers\HomepageController::class,'produkdetail']);
+  });
 
 Auth::routes();
 
