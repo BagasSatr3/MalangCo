@@ -9,7 +9,7 @@
         </div>
         <ul class="list-group list-group-flush">
           @foreach($listkategori as $kategori)
-          <a href="{{ URL::to('kategori/'.$kategori->slug_kategori) }}" class="text-decoration-none">
+          <a href="{{ URL::to('item/kategori/'.$kategori->slug_kategori) }}" class="text-decoration-none">
             <li class="list-group-item">{{ $kategori->nama_kategori }}</li>
           </a>
           @endforeach

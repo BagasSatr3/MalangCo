@@ -38,9 +38,9 @@
     </a>
   </div>
   <div class="nav-items">
-    <form action="/produk" method="GET" class="form-search">
+    <form action="/item/produk" method="GET" class="form-search">
       <input type="search" class="search-data" placeholder="Search" name="q">
-      <button type="submit" class="fas fa-search"></button>
+      <button type="submit" class="fa fa-search"></button>
     </form>
     <!-- <li><a href="/">Home</a></li>
             <li><a href="#">Produk</a></li>
