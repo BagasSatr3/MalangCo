@@ -3,10 +3,9 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4">
+        <div class="col-mt-4">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
-
                 <div class="card-body">
                     @if(count($errors) > 0)
                     @foreach($errors->all() as $error)
@@ -24,6 +23,7 @@
                         </div>
                     @endif
                     <form method="POST" action="{{ route('register') }}">
+                        
                         <div class="row">
                             <div class="col">
                                 @csrf

@@ -15,10 +15,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[\App\Http\Controllers\HomepageController::class,'index']);
 Route::get('/about', [\App\Http\Controllers\HomepageController::class,'about']);
 Route::get('/kontak', [\App\Http\Controllers\HomepageController::class,'kontak']);
-//Route::get('/kategori', [\App\Http\Controllers\HomepageController::class,'kategori']);
-//Route::get('/kategori/{slug}', [\App\Http\Controllers\HomepageController::class,'kategoribyslug']);
-//Route::get('/produk', [\App\Http\Controllers\HomepageController::class,'produk']);
-//Route::get('/produk/{id}', [\App\Http\Controllers\HomepageController::class,'produkdetail']);
+Route::get('/kategori', [\App\Http\Controllers\HomepageController::class,'kategori']);
+Route::get('/kategori/{slug}', [\App\Http\Controllers\HomepageController::class,'kategoribyslug']);
+Route::get('/produk', [\App\Http\Controllers\HomepageController::class,'produk']);
+Route::get('/produk/{id}', [\App\Http\Controllers\HomepageController::class,'produkdetail']);
+Route::get('/jasa', [\App\Http\Controllers\HomepageController::class,'jasa']);
+Route::get('/jasa/{id}', [\App\Http\Controllers\HomepageController::class,'jasadetail']);
 
 Route::get('admin/login', [\App\Http\Controllers\AdminAuthControllerController::class,'getLogin'])->name('admin.login');
 Route::post('admin/login', [\App\Http\Controllers\AdminAuthControllerController::class,'postLogin']);
@@ -28,6 +30,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::get('/', [\App\Http\Controllers\DashboardController::class,'index']);
     Route::resource('kategori',\App\Http\Controllers\KategoriController::class);
     Route::resource('produk',\App\Http\Controllers\ProdukController::class);
+    Route::resource('jasa',\App\Http\Controllers\JasaController::class);
     Route::resource('customer',\App\Http\Controllers\CustomerController::class);
     Route::resource('transaksi',\App\Http\Controllers\TransaksiController::class);
     Route::get('profil',[\App\Http\Controllers\UserController::class,'index']);
@@ -41,6 +44,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::delete('imagekategori/{id}',[\App\Http\Controllers\KategoriController::class,'deleteimage']);
     Route::post('produkimage',[\App\Http\Controllers\ProdukController::class,'uploadimage']);
     Route::delete('produkimage/{id}',[\App\Http\Controllers\ProdukController::class,'deleteimage']);
+    Route::post('jasaimage',[\App\Http\Controllers\JasaController::class,'uploadimage']);
+    Route::delete('jasaimage/{id}',[\App\Http\Controllers\JasaController::class,'deleteimage']);
     Route::resource('slideshow',\App\Http\Controllers\SlideshowController::class);
     Route::resource('promo',\App\Http\Controllers\ProdukPromoController::class);
     Route::get('loadprodukasync/{id}',[\App\Http\Controllers\ProdukController::class,'loadasync']);
@@ -49,18 +54,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
 
 Route::group(['middleware' => 'auth'], function() {
     Route::resource('cart', \App\Http\Controllers\CartController::class);
+    Route::resource('booking', \App\Http\Controllers\BookingController::class);
     Route::patch('kosongkan/{id}', [\App\Http\Controllers\CartController::class,'kosongkan']);
+    Route::patch('kosongkan/{id}', [\App\Http\Controllers\BookingController::class,'kosongkan']);
     Route::resource('cartdetail', \App\Http\Controllers\CartDetailController::class);
+    Route::resource('bookingdetail', \App\Http\Controllers\BookingDetailController::class);
     Route::resource('alamatpengiriman', \App\Http\Controllers\AlamatPengirimanController::class);
     Route::get('checkout',[\App\Http\Controllers\CartController::class,'checkout']);
-  });
-
-  Route::group(['prefix' => 'item'], function() {
-    Route::get('/', [\App\Http\Controllers\HomepageController::class,'item']);
-    Route::get('/kategori', [\App\Http\Controllers\HomepageController::class,'kategori']);
-    Route::get('/kategori/{slug}', [\App\Http\Controllers\HomepageController::class,'kategoribyslug']);
-    Route::get('/produk', [\App\Http\Controllers\HomepageController::class,'produk']);
-    Route::get('/produk/{id}', [\App\Http\Controllers\HomepageController::class,'produkdetail']);
+    Route::get('sewa',[\App\Http\Controllers\BookingController::class,'sewa']);
   });
 
 Auth::routes();

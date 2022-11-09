@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produk;
+use App\Models\Jasa;
 use App\Models\Kategori;
 use App\Models\Slideshow;
 use App\Models\ProdukPromo;
@@ -13,6 +14,7 @@ use Auth;
 class HomepageController extends Controller
 {
     public function index() {
+        $itemjasa = Jasa::orderBy('created_at', 'desc')->limit(6)->get();
         $itemproduk = Produk::orderBy('created_at', 'desc')->limit(6)->get();
         $itempromo = ProdukPromo::orderBy('created_at', 'desc')->limit(6)->get();
         $itemkategori = Kategori::orderBy('nama_kategori', 'asc')->limit(6)->get();
@@ -22,6 +24,7 @@ class HomepageController extends Controller
             'itempromo' => $itempromo,
             'itemkategori' => $itemkategori,
             'itemslide' => $itemslide,
+            'itemjasa' => $itemjasa,
         );
         return view('homepage.index', $data);
     }
@@ -125,6 +128,37 @@ class HomepageController extends Controller
                             'itemproduk' => $itemproduk);
             }
             return view('homepage.produkdetail', $data);            
+        } else {
+            // kalo produk ga ada, jadinya tampil halaman tidak ditemukan (error 404)
+            return abort('404');
+        }
+    }
+    public function jasa(Request $request) {
+        $itemjasa = Jasa::orderBy('nama_jasa', 'desc')
+                            ->where('status', 'publish')
+                            ->paginate(18);
+        $listkategori = Kategori::orderBy('nama_kategori', 'asc')
+                                ->where('status', 'publish')
+                                ->get();
+        $data = array('title' => 'Jasa',
+                    'itemjasa' => $itemjasa,
+                    'listkategori' => $listkategori);
+        return view('homepage.jasa', $data)->with('no', ($request->input('page') - 1) * 18);
+    }
+    public function jasadetail($id) {
+        $itemjasa = Jasa::where('slug_jasa', $id)
+                            ->where('status', 'publish')
+                            ->first();
+        if ($itemjasa) {
+            if (Auth::user()) {//cek kalo user login
+                $itemuser = Auth::user();
+                $data = array('title' => $itemjasa->nama_jasa,
+                        'itemjasa' => $itemjasa,);
+            } else {
+                $data = array('title' => $itemjasa->nama_jasa,
+                            'itemjasa' => $itemjasa);
+            }
+            return view('homepage.jasadetail', $data);            
         } else {
             // kalo produk ga ada, jadinya tampil halaman tidak ditemukan (error 404)
             return abort('404');

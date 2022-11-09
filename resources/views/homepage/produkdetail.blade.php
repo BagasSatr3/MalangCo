@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('content')
-<div class="container">
+<div class="container" style="margin-top:70px;">
   <div class="row mt-4">
     <div class="col col-lg-8 col-md-8">
       <div id="carousel" class="carousel slide" data-ride="carousel">

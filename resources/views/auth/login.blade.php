@@ -13,7 +13,7 @@
 </head>
 
 <body class="bg-auth">
-    @include('layouts.navbar')
+    @include('layouts.menu')
 
     <div class="bg-auth">
         <div class="row">

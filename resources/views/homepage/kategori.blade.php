@@ -1,6 +1,6 @@
 @extends('layouts.template')
 @section('content')
-<div class="container">
+<div class="container" style="margin-bottom:70px;">
   <!-- kategori produk -->
   <div class="row mt-4">
     <div class="col col-md-12 col-sm-12 mb-4">
