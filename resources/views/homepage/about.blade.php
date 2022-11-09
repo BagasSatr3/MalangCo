@@ -16,4 +16,19 @@
     </div>
   </div>
 </div>
+<<<<<<< HEAD
+=======
+<div class="kategori" style="height:50vh;">
+  <div class="row mt-4" >
+    <div class="col col-md-12 col-sm-12 mb-4">
+      <br>
+      <br>
+       <div class="d-flex flex-column align-items-center" style="color:#fff">
+          <h2>Kontak Kami</h2>
+       </div>
+    </div>
+      <div>
+
+      </div>
+>>>>>>> e44596e73fec1a597f514461faacc250b3544ae0
 @endsection

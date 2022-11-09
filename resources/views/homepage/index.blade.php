@@ -1,5 +1,6 @@
 @extends('layouts.template')
 @section('content')
+<<<<<<< HEAD
 <div class="container" style="width: 2500px; height: 500px;">
 
 
@@ -63,6 +64,39 @@
           @endif
 
   <!-- tentang toko -->
+=======
+  <!-- carousel -->
+  <center>
+    <div class="container" >
+      <div class="row mt-5" >
+        <div class="col" >
+          <div id="carousel" class="carousel slide" data-ride="carousel"  >
+            <div class="carousel-inner" style=>
+              <div class="carousel-item active">
+                  <img src="{{ asset('images/photo1.png') }}" class="carosel" alt="..." style="max-width: 100%; height: auto;" >
+              </div>
+              <div class="carousel-item">
+                <img src="{{ asset('images/photo2.png') }}" class="d-block w-150 h-250" alt="..." style="max-width: 100%; height: auto;"  >
+              </div>
+             
+              <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+    
+            </div>
+        
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    </center>
+>>>>>>> e44596e73fec1a597f514461faacc250b3544ae0
   <hr>
   <div class="row mt-4">
     <div class="col">
