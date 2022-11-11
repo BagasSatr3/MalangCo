@@ -41,9 +41,9 @@
         </div> 
         @endguest
         @auth
-        <div class="dropdown">
+        <div class="nav-item dropdown">
           <div class="text-black" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="">
-          <span class="bi bi-person-circle fa-lg nav-link">Hi, {{ Auth::user()->name }} 
+          <span class="bi bi-person-circle fa-lg nav-link"><small class="ml-1">{{ Auth::user()->name }}</small>
         </div>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
@@ -59,54 +59,4 @@
       </ul>
     </div>
   </div>
-<<<<<<< HEAD
 </nav>
-=======
-</nav> -->
-
-<nav>
-  <div class="navbar">
-    <a class="navbar-brand" href="/">
-      <img src="/images/logo.svg" height="50px" />
-    </a>
-  </div>
-  <div class="nav-items">
-    <form action="/item/produk" method="GET" class="form-search">
-      <input type="search" class="search-data" placeholder="Search" name="q">
-      <button type="submit" class="fa fa-search"></button>
-    </form>
-    <!-- <li><a href="/">Home</a></li>
-            <li><a href="#">Produk</a></li>
-            <li><a href="{{ URL::to('kategori') }}">Kategori</a></li>
-            <li><a href="{{ URL::to('kontak') }}">Kontak</a></li>
-            <li><a href="{{ URL::to('about') }}">About</a></li>
-            <li><a href="#">Login</a></li>-->
-  </div>
-  <div class="search-icon">
-    <span class="fas fa-search"></span>
-  </div>
-  <div class="cancel-icon">
-    <span class="fas fa-times"></span>
-  </div>
-  <ul class="navbar-nav">
-    <li class="nav-item dropdown">
-      <a class="dropdown dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class="fa-solid fa-bars"></i>
-      </a>
-      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="#">Produk</a>
-        <a class="dropdown-item" href="{{ URL::to('kategori') }}">Kategori</a>
-        <a class="dropdown-item" href="{{ URL::to('about') }}">About</a>
-        <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/login">Login <span class="sr-only">(current)</span></a>
-          <a href="#" class="dropdown-item" onclick="event.preventDefault();
-          document.getElementById('logout-form').submit();">Sign Out<span class="sr-only">(current)</span></a>
-      </div>
-    </li>
-  </ul>
-
-</nav>
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-  @csrf
-</form>
->>>>>>> e44596e73fec1a597f514461faacc250b3544ae0

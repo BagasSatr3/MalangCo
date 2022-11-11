@@ -1,11 +1,16 @@
+body{
+    font-family: cursive;
+}
 .section-padding{
     padding: 100px 0;
 }
 nav{
     background-color: darkkhaki;
+    font-family: sans-serif;
+    font-weight: bold;
 }
 .navbar-brand{
-    font-family: fantasy;
+    font-weight: bold;
     font-size: x-large;
 }
 .form-control{
@@ -26,15 +31,18 @@ nav{
 }
 .btn{
     border-radius: 10px;
-    font-family: Arial;
+    font-family: cursive;
     background: #ffffff;
     border: solid darkkhaki 2px;
     text-decoration: none;
-    font-family: 'Courier New', Courier, monospace;
 }
 .btn:hover{
     background: darkkhaki;
     text-decoration: none;
     color: #ffffff;
+}
+.btn:focus-visible{
+    outline: none;
+    border:0; 
 }
 
