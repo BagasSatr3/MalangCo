@@ -20,7 +20,7 @@
           <a class="nav-link" href="{{ URL::to('about') }}">About</a>
         </li>
         <form action="/produk" method="GET">
-          <input type="search" class="form-control mx-sm-2 rounded-0 shadow-none"  autocomplete="off"
+          <input type="search" class="form-search mx-sm-2 rounded-0 shadow-none"  autocomplete="off"
             name="cari" value="{{ old('cari') }}" placeholder="Search...">
         </form>
         <li class="nav-item">

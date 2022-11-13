@@ -11,36 +11,45 @@
     <link rel="stylesheet" href="http://127.0.0.1:8000/css/style.css">
     <title>Reset Password</title>
 </head>
-<body class="bg-reset">
-    @include('layouts.navbar')
-    <div class="col">
-        <div class="d-flex flex-column align-items-center">
-            <h1>Reset Password</h1>
-            <br>
-            <form method="POST" action="{{ route('password.email') }}" class="form-reset">
-                @csrf
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
+<body class="bg-auth">
+    @include('layouts.menu')
 
-                        <div class="mt-5">
-                            <input id="email" type="email" class="form-input form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email Address">
+    <div class="bg-auth">  
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                    <div class="card text-white" style="border-radius: 1rem; background:#ADC178;">
+                        <div class="card-body p-5 text-center">
+                            <div class="mb-md-5 mt-md-4 pb-5">
 
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
+                                <div class="d-flex flex-column align-items-center">
+                                    <h1>Reset Password</h1>
+                                    <div class="text-center" >Yahaha lupa password!!!</div>
+                    
+                                </div>
+                                <form method="POST" action="{{ route('password.email') }}" class="form-reset">
+                                    @csrf
+                                    <div class="mt-5">
+                                        <input id="email" type="email" class="form-input form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email Address">
+                                        @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </form>
+                                <br>
+                                <div>
+                                    <button type="submit" class="btn-primary">
+                                        {{ __('Send Password Reset Link') }}
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </form>
-                    <br>
-                        <div>
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Send Password Reset Link') }}
-                            </button>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</body>
 
