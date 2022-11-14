@@ -49,12 +49,12 @@ class WishlistController extends Controller
                                     ->first();
         if ($validasiwishlist) {
             $validasiwishlist->delete();//kalo udah ada, berarti wishlist dihapus
-            return back()->with('success', 'Wishlist berhasil dihapus');
+            return back()->with('success', 'Wishlist deleted successfully');
         } else {
             $inputan = $request->all();
             $inputan['user_id'] = $itemuser->id;
             $itemwishlist = Wishlist::create($inputan);
-            return back()->with('success', 'Produk berhasil ditambahkan ke wishlist');
+            return back()->with('success', 'Product successfully added to wishlist');
         }
     }
 
@@ -102,9 +102,9 @@ class WishlistController extends Controller
     {
         $itemwishlist = Wishlist::findOrFail($id);
         if ($itemwishlist->delete()) {
-            return back()->with('success', 'Wishlist berhasil dihapus');
+            return back()->with('success', 'Wishlist deleted successfully');
         } else {
-            return back()->with('error', 'Wishlist gagal dihapus');
+            return back()->with('error', 'Wishlist failed to delete');
         }
     }
 }

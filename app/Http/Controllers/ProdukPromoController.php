@@ -16,7 +16,7 @@ class ProdukPromoController extends Controller
     public function index(Request $request)
     {
         $itempromo = ProdukPromo::orderBy('id','desc')->paginate(20);
-        $data = array('title' => 'Produk Promo',
+        $data = array('title' => 'Product Promotions',
                     'itempromo'=>$itempromo);
         return view('promo.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
     }
@@ -32,7 +32,7 @@ class ProdukPromoController extends Controller
         $itemproduk = Produk::orderBy('nama_produk', 'desc')
                             ->where('status', 'publish')
                             ->get();
-        $data = array('title' => 'Form Produk Promo',
+        $data = array('title' => 'Form Product Promotions',
                     'itemproduk' => $itemproduk);
         return view('promo.create',$data);
     }
@@ -55,13 +55,13 @@ class ProdukPromoController extends Controller
         // cek dulu apakah sudah ada, produk hanya bisa masuk 1 promo
         $cekpromo = ProdukPromo::where('produk_id', $request->produk_id)->first();
         if ($cekpromo) {
-            return back()->with('error', 'Data sudah ada');
+            return back()->with('error', 'Data already exists');
         } else {
             $itemuser = $request->user();
             $inputan = $request->all();
             $inputan['user_id'] = $itemuser->id;
             $itempromo = ProdukPromo::create($inputan);
-            return redirect()->route('promo.index')->with('success', 'Data berhasil disimpan');
+            return redirect()->route('promo.index')->with('success', 'Data saved successfully');
         }
     }
 
@@ -85,7 +85,7 @@ class ProdukPromoController extends Controller
     public function edit($id)
     {
         $itempromo = ProdukPromo::findOrFail($id);
-        $data = array('title' => 'Detail Produk',
+        $data = array('title' => 'Product Detail',
                     'itempromo' => $itempromo);
         return view('promo.edit', $data);
     }
@@ -112,13 +112,13 @@ class ProdukPromoController extends Controller
                             ->where('id', '!=', $itempromo->id)
                             ->first();
         if ($cekpromo) {
-            return back()->with('error', 'Data sudah ada');
+            return back()->with('error', 'Data already exists');
         } else {
             $itemuser = $request->user();
             $inputan = $request->all();
             $inputan['user_id'] = $itemuser->id;
             $itempromo->update($inputan);
-            return redirect()->route('promo.index')->with('success', 'Data berhasil diupdate');
+            return redirect()->route('promo.index')->with('success', 'Data successfully updated');
         }
     }
 
@@ -132,9 +132,9 @@ class ProdukPromoController extends Controller
     {
         $itempromo = ProdukPromo::findOrFail($id);
         if ($itempromo->delete()) {
-            return back()->with('success', 'Data berhasil dihapus');
+            return back()->with('success', 'Data deleted successfully');
         } else {
-            return back()->with('error', 'Data gagal dihapus');
+            return back()->with('error', 'Data deleted failed');
         }
     }
 }

@@ -10,7 +10,7 @@
     <!-- kategori pertama -->
     <div class="border border-0 mx-1 rounded kategori col">
       <div class=" card m-4 mb-4 shadow-sm">
-        <a href="{{ URL::to('item/kategori/'.$kategori->slug_kategori) }}">
+        <a href="{{ URL::to('item/category/'.$kategori->slug_kategori) }}">
           @if($kategori->foto != null)
           <img src="{{ \Storage::url($kategori->foto) }}" alt="{{ $kategori->nama_kategori }}" class="card-img-top">
           @else
@@ -19,7 +19,7 @@
         </a>
         <div class="card-body bg-light">
             <h3 class="card-title fs-3">
-                <a href="{{ URL::to('item/kategori/'.$kategori->slug_kategori) }}" class="text-center text-decoration-none text-secondary">
+                <a href="{{ URL::to('item/category/'.$kategori->slug_kategori) }}" class="text-center text-decoration-none text-secondary">
                     <p class="card-text">{{ $kategori->nama_kategori }}</p>
                   </a>
             </h3>
@@ -37,7 +37,7 @@
     <!-- produk pertama -->
     <div class="border border-0 mx-1 rounded kategori col-md-4">
       <div class="card m-4 mb-4 shadow-sm">
-        <a href="{{ URL::to('item/produk/'.$promo->produk->slug_produk) }}">
+        <a href="{{ URL::to('item/product/'.$promo->produk->slug_produk) }}">
           @if($promo->produk->foto != null)
           <img src="{{\Storage::url($promo->produk->foto) }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top">
           @else
@@ -46,7 +46,7 @@
         </a>
         <div class="card-body bg-light">
             <h4>
-                <a href="{{ URL::to('item/produk/'.$promo->produk->slug_produk) }}" class="text-decoration-none text-secondary">
+                <a href="{{ URL::to('item/product/'.$promo->produk->slug_produk) }}" class="text-decoration-none text-secondary">
                     <p class="card-text">
                       {{ $promo->produk->nama_produk }}
                     </p>
@@ -80,7 +80,7 @@
     <!-- produk pertama -->
     <div class="border border-0 mx-1 rounded kategori col-md-3 my-1">
       <div class="card m-4 mb-4 shadow-sm">
-        <a href="{{ URL::to('item/produk/'.$produk->slug_produk) }}">
+        <a href="{{ URL::to('item/product/'.$produk->slug_produk) }}">
           @if($produk->foto != null)
           <img src="{{ \Storage::url($produk->foto) }}" alt="{{ $produk->nama_produk }}" class="card-img-top">
           @else
@@ -89,7 +89,7 @@
         </a>
         <div class="card-body bg-light">
             <h4>
-                <a href="{{ URL::to('item/produk/'.$produk->slug_produk ) }}" class="text-decoration-none text-secondary">
+                <a href="{{ URL::to('item/product/'.$produk->slug_produk ) }}" class="text-decoration-none text-secondary">
                     <p class="card-text">
                       {{ $produk->nama_produk }}
                     </p>

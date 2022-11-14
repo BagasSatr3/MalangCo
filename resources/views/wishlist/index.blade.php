@@ -1,13 +1,11 @@
-@extends('layouts.dashboard')
+@extends('layouts.template')
 @section('content')
 <div class="container-fluid">
-  <div class="row">
+  <div class="row" style="margin-left:100px; margin-right:100px;">
     <div class="col">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">Wishlist</h3>
-        </div>
-        <div class="card-body">
+
+          <h3 class="text-left">Wishlist</h3>
+
           @if ($message = Session::get('error'))
               <div class="alert alert-warning">
                   <p>{{ $message }}</p>
@@ -44,7 +42,7 @@
                     <form action="{{ route('wishlist.destroy', $wish->id) }}" method="post" style="display:inline;">
                       @csrf
                       {{ method_field('delete') }}
-                      <button type="submit" class="btn btn-sm btn-danger mb-2">
+                      <button type="submit" class="btn btn-sm mb-2">
                         Hapus
                       </button>                    
                     </form>
@@ -55,8 +53,8 @@
             </table>
             {{ $itemwishlist->links() }}
           </div>
-        </div>
-      </div>
+
+
     </div>
   </div>
 </div>

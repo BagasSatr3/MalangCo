@@ -39,7 +39,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        $data = array('title' => 'Login');
+        $data = array('title' => 'Sign In');
         return view('auth.login', $data);
     }
     

@@ -1,22 +1,22 @@
-@extends('layouts.dashboard')
+@extends('layouts.template')
 @section('content')
 <div class="container-fluid">
   <div class="row">
     <div class="col col-lg-4 col-md-4">
       <div class="card card-primary card-outline">
-        <div class="card-body box-profile">
+        <div class="card-body box-profile" style="background-color: #ADC178">
           <div class="text-center">
             <img src="{{ asset('img/user1-128x128.jpg') }}" alt="profil" class="profile-user-img img-responsive img-circle">
           </div>
-          <h3 class="profile-username text-center">Fadlur Rohman</h3>
-          <p class="text-muted text-center">Member sejak : 20 Des 2020</p>
+          <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
+          <p class="text-muted text-center">Member sejak : {{ Auth::user()->created_at }}</p>
           <hr>
           <strong>
             <i class="fas fa-map-marker mr-2"></i>
             Alamat
           </strong>
           <p class="text-muted">
-            Jekulo, Kab Kudus
+          {{ Auth::user()->alamat }}
           </p>
           <hr>
           <strong>
@@ -24,7 +24,7 @@
             Email
           </strong>
           <p class="text-muted">
-            f4dlur@gmail.com
+          {{ Auth::user()->email }}
           </p>
           <hr>
           <strong>
@@ -32,7 +32,7 @@
             No Tlp
           </strong>
           <p class="text-muted">
-            Jekulo, Kab Kudus
+          {{ Auth::user()->phone }}
           </p>
           <hr>
           <a href="{{ URL::to('admin/setting') }}" class="btn btn-primary btn-block">Setting</a>
@@ -45,6 +45,22 @@
           <h3 class="card-title">History Transaksi</h3>
         </div>
         <div class="card-body">
+          <!-- digunakan untuk menampilkan pesan error atau sukses -->
+          @if(count($errors) > 0)
+          @foreach($errors->all() as $error)
+              <div class="alert alert-warning">{{ $error }}</div>
+          @endforeach
+          @endif
+          @if ($message = Session::get('error'))
+              <div class="alert alert-warning">
+                  <p>{{ $message }}</p>
+              </div>
+          @endif
+          @if ($message = Session::get('success'))
+              <div class="alert alert-success">
+                  <p>{{ $message }}</p>
+              </div>
+          @endif
           <div class="table-responsive">
             <table class="table">
               <thead>
@@ -61,161 +77,34 @@
                 </tr>
               </thead>
               <tbody>
+              @foreach($itemorder as $order)
                 <tr>
                   <td>
-                    1
+                    {{ ++$no }}
                   </td>
                   <td>
-                    Inv-01
+                    {{ $order->cart->no_invoice }}
                   </td>
                   <td>
-                    200.000
+                    {{ number_format($order->cart->subtotal, 2) }}
                   </td>
                   <td>
-                    0                  
+                    {{ number_format($order->cart->diskon, 2) }}
                   </td>
                   <td>
-                    27.000
+                    {{ number_format($order->cart->ongkir, 2) }}
                   </td>
                   <td>
-                    227.000
+                    {{ number_format($order->cart->total, 2) }}
+                  </td>                  
+                  <td>
+                    {{ $order->cart->status_pembayaran }}
                   </td>
                   <td>
-                    Belum dibayar
-                  </td>
-                  <td>
-                    Checkout
-                  </td>
-                  <td>
-                    <a href="{{ route('transaksi.show', 1) }}" class="btn btn-sm btn-info mb-2">
-                      Detail
-                    </a>
+                    {{ $order->cart->status_pengiriman }}
                   </td>
                 </tr>
-                <tr>
-                  <td>
-                    2
-                  </td>
-                  <td>
-                    Inv-02
-                  </td>
-                  <td>
-                    200.000
-                  </td>
-                  <td>
-                    0                  
-                  </td>
-                  <td>
-                    27.000
-                  </td>
-                  <td>
-                    227.000
-                  </td>
-                  <td>
-                    Belum dibayar
-                  </td>
-                  <td>
-                    Checkout
-                  </td>
-                  <td>
-                    <a href="{{ route('transaksi.show', 2) }}" class="btn btn-sm btn-info mb-2">
-                      Detail
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    3
-                  </td>
-                  <td>
-                    Inv-03
-                  </td>
-                  <td>
-                    200.000
-                  </td>
-                  <td>
-                    0                  
-                  </td>
-                  <td>
-                    27.000
-                  </td>
-                  <td>
-                    227.000
-                  </td>
-                  <td>
-                    Belum dibayar
-                  </td>
-                  <td>
-                    Checkout
-                  </td>
-                  <td>
-                    <a href="{{ route('transaksi.show', 3) }}" class="btn btn-sm btn-info mb-2">
-                      Detail
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    4
-                  </td>
-                  <td>
-                    Inv-04
-                  </td>
-                  <td>
-                    200.000
-                  </td>
-                  <td>
-                    0                  
-                  </td>
-                  <td>
-                    27.000
-                  </td>
-                  <td>
-                    227.000
-                  </td>
-                  <td>
-                    Belum dibayar
-                  </td>
-                  <td>
-                    Checkout
-                  </td>
-                  <td>
-                    <a href="{{ route('transaksi.show', 4) }}" class="btn btn-sm btn-info mb-2">
-                      Detail
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    5
-                  </td>
-                  <td>
-                    Inv-05
-                  </td>
-                  <td>
-                    200.000
-                  </td>
-                  <td>
-                    0                  
-                  </td>
-                  <td>
-                    27.000
-                  </td>
-                  <td>
-                    227.000
-                  </td>
-                  <td>
-                    Belum dibayar
-                  </td>
-                  <td>
-                    Checkout
-                  </td>
-                  <td>
-                    <a href="{{ route('transaksi.show', 5) }}" class="btn btn-sm btn-info mb-2">
-                      Detail
-                    </a>
-                  </td>
-                </tr>
+              @endforeach
               </tbody>
             </table>
           </div>

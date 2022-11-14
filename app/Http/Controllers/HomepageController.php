@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produk;
-use App\Models\Jasa;
 use App\Models\Kategori;
 use App\Models\Slideshow;
 use App\Models\ProdukPromo;
@@ -14,17 +13,15 @@ use Auth;
 class HomepageController extends Controller
 {
     public function index() {
-        $itemjasa = Jasa::orderBy('created_at', 'desc')->limit(6)->get();
-        $itemproduk = Produk::orderBy('created_at', 'desc')->limit(6)->get();
-        $itempromo = ProdukPromo::orderBy('created_at', 'desc')->limit(6)->get();
+        $itemproduk = Produk::orderBy('created_at', 'desc')->limit(3)->get();
+        $itempromo = ProdukPromo::orderBy('created_at', 'desc')->limit(3)->get();
         $itemkategori = Kategori::orderBy('nama_kategori', 'asc')->limit(6)->get();
         $itemslide = Slideshow::get();
-        $data = array('title' => 'Homepage',
+        $data = array('title' => 'Kojo',
             'itemproduk' => $itemproduk,
             'itempromo' => $itempromo,
             'itemkategori' => $itemkategori,
-            'itemslide' => $itemslide,
-            'itemjasa' => $itemjasa,
+            'itemslide' => $itemslide
         );
         return view('homepage.index', $data);
     }
@@ -34,7 +31,7 @@ class HomepageController extends Controller
         $itempromo = ProdukPromo::orderBy('created_at', 'desc')->limit(6)->get();
         $itemkategori = Kategori::orderBy('nama_kategori', 'asc')->limit(6)->get();
         $itemslide = Slideshow::get();
-        $data = array('title' => 'Homepage',
+        $data = array('title' => 'Kojo',
             'itemproduk' => $itemproduk,
             'itempromo' => $itempromo,
             'itemkategori' => $itemkategori,
@@ -44,19 +41,19 @@ class HomepageController extends Controller
     }
 
     public function about() {
-        $data = array('title' => 'Tentang Kami');
+        $data = array('title' => 'About');
         return view('homepage.about', $data);
     }
 
     public function kontak() {
-        $data = array('title' => 'Kontak Kami');
+        $data = array('title' => 'Contact');
         return view('homepage.kontak', $data);
     }
 
     public function kategori() {
         $itemkategori = Kategori::orderBy('nama_kategori', 'asc')->limit(6)->get();
         $itemproduk = Produk::orderBy('created_at', 'desc')->limit(6)->get();
-        $data = array('title' => 'Kategori Produk',
+        $data = array('title' => 'Product Category',
                     'itemkategori' => $itemkategori,
                     'itemproduk' => $itemproduk);
         return view('homepage.kategori', $data);
@@ -102,7 +99,7 @@ class HomepageController extends Controller
                                 ->where('status', 'publish')
                                 ->get();
 
-        $data = array('title' => 'Produk',
+        $data = array('title' => 'Product',
                     // 'itemproduk' => $itemproduk,
                     'itemproduk' => $product_search,
                     'listkategori' => $listkategori,
@@ -115,7 +112,7 @@ class HomepageController extends Controller
                             ->where('status', 'publish')
                             ->first();
         if ($itemproduk) {
-            if (Auth::user()) {//cek kalo user login
+            if (Auth::user()) {//cek kalo user login 
                 $itemuser = Auth::user();
                 $itemwishlist = Wishlist::where('produk_id', $itemproduk->id)
                                         ->where('user_id', $itemuser->id)
@@ -128,37 +125,6 @@ class HomepageController extends Controller
                             'itemproduk' => $itemproduk);
             }
             return view('homepage.produkdetail', $data);            
-        } else {
-            // kalo produk ga ada, jadinya tampil halaman tidak ditemukan (error 404)
-            return abort('404');
-        }
-    }
-    public function jasa(Request $request) {
-        $itemjasa = Jasa::orderBy('nama_jasa', 'desc')
-                            ->where('status', 'publish')
-                            ->paginate(18);
-        $listkategori = Kategori::orderBy('nama_kategori', 'asc')
-                                ->where('status', 'publish')
-                                ->get();
-        $data = array('title' => 'Jasa',
-                    'itemjasa' => $itemjasa,
-                    'listkategori' => $listkategori);
-        return view('homepage.jasa', $data)->with('no', ($request->input('page') - 1) * 18);
-    }
-    public function jasadetail($id) {
-        $itemjasa = Jasa::where('slug_jasa', $id)
-                            ->where('status', 'publish')
-                            ->first();
-        if ($itemjasa) {
-            if (Auth::user()) {//cek kalo user login
-                $itemuser = Auth::user();
-                $data = array('title' => $itemjasa->nama_jasa,
-                        'itemjasa' => $itemjasa,);
-            } else {
-                $data = array('title' => $itemjasa->nama_jasa,
-                            'itemjasa' => $itemjasa);
-            }
-            return view('homepage.jasadetail', $data);            
         } else {
             // kalo produk ga ada, jadinya tampil halaman tidak ditemukan (error 404)
             return abort('404');

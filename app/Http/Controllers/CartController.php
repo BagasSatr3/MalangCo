@@ -98,7 +98,7 @@ class CartController extends Controller
         $itemcart = Cart::findOrFail($id);
         $itemcart->detail()->delete();//hapus semua item di cart detail
         $itemcart->updatetotal($itemcart, '-'.$itemcart->subtotal);
-        return back()->with('success', 'Cart berhasil dikosongkan');
+        return back()->with('success', 'Cart has been emptied successfully');
     }
 
     public function checkout(Request $request) {

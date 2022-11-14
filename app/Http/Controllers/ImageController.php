@@ -26,7 +26,7 @@ class ImageController extends Controller
         // $inputan = $request->all();
         // $inputan['user_id'] = $itemuser->id;
         // Image::create($inputan);
-        return back()->with('success', 'Image berhasil diupload');
+        return back()->with('success', 'Image uploaded successfully');
     }
 
     public function destroy(Request $request, $id) {
@@ -37,9 +37,9 @@ class ImageController extends Controller
         if ($itemgambar) {
             \Storage::delete($itemgambar->url);
             $itemgambar->delete();
-            return back()->with('success', 'Data berhasil dihapus');
+            return back()->with('success', 'Data deleted successfully');
         } else {
-            return back()->with('error', 'Data tidak ditemukan');
+            return back()->with('error', 'Data not found');
         }
     }
     

@@ -5,33 +5,33 @@
     <div class="col-6 col-lg-3">
       <div class="small-box bg-primary">
         <div class="inner">
-          <h3>150</h3>
+          <h3>{{ $countkategori }}</h3>
 
-          <p>Order Baru</p>
+          <p>Kategori</p>
         </div>
         <div class="icon">
           <i class="ion ion-bag"></i>
         </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="/admin/kategori" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <div class="col-6 col-lg-3">
       <div class="small-box bg-info">
         <div class="inner">
-          <h3>150</h3>
+          <h3>{{ $countproduk }}</h3>
 
           <p>Produk</p>
         </div>
         <div class="icon">
           <i class="ion ion-pie-graph"></i>
         </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="/admin/produk" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <div class="col-6 col-lg-3">
       <div class="small-box bg-warning">
         <div class="inner">
-          <h3>150</h3>
+          <h3>{{ $countusers }}</h3>
 
           <p>Member</p>
         </div>
@@ -45,14 +45,14 @@
     <div class="col-6 col-lg-3">
       <div class="small-box bg-success">
         <div class="inner">
-          <h3>150</h3>
+          <h3>{{ $counttransaksi }}</h3>
 
           <p>Transaksi</p>
         </div>
         <div class="icon">
           <i class="ion ion-stats-bars"></i>
         </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="/admin/transaksi" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
   </div>
@@ -63,7 +63,7 @@
         <div class="card-header">
           <h4 class="card-title">Produk Baru</h4>
           <div class="card-tools">
-            <a href="#" class="btn btn-sm btn-primary">
+            <a href="/admin/produk" class="btn btn-sm btn-primary">
               More
             </a>
           </div>
@@ -81,30 +81,28 @@
               </tr>
             </thead>
             <tbody>
+            @foreach($itemproduk as $produk)
               <tr>
-                <td>1</td>
-                <td>PRO-1</td>
-                <td>Baju Atasan</td>
-                <td>Baju Anak</td>
-                <td>12 kodi</td>
-                <td>5.000</td>
+                <td>
+                  {{ ++$no }}
+                </td>
+                <td>
+                  {{ $produk->kode_produk }}
+                </td>
+                <td>
+                  {{ $produk->nama_produk }}
+                </td>
+                <td>
+                  {{ $produk->kategori->nama_kategori }}
+                </td>
+                <td>
+                  {{ $produk->qty }} {{ $produk->satuan }}
+                </td>
+                <td>
+                  {{ number_format($produk->harga, 2) }}
+                </td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>PRO-2</td>
-                <td>Gamis</td>
-                <td>Baju Wanita</td>
-                <td>20 kodi</td>
-                <td>25.000</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>PRO-3</td>
-                <td>Daster</td>
-                <td>Baju Wanita</td>
-                <td>20 kodi</td>
-                <td>125.000</td>
-              </tr>
+              @endforeach
             </tbody>
           </table>
         </div>

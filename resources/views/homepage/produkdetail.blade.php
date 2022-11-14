@@ -27,30 +27,35 @@
         </a>
       </div>
     </div>
-    <!-- deskripsi produk -->
+
+
     <div class="col col-lg-4 col-md-4">
       <div class="row">
         <div class="col">
-          <div class="card">
+          <div class="card" style="border:none; background-color: #ADC178;">
             <div class="card-body card-yellow">
               @if(count($errors) > 0)
               @foreach($errors->all() as $error)
-                  <div class="alert alert-warning">{{ $error }}</div>
+                <div class="alert alert-warning">{{ $error }}</div>
               @endforeach
               @endif
               @if ($message = Session::get('error'))
-                  <div class="alert alert-warning">
-                      <p>{{ $message }}</p>
-                  </div>
+                <div class="alert alert-warning">
+                  <p>{{ $message }}</p>
+                </div>
               @endif
               @if ($message = Session::get('success'))
-                  <div class="alert alert-success">
-                      <p>{{ $message }}</p>
-                  </div>
+                <div class="alert alert-success">
+                    <p>{{ $message }}</p>
+                </div>
               @endif
               <span class="small">{{ $itemproduk->kategori->nama_kategori }}</span>
-              <h5>{{ $itemproduk->nama_produk }}</h5>
+              <div class="row">
+              <div class="col">
+              <h5 class="font-weight-bold">{{ $itemproduk->nama_produk }}</h5>
+              </div>
               <!-- cek apakah ada promo -->
+              <div class="col">
               @if($itemproduk->promo != null)
               <p>
                 Rp. <del>{{ number_format($itemproduk->promo->harga_awal, 2) }}</del>
@@ -62,62 +67,59 @@
                 Rp. {{ number_format($itemproduk->harga, 2) }}
               </p>
               @endif
+              </div>
+              </div>
+              <div class="row mt-4">
+              <div class="col">
               <form action="{{ route('wishlist.store') }}" method="post">
                 @csrf
                 <input type="hidden" name="produk_id" value={{ $itemproduk->id }}>
-                <button type="submit" class="btn btn-sm btn-outline-secondary">
+                <button type="submit" class="btn btn-sm">
                 @if(isset($itemwishlist) && $itemwishlist)
-                <i class="fas fa-heart"></i> Tambah ke wishlist
+                  <i class="fas fa-heart"></i> Add to Wishlist
                 @else
-                <i class="far fa-heart"></i> Tambah ke wishlist
+                  <i class="far fa-heart"></i> Add to Wishlist
                 @endif
                 </button>
               </form>
+              </div>
+              <div class="col" style="margin-top: -5px">
+              <form action="{{ route('cartdetail.store') }}" method="POST">
+                @csrf
+                <input type="hidden" name="produk_id" value={{$itemproduk->id}}>
+                <button class="btn btn-sm" type="submit" style="margin-top:5px;">
+                  <i class="fa fa-shopping-cart"></i> Add to Cart
+                  </button>
+              </form>
+              </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      
+<!-- Description -->
       <div class="row mt-4">
         <div class="col">
-          <div class="card">
-            <div class="card-body card-yellow">
-            <form action="{{ route('cartdetail.store') }}" method="POST">
-              @csrf
-              <input type="hidden" name="produk_id" value={{$itemproduk->id}}>
-              <button class="btn btn-block btn-primary" type="submit">
-              <i class="fa fa-shopping-cart"></i> Tambahkan Ke Keranjang
-              </button>
-            </form>
-              <button class="btn btn-block btn-danger mt-4">
-              <i class="fa fa-shopping-basket"></i> Beli Sekarang
-              </button>
+          <div class="card" style="border:none; background-color: #ADC178;">
+            <div class="card-header card-red">
+              Description
             </div>
-            <div class="card-footer card-yellow">
-              <div class="row mt-4">
-                <div class="col text-center">
-                  <i class="fa fa-truck-moving"></i> 
-                  <p>Pengiriman Cepat</p>
-                </div>
-                <div class="col text-center">
-                  <i class="fa fa-calendar-week"></i> 
-                  <p>Garansi 7 hari</p>
-                </div>
-                <div class="col text-center">
-                  <i class="fa fa-money-bill"></i> 
-                  <p>Pembayaran Aman</p>
-                </div>
-              </div>            
+            <div class="card-body card-yellow">
+              {{ $itemproduk->deskripsi_produk }}
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+<!-- Comment -->
   <div class="row mt-4">
     <div class="col">
       <div class="card">
         <div class="card-header card-red">
-          Deskripsi
+          Description
         </div>
         <div class="card-body card-yellow">
           {{ $itemproduk->deskripsi_produk }}

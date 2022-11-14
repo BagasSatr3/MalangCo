@@ -15,7 +15,7 @@ class SlideshowController extends Controller
     public function index(Request $request)
     {
         $itemslideshow = Slideshow::paginate(10);
-        $data = array('title' => 'Dashboard Slideshow',
+        $data = array('title' => 'Slideshow',
                     'itemslideshow' => $itemslideshow);
         return view('slideshow.index', $data)->with('no', ($request->input('page', 1) - 1) * 10);
     }
@@ -53,7 +53,7 @@ class SlideshowController extends Controller
         // masukkan url yang telah diupload ke $inputan
         $inputan['foto'] = $itemgambar->url;
         $itemslideshow = Slideshow::create($inputan);
-        return back()->with('success', 'Foto berhasil diupload');
+        return back()->with('success', 'Image uploaded successfully');
     }
 
     /**
@@ -104,9 +104,9 @@ class SlideshowController extends Controller
             \Storage::delete($itemslideshow->foto);
         }
         if ($itemslideshow->delete()) {
-            return back()->with('success', 'Data berhasil dihapus');
+            return back()->with('success', 'Data deleted successfully');
         } else {
-            return back()->with('error', 'Data gagal dihapus');
+            return back()->with('error', 'Data failed to delete');
         }
     }
 }

@@ -33,7 +33,7 @@ class TransaksiController extends Controller
                         ->orderBy('created_at', 'desc')
                         ->paginate(20);
         }
-        $data = array('title' => 'Data Transaksi',
+        $data = array('title' => 'Transaction Data',
                     'itemorder' => $itemorder,
                     'itemuser' => $itemuser);
         return view('transaksi.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
@@ -79,9 +79,9 @@ class TransaksiController extends Controller
                 $itemorder = Order::create($inputanorder);//simpan order
                 // update status cart
                 $itemcart->update(['status_cart' => 'checkout']);
-                return redirect()->route('transaksi.index')->with('success', 'Order berhasil disimpan');
+                return redirect()->route('transaksi.index')->with('success', 'Order successfully saved');
             } else {
-                return back()->with('error', 'Alamat pengiriman belum diisi');
+                return back()->with('error', 'The shipping address has not been filled in');
             }
         } else {
             return abort('404');//kalo ternyata ga ada shopping cart, maka akan menampilkan error halaman tidak ditemukan
@@ -100,7 +100,7 @@ class TransaksiController extends Controller
         $itemuser = $request->user();
         if ($itemuser->role == 'admin') {
             $itemorder = Order::findOrFail($id);
-            $data = array('title' => 'Detail Transaksi',
+            $data = array('title' => 'Transaction Detail',
                         'itemorder' => $itemorder);
             return view('transaksi.show', $data)->with('no', 1);            
         } else {
@@ -109,7 +109,7 @@ class TransaksiController extends Controller
                                 $q->where('user_id', $itemuser->id);
                             })->first();
             if ($itemorder) {
-                $data = array('title' => 'Detail Transaksi',
+                $data = array('title' => 'Transaction Detail',
                             'itemorder' => $itemorder);
                 return view('transaksi.show', $data)->with('no', 1);                            
             } else {
@@ -129,7 +129,7 @@ class TransaksiController extends Controller
         $itemuser = $request->user();
         if ($itemuser->role == 'admin') {
             $itemorder = Order::findOrFail($id);
-            $data = array('title' => 'Form Edit Transaksi',
+            $data = array('title' => 'Form Edit Transaction',
                         'itemorder' => $itemorder);
             return view('transaksi.edit', $data)->with('no', 1);            
         } else {
@@ -163,7 +163,7 @@ class TransaksiController extends Controller
         $inputan['total'] = str_replace(',','',$request->total);
         $itemorder = Order::findOrFail($id);
         $itemorder->cart->update($inputan);
-        return back()->with('success','Order berhasil diupdate');
+        return back()->with('success','Order successfully updated');
     }
 
     /**

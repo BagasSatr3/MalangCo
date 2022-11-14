@@ -3,93 +3,136 @@
 <div class="container" style="width: 2500px; height: 500px;">
 
 
-
   <!-- carousel-->
   <div class="row">
     <div class="col">
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        @foreach($itemslide as $index => $slide )
-        @if($index == 0)
-        <div class="carousel-item active">
-          <img class="d-block w-100" src="{{ \Storage::url($slide->foto) }}" alt="First slide">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" style="margin-bottom: 30px;">
+        <div class="carousel-inner">
+          @foreach($itemslide as $index => $slide )
+          @if($index == 0)
+          <div class="carousel-item active">
+            <img class="d-block w-100" src="{{ \Storage::url($slide->foto) }}" alt="First slide">
+          </div>
+          @else
+          <div class="carousel-item">
+            <img class="d-block w-100" src="{{ \Storage::url($slide->foto) }}" alt="Second slide">
+          </div>
+          @endif
+          @endforeach   
         </div>
-        @else
-        <div class="carousel-item">
-          <img class="d-block w-100" src="{{ \Storage::url($slide->foto) }}" alt="Second slide">
-        </div>
-        @endif
-        @endforeach   
       </div>
-    </div>
     </div>
   </div>
   <!-- end carousel -->
 
 
-
   <!-- kategori -->
-  <div class="row mt-4">
-    <div class="col col-md-12 col-sm-12 mb-4">
-      <h2 class="text-left" style="font-weight:bold;">Product Category</h2>
-    </div>
-    @foreach($itemkategori as $kategori)
-    <div class="col-md-1">
-      <div class="kategori">
-        <a href="{{ URL::to('kategori/'.$kategori->slug_kategori) }}" class="btn">
-          <p class="card-text">{{ $kategori->nama_kategori }}</p>
+  <div class="card" style="padding: 20px; background-color: #ADC178; border:none;">
+    <div class="bg-transparent">
+      <h2 class="text-center" style="font-weight:bold; margin-bottom: 20px; ">Product Category</h2>
+      <div class="btn-group d-flex flex-wrap shadow-none mt-1 mt-lg-1 mt-md-1 mt-xl-1 ms-2 ms-lg-2 ms-md-2 ms-xl-2">
+        @foreach($itemkategori as $kategori)
+        <a style="width: 150px; font-size: 13px; font-weight:bold; font-family: sans-serif;" href="{{ URL::to('category/'.$kategori->slug_kategori) }}" class="btn mt-1 mt-lg-1 mt-md-1 mt-xl-1 mx-2 mx-lg-2 mx-md-2 mx-xl-2 rounded">
+          {{ $kategori->nama_kategori }}</span>
         </a>
+        @endforeach
       </div>
     </div>
   </div>
-    @endforeach
   <!-- end kategori -->
 
 
-
-  <!-- produk Promo-->
-  <div class="row mt-4">
-    <div class="col col-md-12 col-sm-12 mb-4">
-      <h2 class="text-left" style="font-weight:bold;">Product</h2>
-    </div>
-    @foreach($itempromo as $promo)
+<!-- produk Promo-->
+<div class="row mt-4">
+  <div class="col col-md-12 col-sm-12 mb-4">
+    <h2 class="text-left" style="font-weight:bold;">Product Promo</h2>
+  </div>
+  @foreach($itempromo as $promo)
     <!-- produk pertama -->
-    <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
-        <a href="{{ URL::to('produk/'.$promo->produk->slug_produk) }}">
-          @if($promo->produk->foto != null)
-          <img src="{{\Storage::url($promo->produk->foto) }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top">
-          @else
-          <img src="{{asset('images/bag.jpg') }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top">
-          @endif
+  <div class="col-md-4">
+    <div class="card mb-4 shadow-sm">
+      <a href="{{ URL::to('product/'.$promo->produk->slug_produk) }}">
+      @if($promo->produk->foto != null)
+        <img src="{{\Storage::url($promo->produk->foto) }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top">
+      @else
+        <img src="{{asset('images/bag.jpg') }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top">
+      @endif
+      </a>
+      <div class="card-body" style="border:none; background-color: #ADC178;">
+      <div class="row mt-4">
+        <div class="col">
+        <a class="text-decoration-none" style="color: black;">
+          <p class="card-text h4">
+            <strong>{{ $promo->produk->nama_produk }}</strong>
+          </p>
         </a>
+        </div>
+        <div class="col-auto">
+            <p>
+              <del>Rp. {{ number_format($promo->harga_awal, 2) }}</del>
+              <br />
+              Rp. {{ number_format($promo->harga_akhir, 2) }}
+            </p>
+          </div>
+      </div>
+      <div class="row mt-4">
+            <div class="col">
+              <a class="btn" href="{{ URL::to('product/'.$promo->produk->slug_produk) }}">
+                Detail
+              </a>
+            </div>
+          </div>
       </div>
     </div>
   </div>
-    @endforeach
+  @endforeach
+  <!-- end produk promo -->
 
 
-
-  <!-- tentang toko -->
-  <hr>
-  <div class="row mt-4">
-    <div class="col">
-      <h5 class="text-center">Toko Online Menggunakan Laravel</h5>
-      <p>
-        Toko adalah demo membangun toko online menggunakan laravel framework. Di dalam demo ini terdapat user bisa menginput data kategori, produk dan transaksi.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic laborum aliquam dolorum sequi nulla maiores quos incidunt veritatis numquam suscipit. Cumque dolore rem obcaecati. Eos quod ad non veritatis assumenda.
-      </p>
-      <p>
-        Toko adalah demo membangun toko online menggunakan laravel framework. Di dalam demo ini terdapat user bisa menginput data kategori, produk dan transaksi.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Hic laborum aliquam dolorum sequi nulla maiores quos incidunt veritatis numquam suscipit. Cumque dolore rem obcaecati. Eos quod ad non veritatis assumenda.
-      </p>
-      <p class="text-center">
-        <a class="btn btn-outline mb1 black">
-          Read More
-        </a>      
-      </p>
+  <!-- produk Terbaru-->
+  <div class="row mt-4" style="margin-left: 1px;">
+    <div class="col col-md-12 col-sm-12 mb-4" >
+      <h2 class="text-left" style="font-weight:bold;">New Product</h2>
     </div>
-  </div>
-  <!-- end tentang toko -->
+    @foreach($itemproduk as $produk)
+    <!-- produk pertama -->
+    <div class="col-md-4">
+      <div class="card mb-4 shadow-sm">
+        <a href="{{ URL::to('product/'.$produk->slug_produk ) }}">
+        @if($produk->foto != null)
+          <img src="{{ \Storage::url($produk->foto) }}" alt="{{ $produk->nama_produk }}" class="card-img-top">
+        @else
+          <img src="{{ asset('images/bag.jpg') }}" alt="{{ $produk->nama_produk }}" class="card-img-top">
+        @endif
+        </a>
+        <div class="card-body" style="border:none; background-color: #ADC178;">
+        <div class="row mt-4">
+            <div class="col">  
+            <a class="text-decoration-none" style="color: black;">
+            <p class="card-text h4">
+              <strong>{{ $produk->nama_produk }}</strong>
+            </p>
+          </a>
+          </div>
+          <div class="col-auto">
+              <p>
+                Rp. {{ number_format($produk->harga, 2) }}
+              </p>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col">
+              <a class="btn" href="{{ URL::to('product/'.$produk->slug_produk ) }}">
+                Detail
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    @endforeach
+  <!-- end produk terbaru -->
+
+
 </div>
 @endsection

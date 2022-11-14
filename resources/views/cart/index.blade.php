@@ -58,18 +58,18 @@
                     @method('patch')
                     @csrf()
                       <input type="hidden" name="param" value="kurang">
-                      <button class="btn btn-primary btn-sm">
+                      <button class="btn btn-outline btn-sm"> 
                       -
                       </button>
                     </form>
-                    <button class="btn btn-outline-primary btn-sm" disabled="true">
+                    <button class="btn-outline btn-sm" style="margin: 0px 5px;" disabled="true">
                     {{ number_format($detail->qty, 2) }}
                     </button>
                     <form action="{{ route('cartdetail.update',$detail->id) }}" method="post">
                     @method('patch')
                     @csrf()
                       <input type="hidden" name="param" value="tambah">
-                      <button class="btn btn-primary btn-sm">
+                      <button class="btn btn-outline btn-sm">
                       +
                       </button>
                     </form>
@@ -82,7 +82,7 @@
                 <form action="{{ route('cartdetail.destroy', $detail->id) }}" method="post" style="display:inline;">
                   @csrf
                   {{ method_field('delete') }}
-                  <button type="submit" class="btn btn-sm btn-danger mb-2">
+                  <button type="submit" class="btn btn-outline mb-2">
                     Hapus
                   </button>
                 </form>
@@ -130,13 +130,13 @@
         <div class="card-footer">
           <div class="row">
             <div class="col">
-            <a href="{{ URL::to('checkout') }}" class="btn btn-primary btn-block">Checkout</a>
+            <a href="{{ URL::to('checkout') }}" class="btn btn-outline">Checkout</a>
             </div>
             <div class="col">
               <form action="{{ url('kosongkan').'/'.$itemcart->id }}" method="post">
                 @method('patch')
                 @csrf()
-                <button type="submit" class="btn btn-danger btn-block">Kosongkan</button>
+                <button type="submit" class="btn btn btn-outline" style="margin-left:40px;">Kosongkan</button>
               </form>
             </div>
           </div>

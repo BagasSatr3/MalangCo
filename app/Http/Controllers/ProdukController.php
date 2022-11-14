@@ -18,10 +18,11 @@ class ProdukController extends Controller
     public function index(Request $request)
     {
         $itemproduk = Produk::orderBy('created_at', 'desc')->paginate(20);
-        $data = array('title' => 'Produk',
+        $data = array('title' => 'Product',
                     'itemproduk' => $itemproduk);
         return view('produk.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -31,7 +32,7 @@ class ProdukController extends Controller
     public function create()
     {
         $itemkategori = Kategori::orderBy('nama_kategori', 'asc')->get();
-        $data = array('title' => 'Form Produk Baru',
+        $data = array('title' => 'Form New Product',
                     'itemkategori' => $itemkategori);
         return view('produk.create', $data);
     }
@@ -73,7 +74,7 @@ class ProdukController extends Controller
     public function show($id)
     {
         $itemproduk = Produk::findOrFail($id);
-        $data = array('title' => 'Foto Produk',
+        $data = array('title' => 'Product Image',
                 'itemproduk' => $itemproduk);
         return view('produk.show', $data);
     }
@@ -88,7 +89,7 @@ class ProdukController extends Controller
     {
         $itemproduk = Produk::findOrFail($id);
         $itemkategori = Kategori::orderBy('nama_kategori', 'asc')->get();
-        $data = array('title' => 'Form Edit Produk',
+        $data = array('title' => 'Form Edit Product',
                 'itemproduk' => $itemproduk,
                 'itemkategori' => $itemkategori);
         return view('produk.edit', $data);
@@ -121,12 +122,12 @@ class ProdukController extends Controller
                                 ->where('slug_produk', $slug)
                                 ->first();
         if ($validasislug) {
-            return back()->with('error', 'Slug sudah ada, coba yang lain');
+            return back()->with('error', 'Slug already exists, try something else');
         } else {
             $inputan = $request->all();
             $inputan['slug'] = $slug;
             $itemproduk->update($inputan);
-            return redirect()->route('produk.index')->with('success', 'Data berhasil diupdate');
+            return redirect()->route('produk.index')->with('success', 'Data successfully updated');
         }
     }
 
@@ -141,9 +142,9 @@ class ProdukController extends Controller
         $itemproduk = Produk::findOrFail($id);//cari berdasarkan id = $id, 
         // kalo ga ada error page not found 404
         if ($itemproduk->delete()) {
-            return back()->with('success', 'Data berhasil dihapus');
+            return back()->with('success', 'Data deleted successfully');
         } else {
-            return back()->with('error', 'Data gagal dihapus');
+            return back()->with('error', 'Data failed to delete');
         }
     }
     public function uploadimage(Request $request) {
@@ -167,9 +168,9 @@ class ProdukController extends Controller
             // update banner produk
             $itemproduk->update(['foto' => $itemgambar->url]);
             // end update banner produk
-            return back()->with('success', 'Image berhasil diupload');
+            return back()->with('success', 'Image uploaded successfully');
         } else {
-            return back()->with('error', 'Kategori tidak ditemukan');
+            return back()->with('error', 'Category not found');
         }
     }
 
@@ -195,15 +196,17 @@ class ProdukController extends Controller
             $itemproduk->update(['foto' => null]);
         }
         //end update jadi banner produk
-        return back()->with('success', 'Data berhasil dihapus');
+        return back()->with('success', 'Data deleted successfully');
     }
     public function loadasync($id) {
         $itemproduk = Produk::findOrFail($id);
         $respon = [
             'status' => 'success',
-            'msg' => 'Data ditemukan',
+            'msg' => 'Data found',
             'itemproduk' => $itemproduk
         ];
         return response()->json($respon, 200);
     }
+
+
 }

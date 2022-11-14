@@ -8,6 +8,7 @@ nav{
     background-color: #A98467;
     font-family: sans-serif;
     font-weight: bold;
+    /* background-color:slategray */
 }
 .navbar-brand{
     font-weight: bold;
@@ -17,24 +18,37 @@ nav{
     background-color: transparent;
     border:0; 
     border-bottom:1px solid black;
+    margin-top: 6px;
 }
-.form-control{
+.form-search:focus-visible{
+    outline: none;
+    border:0; 
+    border-bottom:2px solid rgb(56, 56, 56);
+    color: rgb(214, 214, 214);
+}
+.form-search::placeholder{
+    color: rgb(214, 214, 214);
+}
+.form-input{
     background-color: #F0EAD2;
     border:0; 
     border-bottom:1px solid black;
     
 }
-.form-control:focus-visible{
+.form-input:focus-visible{
     outline: none;
     border:0; 
     border-bottom:2px solid rgb(56, 56, 56);
     color: rgb(29, 29, 29);
 }
-.form-control::placeholder{
+.form-input::placeholder{
     color: rgb(10, 10, 10);
 }
 
- 
+.img-fluid{
+    height: 35px;
+
+}
 .btn{
     border-radius: 10px;
     font-family: cursive;

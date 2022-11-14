@@ -8,7 +8,7 @@ use App\Models\Order;
 class LaporanController extends Controller
 {
     public function index() {
-        $data = array('title' => 'Form Laporan Penjualan');
+        $data = array('title' => 'Form Sale Report');
         return view('laporan.index', $data);
     }
 
@@ -21,7 +21,7 @@ class LaporanController extends Controller
             $q->where('created_at', 'like', $bulan_transaksi.'%');
         })
         ->get();
-        $data = array('title' => 'Laporan Penjualan',
+        $data = array('title' => 'Sale Report',
                     'itemtransaksi' => $itemtransaksi,
                     'bulan' => $this->cetakbulan($bulan),
                     'tahun' => $tahun);

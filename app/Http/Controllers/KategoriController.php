@@ -17,7 +17,7 @@ class KategoriController extends Controller
         // kita ambil data kategori per halaman 20 data dan (paginate(20))
         // kita urutkan yang terakhir diiput yang paling atas (orderBy)
         $itemkategori = Kategori::orderBy('created_at', 'desc')->paginate(20);
-        $data = array('title' => 'Kategori Produk',
+        $data = array('title' => 'Category Product',
                     'itemkategori' => $itemkategori);
         return view('kategori.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
     }
@@ -29,7 +29,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        $data = array('title' => 'Form Kategori');
+        $data = array('title' => 'Form Category');
         return view('kategori.create', $data);
     }
 
@@ -54,7 +54,7 @@ class KategoriController extends Controller
         //slug kita gunakan nanti pas buka produk per kategori
         $inputan['status'] = 'publish';//status kita set langsung publish saja
         $itemkategori = Kategori::create($inputan);
-        return redirect()->route('kategori.index')->with('success', 'Data kategori berhasil disimpan');
+        return redirect()->route('kategori.index')->with('success', 'Category successfully saved');
     }
 
     /**
@@ -78,7 +78,7 @@ class KategoriController extends Controller
     {
         $itemkategori = Kategori::findOrFail($id);//cari berdasarkan id = $id, 
         // kalo ga ada error page not found 404
-        $data = array('title' => 'Form Edit Kategori',
+        $data = array('title' => 'Form Edit Category',
                     'itemkategori' => $itemkategori);
         return view('kategori.edit', $data);
     }
@@ -105,12 +105,12 @@ class KategoriController extends Controller
                                 ->where('slug_kategori', $slug)
                                 ->first();
         if ($validasislug) {
-            return back()->with('error', 'Slug sudah ada, coba yang lain');
+            return back()->with('error', 'Slug already exists, try something else');
         } else {
             $inputan = $request->all();
             $inputan['slug'] = $slug;
             $itemkategori->update($inputan);
-            return redirect()->route('kategori.index')->with('success', 'Data berhasil diupdate');
+            return redirect()->route('kategori.index')->with('success', 'Data successfully updated');
         }
     }
 
@@ -126,12 +126,12 @@ class KategoriController extends Controller
         // kalo ga ada error page not found 404
         if (($itemkategori->produk) > 0) {
             // dicek dulu, kalo ada produk di dalam kategori maka proses hapus dihentikan
-            return back()->with('error', 'Hapus dulu produk di dalam kategori ini, proses dihentikan');
+            return back()->with('error', 'Delete the product in this category first, the process is stopped');
         } else {
             if ($itemkategori->delete()) {
-                return back()->with('success', 'Data berhasil dihapus');
+                return back()->with('success', 'Data deleted successfully');
             } else {
-                return back()->with('error', 'Data gagal dihapus');
+                return back()->with('error', 'Data failed to delete');
             }
         }
     }
@@ -150,9 +150,9 @@ class KategoriController extends Controller
             $itemgambar = (new ImageController)->upload($fileupload, $itemuser, $folder);
             $inputan['foto'] = $itemgambar->url;//ambil url file yang barusan diupload
             $itemkategori->update($inputan);
-            return back()->with('success', 'Image berhasil diupload');
+            return back()->with('success', 'Image uploaded successfully');
         } else {
-            return back()->with('error', 'Kategori tidak ditemukan');
+            return back()->with('error', 'Category not found');
         }
     }
 
@@ -171,9 +171,9 @@ class KategoriController extends Controller
             }
             // baru update foto kategori
             $itemkategori->update(['foto' => null]);
-            return back()->with('success', 'Data berhasil dihapus');
+            return back()->with('success', 'Data deleted successfully');
         } else {
-            return back()->with('error', 'Data tidak ditemukan');
+            return back()->with('error', 'Data not found');
         }
     }
 }

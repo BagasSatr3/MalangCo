@@ -3,13 +3,15 @@
     <!-- Add icons to the links using the .nav-icon class
           with font-awesome or any other icon font library -->
     <li class="nav-item">
-      <a href="#" class="nav-link">
+      <a href="/admin" class="nav-link">
         <i class="nav-icon fas fa-th"></i>
         <p>
           Dashboard
         </p>
       </a>
     </li>
+
+
     <li class="nav-item has-treeview">
       <a href="#" class="nav-link">
         <i class="nav-icon fas fa-folder-open"></i>
@@ -32,12 +34,6 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('jasa.index') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Jasa</p>
-          </a>
-        </li>
-        <li class="nav-item">
           <a href="{{ route('promo.index') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Promo</p>
@@ -45,6 +41,8 @@
         </li>
       </ul>
     </li>
+
+
     <li class="nav-item has-treeview">
       <a href="#" class="nav-link">
         <i class="nav-icon fas fa-shopping-cart"></i>
@@ -60,48 +58,16 @@
             <p>Data Transaksi</p>
           </a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a href="{{ route('wishlist.index') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Wishlist</p>
           </a>
-        </li>
+        </li> -->
       </ul>
     </li>
-    <li class="nav-item has-treeview">
-      <a href="#" class="nav-link">
-        <i class="nav-icon fas fa-folder"></i>
-        <p>
-          Data
-          <i class="right fas fa-angle-left"></i>
-        </p>
-      </a>
-      <li class="nav-item has-treeview">
-      <a href="#" class="nav-link">
-        <i class="nav-icon fas fa-cogs"></i>
-        <p>
-          Setting
-          <i class="right fas fa-angle-left"></i>
-        </p>
-      </a>
-      <ul class="nav nav-treeview">
-        <li class="nav-item">
-          <a href="{{ route('slideshow.index') }}" class="nav-link">
-            <i class="far fa-images nav-icon"></i>
-            <p>Slideshow</p>
-          </a>
-        </li>
-      </ul>
-    </li>
-      <ul class="nav nav-treeview">
-        <li class="nav-item">
-          <a href="{{ route('customer.index') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Customer</p>
-          </a>
-        </li>
-      </ul>
-    </li>
+
+
     <li class="nav-item has-treeview">
       <a href="#" class="nav-link">
         <i class="nav-icon fas fa-list"></i>
@@ -119,14 +85,35 @@
         </li>
       </ul>
     </li>
-    <li class="nav-item">
-      <a href="{{ URL::to('admin/profil') }}" class="nav-link">
-        <i class="nav-icon fas fa-users"></i>
+
+
+    <li class="nav-item has-treeview">
+      <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-cogs"></i>
         <p>
-          Profil
+          Setting
+          <i class="right fas fa-angle-left"></i>
         </p>
       </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="{{ route('slideshow.index') }}" class="nav-link">
+            <i class="far fa-images nav-icon"></i>
+            <p>Slideshow</p>
+          </a>
+        </li>
+      </ul>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="{{ route('customer.index') }}" class="nav-link">
+            <i class="far fa-circle nav-icon"></i>
+            <p>Customer</p>
+          </a>
+        </li>
+      </ul>
     </li>
+
+
     <li class="nav-item">
       <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
           document.getElementById('logout-form').submit();">

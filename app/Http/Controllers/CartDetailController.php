@@ -85,7 +85,7 @@ class CartDetailController extends Controller
             // update subtotal dan total di table cart
             $itemdetail->cart->updatetotal($itemdetail->cart, $subtotal);
         }
-        return redirect()->route('cart.index')->with('success', 'Produk berhasil ditambahkan ke cart');
+        return redirect()->route('cart.index')->with('success', 'Product successfully added to cart');
     }
 
     /**
@@ -128,7 +128,7 @@ class CartDetailController extends Controller
             $itemdetail->updatedetail($itemdetail, $qty, $itemdetail->harga, $itemdetail->diskon);
             // update total cart
             $itemdetail->cart->updatetotal($itemdetail->cart, ($itemdetail->harga - $itemdetail->diskon));
-            return back()->with('success', 'Item berhasil diupdate');
+            return back()->with('success', 'Item successfully updated');
         }
         if ($param == 'kurang') {
             // update detail cart
@@ -136,7 +136,7 @@ class CartDetailController extends Controller
             $itemdetail->updatedetail($itemdetail, '-'.$qty, $itemdetail->harga, $itemdetail->diskon);
             // update total cart
             $itemdetail->cart->updatetotal($itemdetail->cart, '-'.($itemdetail->harga - $itemdetail->diskon));
-            return back()->with('success', 'Item berhasil diupdate');
+            return back()->with('success', 'Item successfully updated');
         }
     }
 
@@ -152,9 +152,9 @@ class CartDetailController extends Controller
         // update total cart dulu
         $itemdetail->cart->updatetotal($itemdetail->cart, '-'.$itemdetail->subtotal);
         if ($itemdetail->delete()) {
-            return back()->with('success', 'Item berhasil dihapus');
+            return back()->with('success', 'Item deleted successfully');
         } else {
-            return back()->with('error', 'Item gagal dihapus');
+            return back()->with('error', 'Item failed to delete');
         }
     }
 }
