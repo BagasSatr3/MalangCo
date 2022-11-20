@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Wishlist;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class WishlistController extends Controller
@@ -17,8 +18,10 @@ class WishlistController extends Controller
         $itemuser = $request->user();
         $itemwishlist = Wishlist::where('user_id', $itemuser->id)
                                 ->paginate(10);
+        $itemproduk = Produk::orderBy('created_at', 'desc')->limit(3)->get();
         $data = array('title' => 'Wishlist',
-                    'itemwishlist' => $itemwishlist);
+                    'itemwishlist' => $itemwishlist,
+                    'itemproduk' => $itemproduk);
         return view('wishlist.index', $data)->with('no', ($request->input('page', 1) - 1) * 10);
     }
 

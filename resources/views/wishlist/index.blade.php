@@ -36,7 +36,7 @@
                     {{ $wish->produk->kode_produk }}
                   </td>
                   <td>
-                    {{ $wish->produk->nama_produk }}
+                    <a href="{{ URL::to('product/'.$wish->produk->slug_produk ) }}" style="color: black; text-decoration: none;">{{ $wish->produk->nama_produk }}</a>
                   </td>
                   <td>
                     <form action="{{ route('wishlist.destroy', $wish->id) }}" method="post" style="display:inline;">

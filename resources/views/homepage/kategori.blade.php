@@ -23,14 +23,16 @@
     @foreach($itemproduk as $produk)
     <!-- produk pertama -->
     <div class="col-md-4">
-      <div class="card mb-4 shadow-sm">
+      <div class="card mb-4" style="box-shadow: 5px 6px 6px 2px #e9ecef;">
+      <div style="height: 190px; max-width: 270px; display: flex; align-items: center; margin-left: auto; margin-right: auto;">
         <a href="{{ URL::to('product/'.$produk->slug_produk ) }}">
           @if($produk->foto != null)
-          <img src="{{ \Storage::url($produk->foto) }}" alt="{{ $produk->nama_produk }}" class="card-img-top">
+          <img src="{{ \Storage::url($produk->foto) }}" alt="{{ $produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
           @else
-          <img src="{{ asset('images/bag.jpg') }}" alt="{{ $produk->nama_produk }}" class="card-img-top">
+          <img src="{{ asset('images/bag.jpg') }}" alt="{{ $produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
           @endif
         </a>
+      </div>
         <div class="card-body" style="border:none; background-color: #ADC178;">
         <div class="row mt-4">
         <div class="col">  

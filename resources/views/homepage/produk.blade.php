@@ -21,59 +21,50 @@
     
 
 
-  <!-- produk -->
-  
-  <div class="col col-lg-9 col-md-9 mb-2" style="margin-left: -15px; margin-top: 30px; margin-bottom: 30px;">
-  @if(isset($itemkategori))
-    <h3 class="text-left" style="font-weight:bold; margin-bottom: 20px;">{{ $itemkategori->nama_kategori }}</h3>
-  @else
-    <h3 class="text-left" style="font-weight:bold; margin-bottom: 20px;">All Product</h3>
-  @endif
-    <div class="row mt-4">
+  <!-- produk Terbaru-->
+  <div class="row mt-4" style="margin-top: 30px; margin-bottom: 30px;">
+    <div class="col col-md-12 col-sm-12 mb-4">
+      <h2 class="text-left" style="font-weight:bold; margin-bottom: 20px;">Terbaru</h2>
+    </div>
     @foreach($itemproduk as $produk)
-      <div class="col-md-4">
-        <div class="card mb-4 shadow-sm">
-          <a href="{{ URL::to('product/'.$produk->slug_produk ) }}">
+    <!-- produk pertama -->
+    <div class="col-md-4">
+      <div class="card mb-4" style="box-shadow: 5px 6px 6px 2px #e9ecef;">
+      <div style="height: 190px; max-width: 270px; display: flex; align-items: center; margin-left: auto; margin-right: auto;">
+        <a href="{{ URL::to('product/'.$produk->slug_produk ) }}">
           @if($produk->foto != null)
-            <img src="{{ \Storage::url($produk->foto) }}" alt="{{ $produk->nama_produk }}" class="card-img-top">
+          <img src="{{ \Storage::url($produk->foto) }}" alt="{{ $produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
           @else
-            <img src="{{ asset('images/bag.jpg') }}" alt="{{ $produk->nama_produk }}" class="card-img-top">
+          <img src="{{ asset('images/bag.jpg') }}" alt="{{ $produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
           @endif
-          </a>
-          <div class="card-body" style="border:none; background-color: #ADC178;">
-          <div class="row mt-4">
-            <div class="col">
+        </a>
+      </div>
+        <div class="card-body" style="border:none; background-color: #ADC178;">
+        <div class="row mt-4">
+        <div class="col">  
             <a class="text-decoration-none" style="color: black;">
             <p class="card-text h5">
               <strong>{{ $produk->nama_produk }}</strong>
             </p>
           </a>
+          </div>
+          <div class="col-auto">
+              <p>
+                Rp. {{ number_format($produk->harga, 2) }}
+              </p>
             </div>
-            <div class="col-auto">
-                <p>
-                  Rp. {{ number_format($produk->harga, 2) }}
-                </p>
-              </div>
-            </div>
-            <div class="row mt-4">
+          </div>
+          <div class="row mt-4">
             <div class="col">
               <a class="btn" href="{{ URL::to('product/'.$produk->slug_produk ) }}">
                 Detail
               </a>
             </div>
           </div>
-            
-          </div>
         </div>
       </div>
+    </div>
     @endforeach
-    </div>
-    <div class="row">
-      <div class="col">
-        {{ $itemproduk->links() }}
-      </div>
-    </div>
-  </div>
-  <!-- end produk -->
+</div>
 </div>
 @endsection

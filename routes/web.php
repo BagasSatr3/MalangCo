@@ -53,6 +53,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('cartdetail', \App\Http\Controllers\CartDetailController::class);
     Route::resource('alamatpengiriman', \App\Http\Controllers\AlamatPengirimanController::class);
     Route::get('checkout',[\App\Http\Controllers\CartController::class,'checkout']);
+    Route::post('comments', [\App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
 });
 
 Auth::routes();

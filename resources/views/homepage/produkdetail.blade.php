@@ -3,36 +3,20 @@
 <div class="container" style="margin-top:70px;">
   <div class="row mt-4">
     <div class="col col-lg-8 col-md-8">
-      <div id="carousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-        @foreach($itemproduk->images as $index => $image)
-        @if($index == 0)
-          <div class="carousel-item active">
-              <img src="{{ \Storage::url($image->foto) }}" class="d-block w-100" alt="...">
-          </div>
-        @else
-          <div class="carousel-item">
-              <img src="{{ \Storage::url($image->foto) }}" class="d-block w-100" alt="...">
-          </div>
-        @endif
-        @endforeach
-        </div>
-        <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
+      @foreach($itemproduk->images as $index => $image)
+      @if($index == 0)
+        <img src="{{ \Storage::url($image->foto) }}" class="d-block w-100" alt="..." style="max-height: 750px; width: 100%; box-shadow: 5px 6px 6px 2px #e9ecef;">
+      @else
+        <img src="{{ asset('images/KOJO 1.png') }}" class="d-block w-100" alt="..." style="max-height: 750px; width: 100%;">
+      @endif
+      @endforeach
     </div>
 
-
+<!-- Product -->
     <div class="col col-lg-4 col-md-4">
       <div class="row">
         <div class="col">
-          <div class="card" style="border:none; background-color: #ADC178;">
+          <div class="card" style="border:none; background-color: #ADC178; box-shadow: 5px 6px 6px 2px #e9ecef;">
             <div class="card-body card-yellow">
               @if(count($errors) > 0)
               @foreach($errors->all() as $error)
@@ -52,7 +36,7 @@
               <span class="small">{{ $itemproduk->kategori->nama_kategori }}</span>
               <div class="row">
               <div class="col">
-              <h5 class="font-weight-bold">{{ $itemproduk->nama_produk }}</h5>
+              <h4 class="font-weight-bold">{{ $itemproduk->nama_produk }}</h4>
               </div>
               <!-- cek apakah ada promo -->
               <div class="col">
@@ -101,12 +85,44 @@
 <!-- Description -->
       <div class="row mt-4">
         <div class="col">
-          <div class="card" style="border:none; background-color: #ADC178;">
-            <div class="card-header card-red">
-              Description
+          <div class="card" style="border-color:#ADC178; box-shadow: 5px 6px 6px 2px #e9ecef;">
+            <div class="card-header" style="border:none; background-color: #ADC178;">
+              <h5>Description</h5>
             </div>
-            <div class="card-body card-yellow">
+            <div class="card-body">
               {{ $itemproduk->deskripsi_produk }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+<!-- Comment -->
+      <div class="row mt-4">
+        <div class="col">
+          <div class="card" style="border-color:#ADC178; box-shadow: 5px 6px 6px 2px #e9ecef;">
+            <div class="card-header" style="border:none; background-color: #ADC178;">
+              <h5>Add Review</h5>
+            </div>
+            <div class="card-body">
+              <form method="post" action="{{ route('comments.store') }}">
+              @csrf
+                <div class="rating" style="margin-left: 5px">
+                  <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                  <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> 
+                  <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                  <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                  <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                  <img src="{{ asset('img/user1-128x128.jpg') }}" style="max-height: 40px;max-width: 40px;" class="user-img rounded-circle mr-2">
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" name="body"></textarea>
+                  <input type="hidden" name="produk_id" value="{{ $itemproduk->id }}" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn-sm btn-outline-info py-0" style="font-size: 0.8em;" value="Submit" />
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -114,15 +130,15 @@
     </div>
   </div>
 
-<!-- Comment -->
+<!-- DisplayComment -->
   <div class="row mt-4">
     <div class="col">
-      <div class="card">
-        <div class="card-header card-red">
-          Description
+      <div class="card" style="border-color:#ADC178; box-shadow: 5px 6px 6px 2px #e9ecef;">
+        <div class="card-header" style="border:none; background-color: #ADC178;">
+          <h5>Display Comment</h5>
         </div>
-        <div class="card-body card-yellow">
-          {{ $itemproduk->deskripsi_produk }}
+        <div class="card-body">
+        @include('homepage.commentsDisplay', ['comments' => $itemproduk->comments, 'produk_id' => $itemproduk->id])
         </div>
       </div>
     </div>

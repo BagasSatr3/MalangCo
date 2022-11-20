@@ -37,4 +37,7 @@ class Produk extends Model
     public function promo() {
         return $this->hasOne('App\Models\ProdukPromo', 'produk_id');
     }
+    public function comments(){
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
+    }
 }
