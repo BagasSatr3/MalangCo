@@ -18,6 +18,7 @@ class Comment extends Model
         'produk_id', 
         'parent_id', 
         'body',
+        'rating',
     ];
     
     public function user()

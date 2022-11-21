@@ -14,6 +14,7 @@ class CommentController extends Controller
 
         $request->validate([
             'body'=>'required',
+            'rating'=>'required'
         ]);
 
         $input['user_id'] = auth()->user()->id;

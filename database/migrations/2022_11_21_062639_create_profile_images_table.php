@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('profile_images', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('produk_id')->unsigned();
-            $table->integer('parent_id')->unsigned()->nullable();
-            $table->integer('rating');
-            $table->text('body');
+            $table->string('foto')->nullable();
+            $table->foreign('user_id')->references('id')->on('user');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('profile_images');
     }
 };

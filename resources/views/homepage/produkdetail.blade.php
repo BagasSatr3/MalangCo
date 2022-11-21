@@ -107,6 +107,7 @@
             <div class="card-body">
               <form method="post" action="{{ route('comments.store') }}">
               @csrf
+              <div class="form-group">
                 <div class="rating" style="margin-left: 5px">
                   <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
                   <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> 
@@ -115,6 +116,7 @@
                   <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
                   <img src="{{ asset('img/user1-128x128.jpg') }}" style="max-height: 40px;max-width: 40px;" class="user-img rounded-circle mr-2">
                 </div>
+              </div>
                 <div class="form-group">
                   <textarea class="form-control" name="body"></textarea>
                   <input type="hidden" name="produk_id" value="{{ $itemproduk->id }}" />
