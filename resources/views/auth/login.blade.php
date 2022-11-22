@@ -8,8 +8,8 @@
                     <div class="card-body p-5 text-center">
                         <div class="mb-md-5 mt-md-4 pb-5">
                             <div class="d-flex flex-column align-items-center">
-                                <h1>SIGN-IN</h1>
-                                <div class="text-center" >Hallo kawan KOJO
+                                <h1>Sign In</h1>
+                                <div class="text-center" >Halo kawan Kojo
                                     <br>Silahkan login di bawah ini!
                                 </div>
                                 <form method="POST" action="{{ route('login') }}" class="form-auth">
@@ -35,12 +35,12 @@
                                     {{ __('Forgot Your Password?') }}
                                 </a>
                                 @endif
-                                <br><br>
+                                <br>
                                 <button type="submit" class="btn btn-outline mt-2">
-                                    {{ __('Sign-In') }}
+                                    {{ __('Sign In') }}
                                 </button>
                                 <p class="mt-2">Don't have an account??
-                                    <a href="{{ route('register') }}" class="text-decoration-none"> Sign-Up here</a>
+                                    <a href="{{ route('register') }}" class="text-decoration-none"> Sign Up here</a>
                                 </p>
                             </div>
                         </div>       

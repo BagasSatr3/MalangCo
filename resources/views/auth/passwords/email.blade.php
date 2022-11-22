@@ -40,7 +40,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                         @enderror
-                                    </div>
+                                    </div><br>
                                     <button type="submit" class="btn btn-outline mt-2">
                                         {{ __('Send Password Reset Link') }}
                                     </button>

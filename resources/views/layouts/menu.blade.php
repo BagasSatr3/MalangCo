@@ -28,10 +28,10 @@
           </li>
           @guest
           <li class="nav-item active">
-            <a class="btn btn-outline" style="margin-right:5px;" href="{{ URL::to('login') }}">Sign-In</a>
+            <a class="btn btn-outline" style="margin-right:5px;" href="{{ URL::to('login') }}">Sign In</a>
           </li>
           <li class="nav-item active">
-            <a class="btn btn-outline" href="{{ URL::to('register') }}">Sign-Up</a>
+            <a class="btn btn-outline" href="{{ URL::to('register') }}">Sign Up</a>
           </li>
           @endguest
           @auth

@@ -4,30 +4,12 @@
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                <div class="card text-black" style="border-radius: 1rem; background:#ADC178;">
+                <div class="card text-white" style="border-radius: 1rem; background:#ADC178;">
                     <div class="card-body p-5 text-center">
                         <div class="mb-md-5 mt-md-4 pb-5">
-                            <h1>SIGN-UP</h1>
-
-                            @if(count($errors) > 0)
-                            @foreach($errors->all() as $error)
-                            <div class="alert alert-warning">{{ $error }}
-                            @endforeach
-                            @endif
-
-                            @if ($message = Session::get('error'))
-                            <div class="alert alert-warning">
-                                <p>{{ $message }}</p>
-                            </div>
-                            @endif
-
-                            @if ($message = Session::get('success'))
-                            <div class="alert alert-success">
-                                <p>{{ $message }}</p>
-                            </div>
-                            @endif
-                            </div>
-
+                            <h1>Sign Up</h1>
+                            <div class="text-center" >Silahkan daftar di bawah ini!
+                            </div><br>
                             <form method="POST" action="{{ route('register') }}">
                             <div class="row">
                                 <div class="col">
@@ -57,6 +39,25 @@
                                 </div>
                             </div>
                             </form>
+
+                            @if(count($errors) > 0)
+                            @foreach($errors->all() as $error)
+                            <div class="alert alert-warning">{{ $error }}
+                            @endforeach
+                            @endif
+
+                            @if ($message = Session::get('error'))
+                            <div class="alert alert-warning">
+                                <p>{{ $message }}</p>
+                            </div>
+                            @endif
+
+                            @if ($message = Session::get('success'))
+                            <div class="alert alert-success">
+                                <p>{{ $message }}</p>
+                            </div>
+                            @endif
+                            </div> 
                         </div>
                     </div>
                 </div>

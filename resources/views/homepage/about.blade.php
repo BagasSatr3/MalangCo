@@ -8,10 +8,9 @@
       <br>
       <br>
         <div class="d-flex flex-column align-items-center">
-          <h5>Selamat datang di Malang Cu!</h5>
+          <h5>Selamat datang di Kojo!</h5>
           <h5>Sebuah platform jual beli berbagai macam</h5>
-          <h5>barang berkualitas dan jasa profesional khas</h5>
-          <h5>Kota Malang</h5>
+          <h5>alat dan bahan perkebunan yang berkualitas </h5>
         </div>
     </div>
   </div>

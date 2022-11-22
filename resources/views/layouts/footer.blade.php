@@ -11,7 +11,7 @@
   <!-- Grid container -->
   <!-- Copyright -->
   <div class="text-center p-3" style="color:black;">
-    © 2020 Copyright
+    © 2022 KOJO
   </div>
   <!-- Copyright -->
 </footer>
