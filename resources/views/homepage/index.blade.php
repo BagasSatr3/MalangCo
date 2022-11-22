@@ -32,7 +32,7 @@
       <h2 class="text-center" style="font-weight:bold; margin-bottom: 20px; ">Product Category</h2>
       <div class="btn-group d-flex flex-wrap shadow-none mt-1 mt-lg-1 mt-md-1 mt-xl-1 ms-2 ms-lg-2 ms-md-2 ms-xl-2">
         @foreach($itemkategori as $kategori)
-        <a style="width: 150px; font-size: 13px; font-weight:bold; font-family: sans-serif;" href="{{ URL::to('category/'.$kategori->slug_kategori) }}" class="btn mt-1 mt-lg-1 mt-md-1 mt-xl-1 mx-2 mx-lg-2 mx-md-2 mx-xl-2 rounded">
+        <a style="width: 150px; font-size: 13px; font-weight:bold; font-family: 'Poppins';" href="{{ URL::to('category/'.$kategori->slug_kategori) }}" class="btn mt-1 mt-lg-1 mt-md-1 mt-xl-1 mx-2 mx-lg-2 mx-md-2 mx-xl-2 rounded">
           {{ $kategori->nama_kategori }}</span>
         </a>
         @endforeach
