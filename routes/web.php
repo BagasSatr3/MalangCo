@@ -18,6 +18,11 @@ Route::get('/contact', [\App\Http\Controllers\HomepageController::class,'kontak'
 Route::get('/category', [\App\Http\Controllers\HomepageController::class,'kategori']);
 Route::get('/category/{slug}', [\App\Http\Controllers\HomepageController::class,'kategoribyslug']);
 Route::get('/product', [\App\Http\Controllers\HomepageController::class,'produk']);
+Route::get('/product/min-price', [\App\Http\Controllers\HomepageController::class,'minprice']);
+Route::get('/product/max-price', [\App\Http\Controllers\HomepageController::class,'maxprice']);
+Route::get('/product/latest-product', [\App\Http\Controllers\HomepageController::class,'newproduct']);
+Route::get('/product/A-Z-name', [\App\Http\Controllers\HomepageController::class,'ascname']);
+Route::get('/product/Z-A-name', [\App\Http\Controllers\HomepageController::class,'descname']);
 Route::get('/product/{id}', [\App\Http\Controllers\HomepageController::class,'produkdetail']);
 
 Route::get('admin/login', [\App\Http\Controllers\AdminAuthControllerController::class,'getLogin'])->name('admin.login');

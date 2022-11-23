@@ -18,25 +18,20 @@
     </div>
   </div>
   <!-- end kategori produk -->
-
-
-  <ol class="breadcrumb">Sort By:
-    <li class="breadcrumb-item" style="margin-left:10px"><a href="{{ URL::to('product?q=lastest-products') }}">Lastest Products</a></li>
-    <li class="breadcrumb-item"><a href="{{ URL::to('product?q=high-to-low') }}">High to Low Price</a></li>
-    <li class="breadcrumb-item"><a href="{{ URL::to('product?q=low-to-high') }}">Low to High Price</a></li>
-    <li class="breadcrumb-item"><a href="{{ URL::to('product?q=a-z-products') }}">A-Z Products</a></li>
-    <li class="breadcrumb-item"><a href="{{ URL::to('product?q=z-a-products') }}">Z-A Products</a></li>
-  </ol>
-  <!-- <div class="toolbar-sorted">
+  <form action="" class="" name="sortProducts" id="sortProducts">
+  <div class="toolbar-sorted">
     <div class="select-box-wrapper">
       <label for="sort-by" class="sr-only">Sort By</label>
       <select name="sort" class="select-box" id="sort-by">
-        <option value="" name="q" selected="selected">Price</option>
-        <option value="" name="q"><a href="{{ URL::to('product?q=high-to-low') }}">High to Low</a></option>
-        <option value="" name="q"><a href="{{ URL::to('product?q=low-to-high') }}">Low to High</a></option>
+        <option value="/product" selected="selected">Sort by : Latest Product</option>
+        <option value="price_low">Sort by : Lowets Price</option>
+        <option value="price_high">Sort by : Highest Price</option>
+        <option value="products_asc">Sort by : Name A-Z</option>
+        <option value="products_desc">Sort by : Name Z-A</option>
       </select>
     </div>
-  </div> -->
+  </div>
+  </form>
 
     <!-- <form action="/product" method="GET">
       <div class="input-group">
@@ -45,7 +40,6 @@
       </div>
     </form> -->
 
-    
   <!-- produk Terbaru-->
   <div class="row mt-4" style="margin-top: 30px; margin-bottom: 30px;">
     <div class="col col-md-12 col-sm-12 mb-4">
