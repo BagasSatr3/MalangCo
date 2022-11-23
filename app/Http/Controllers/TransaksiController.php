@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\AlamatPengiriman;
 use App\Models\Order;
+use App\Models\Produk;
 
 class TransaksiController extends Controller
 {
@@ -16,27 +17,31 @@ class TransaksiController extends Controller
      */
     public function index(Request $request)
     {
-        $itemuser = $request->user();
-        if ($itemuser->role == 'admin') {
-            // kalo admin maka menampilkan semua cart
-            $itemorder = Order::whereHas('cart', function($q) use ($itemuser) {
-                            $q->where('status_cart', 'checkout');
-                        })
-                        ->orderBy('created_at', 'desc')
-                        ->paginate(20);
-        } else {
-            // kalo member maka menampilkan cart punyanya sendiri
-            $itemorder = Order::whereHas('cart', function($q) use ($itemuser) {
-                            $q->where('status_cart', 'checkout');
-                            $q->where('user_id', $itemuser->id);
-                        })
-                        ->orderBy('created_at', 'desc')
-                        ->paginate(20);
-        }
+        $itemorder = Order::orderBy('created_at', 'desc')->paginate(20);
         $data = array('title' => 'Transaction Data',
-                    'itemorder' => $itemorder,
-                    'itemuser' => $itemuser);
-        return view('transaksi.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
+                    'itemorder' => $itemorder);
+                    return view('transaksi.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
+        // $itemuser = $request->user();
+        // if ($itemuser->role == 'admin') {
+        //     // kalo admin maka menampilkan semua cart
+        //     $itemorder = Order::whereHas('cart', function($q) use ($itemuser) {
+        //                     $q->where('status_cart', 'checkout');
+        //                 })
+        //                 ->orderBy('created_at', 'desc')
+        //                 ->paginate(20);
+        // } else {
+        //     // kalo member maka menampilkan cart punyanya sendiri
+        //     $itemorder = Order::whereHas('cart', function($q) use ($itemuser) {
+        //                     $q->where('status_cart', 'checkout');
+        //                     $q->where('user_id', $itemuser->id);
+        //                 })
+        //                 ->orderBy('created_at', 'desc')
+        //                 ->paginate(20);
+        // }
+        // $data = array('title' => 'Transaction Data',
+        //             'itemorder' => $itemorder,
+        //             'itemuser' => $itemuser);
+        // return view('transaksi.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
     }
 
     /**
@@ -76,9 +81,14 @@ class TransaksiController extends Controller
                 $inputanorder['kecamatan'] = $itemalamatpengiriman->kecamatan;
                 $inputanorder['kelurahan'] = $itemalamatpengiriman->kelurahan;
                 $inputanorder['kodepos'] = $itemalamatpengiriman->kodepos;
-                $itemorder = Order::create($inputanorder);//simpan order
-                // update status cart
+                // $inputanorder['qty'] = $itemcart->detail->qty;
+                // $produk = Produk::findOrFail($itemcart->detail->produk_id);
+                // if($produk->qty == 0){
+                //     return back()->with('error', 'Quantity is empty');
+                // }
+                $itemorder = Order::create($inputanorder);
                 $itemcart->update(['status_cart' => 'checkout']);
+                // $itemcart->update($produk->qty - $itemcart->detail->qty);
                 return redirect()->route('transaksi.index')->with('success', 'Order successfully saved');
             } else {
                 return back()->with('error', 'The shipping address has not been filled in');

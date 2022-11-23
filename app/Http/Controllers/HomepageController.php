@@ -84,23 +84,41 @@ class HomepageController extends Controller
     }
 
     public function produk(Request $request) {
+        
+        // $min_price = Produk::orderByRaw('harga', 'asc')->get();
+        // $max_price = Produk::orderBy('harga', 'desc')->get();
+        // $new = Produk::orderBy('created_at', 'desc')->get();
+        // $old = Produk::orderBy('created_at', 'asc')->get();
+        // $max = $request->input('asc')('desc');
+        // $new = $request->query('newest');
+        // $old = $request->query('oldest');
+        
+        // if($search == $min){
+        //     $product_search = Produk::orderBy('harga', 'asc')->paginate(18);
+        // }elseif($search == $max){
+        //     $product_search = Produk::orderBy('harga', 'desc')->paginate(18);
+        // }elseif($search == $new){
+        //     $product_search = Produk::orderBy('created_at', 'desc')->limit(6)->get();
+        // }elseif($search == $old){
+        //     $product_search = Produk::orderBy('created_at', 'asc')->limit(6)->get();
+        // }else{
+        // $product_search = Produk::orderBy('nama_produk', 'desc')
+        //                         ->where('status', 'publish')
+        //                         ->where('nama_produk', 'LIKE','%'.$search.'%')
+        //                         ->paginate(18);
+        // }
         $search = $request->query('q');
-
-        $itemproduk = Produk::orderBy('nama_produk', 'desc')
-                            ->where('status', 'publish')
-                            ->paginate(18);
-
-        $product_search = Produk::orderBy('nama_produk', 'desc')
+        
+        $product_search = Produk::orderBy('created_at', 'desc')
                                 ->where('status', 'publish')
-                                ->where('nama_produk', 'LIKE', '%'.$search.'%')
-                                ->paginate(18);
+                                ->where('nama_produk', 'LIKE','%'.$search.'%')
+                                ->get();
 
         $listkategori = Kategori::orderBy('nama_kategori', 'asc')
                                 ->where('status', 'publish')
                                 ->get();
 
         $data = array('title' => 'Product',
-                    // 'itemproduk' => $itemproduk,
                     'itemproduk' => $product_search,
                     'listkategori' => $listkategori,
                 );

@@ -43,47 +43,46 @@
 
 
 <!-- produk Promo-->
-<div class="row mt-4">
-  <div class="col col-md-12 col-sm-12 mb-4">
-    <h2 class="text-left" style="font-weight:bold;">Product Promo</h2>
-  </div>
-  @foreach($itempromo as $promo)
-    <!-- produk pertama -->
-  <div class="col-md-4">
-    <div class="card mb-4" style="box-shadow: 5px 6px 6px 2px #e9ecef;">
-    <div style="height: 190px; max-width: 270px; display: flex; align-items: center; margin-left: auto; margin-right: auto;">
-      <a href="{{ URL::to('product/'.$promo->produk->slug_produk) }}">
-      @if($promo->produk->foto != null)
-        <img src="{{\Storage::url($promo->produk->foto) }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
-      @else
-        <img src="{{asset('images/bag.jpg') }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
-      @endif
-      </a>
+  <div class="row mt-4">
+    <div class="col col-md-12 col-sm-12 mb-4">
+      <h2 class="text-left" style="font-weight:bold;">Product Promo</h2>
     </div>
-      <div class="card-body" style="border:none; background-color: #ADC178;">
-      <div class="row mt-4">
-        <div class="col">
-        <a class="text-decoration-none" style="color: black;">
-          <p class="card-text h4">
-            <strong>{{ $promo->produk->nama_produk }}</strong>
-          </p>
-        </a>
+    @foreach($itempromo as $promo)
+    <div class="col-md-4">
+      <div class="card mb-4" style="box-shadow: 5px 6px 6px 2px #e9ecef;">
+        <div style="height: 190px; max-width: 270px; display: flex; align-items: center; margin-left: auto; margin-right: auto;">
+          <a href="{{ URL::to('product/'.$promo->produk->slug_produk) }}">
+          @if($promo->produk->foto != null)
+            <img src="{{\Storage::url($promo->produk->foto) }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
+          @else
+            <img src="{{asset('images/bag.jpg') }}" alt="{{ $promo->produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
+          @endif
+          </a>
         </div>
-        <div class="col-auto">
-            <p>
-              <del>Rp. {{ number_format($promo->harga_awal, 2) }}</del>
-              <br />
-              Rp. {{ number_format($promo->harga_akhir, 2) }}
-            </p>
+        <div class="card-body" style="border:none; background-color: #ADC178;">
+          <div class="row mt-4">
+            <div class="col">
+              <a class="text-decoration-none" style="color: black;">
+                <p class="card-text h4">
+                  <strong>{{ $promo->produk->nama_produk }}</strong>
+                </p>
+              </a>
+            </div>
+            <div class="col-auto">
+              <p>
+                <del>Rp. {{ number_format($promo->harga_awal, 2) }}</del><br />
+                Rp. {{ number_format($promo->harga_akhir, 2) }}
+              </p>
+            </div>
           </div>
-      </div>
-      <div class="row mt-4">
+          <div class="row mt-4">
             <div class="col">
               <a class="btn" href="{{ URL::to('product/'.$promo->produk->slug_produk) }}">
                 Detail
               </a>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
@@ -95,38 +94,36 @@
 
 
   <!-- produk Terbaru-->
-  <div class="row mt-4" style="margin-left: 1px;">
+  <div class="row mt-4">
     <div class="col col-md-12 col-sm-12 mb-4" >
       <h2 class="text-left" style="font-weight:bold; ">New Product</h2>
     </div>
     @foreach($itemproduk as $produk)
-    <!-- produk pertama -->
     <div class="col-md-4">
-      <div class="card mb-4">
-      <div style="height: 190px; max-width: 270px; display: flex; align-items: center; margin-left: auto; margin-right: auto;">
-        <a href="{{ URL::to('product/'.$produk->slug_produk ) }}">
-        @if($produk->foto != null)
-          <img src="{{ \Storage::url($produk->foto) }}" alt="{{ $produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
-        @else
-          <img src="{{ asset('images/bag.jpg') }}" alt="{{ $produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
-        @endif
-        </a>
-      </div>
-        <div class="card-body" style="border:none; background-color: #ADC178;">
-        <div class="row mt-4">
-            <div class="col">  
-            <a class="text-decoration-none" style="color: black;">
-            <p class="card-text h4">
-              <strong>{{ $produk->nama_produk }}</strong>
-            </p>
+      <div class="card mb-4" style="box-shadow: 5px 6px 6px 2px #e9ecef;">
+        <div style="height: 190px; max-width: 270px; display: flex; align-items: center; margin-left: auto; margin-right: auto;">
+          <a href="{{ URL::to('product/'.$produk->slug_produk ) }}">
+          @if($produk->foto != null)
+            <img src="{{ \Storage::url($produk->foto) }}" alt="{{ $produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
+          @else
+            <img src="{{ asset('images/bag.jpg') }}" alt="{{ $produk->nama_produk }}" class="card-img-top" style="max-height: 190px; width: 100%;">
+          @endif
           </a>
-          </div>
-          <div class="col-auto">
+        </div>
+        <div class="card-body" style="border:none; background-color: #ADC178;">
+          <div class="row mt-4">
+            <div class="col">  
+              <a class="text-decoration-none" style="color: black;">
+                <p class="card-text h4">
+                <strong>{{ $produk->nama_produk }}</strong>
+                </p>
+              </a>
+            </div>
+            <div class="col-auto">
               <p>
                 Rp. {{ number_format($produk->harga, 2) }}
               </p>
             </div>
-          </div>
           <div class="row mt-4">
             <div class="col">
               <a class="btn" href="{{ URL::to('product/'.$produk->slug_produk ) }}">
@@ -137,7 +134,8 @@
         </div>
       </div>
     </div>
-    @endforeach
+  </div>
+  @endforeach
   <!-- end produk terbaru -->
 
 

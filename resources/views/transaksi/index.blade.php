@@ -72,11 +72,9 @@
                     <a href="{{ route('transaksi.show', $order->id) }}" class="btn btn-sm btn-info mb-2">
                       Detail
                     </a>
-                    @if($itemuser->role == 'admin')
                     <a href="{{ route('transaksi.edit', $order->id) }}" class="btn btn-sm btn-primary mb-2">
                       Edit
                     </a>
-                    @endif
                   </td>
                 </tr>
               @endforeach

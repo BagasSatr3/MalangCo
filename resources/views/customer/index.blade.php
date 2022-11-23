@@ -39,7 +39,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>1</td>
+                  <td>{{ ++$no }}</td>
                   <td>Amin</td>
                   <td>amin@gmail.com</td>
                   <td>085852527575</td>

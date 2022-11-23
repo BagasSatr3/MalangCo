@@ -179,3 +179,8 @@ display: flex;
 #img-section b,#img-section button,#deactivate b{
     font-size: 14px; 
 }
+.sort-font{
+    color: #212121;
+    font-size: 15px;
+    margin: 0 10px;
+}

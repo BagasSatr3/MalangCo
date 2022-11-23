@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Produk extends Model
 {
+    use Sortable;
+
     protected $table = 'produk';
     protected $fillable = [
         'kategori_id',
@@ -20,6 +23,11 @@ class Produk extends Model
         'satuan',
         'harga',
         'status',
+    ];
+    public $sortable = [
+        'nama_produk', 
+        'harga', 
+        'created_at'
     ];
 
     public function kategori() {

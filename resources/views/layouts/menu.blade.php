@@ -19,9 +19,8 @@
           <li class="nav-item active">
             <a class="nav-link" href="{{ URL::to('about') }}">About</a>
           </li>
-          <form action="/produk" method="GET">
-            <input type="search" class="form-search mx-sm-2 rounded-0 shadow-none"  autocomplete="off"
-            name="search" value="{{ old('cari') }}" placeholder="Search...">
+          <form action="/product" method="GET">
+            <input type="search" class="form-search mx-sm-2 rounded-0 shadow-none" placeholder="Search..." name="q" autocomplete="off">
           </form>
           <li class="nav-item">
             <a class="bi bi-bookmark-fill fa-lg nav-link ml-4" href="{{ URL::to('wishlist') }}"></a>

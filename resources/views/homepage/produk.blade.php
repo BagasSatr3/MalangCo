@@ -18,8 +18,27 @@
     </div>
   </div>
   <!-- end kategori produk -->
-    
+  <form action="" class="" name="sortProducts" id="sortProducts">
+  <div class="toolbar-sorted">
+    <div class="select-box-wrapper">
+      <label for="sort-by" class="sr-only">Sort By</label>
+      <select name="sort" class="select-box" id="sort-by">
+        <option value="/product" selected="selected">Sort by : Latest Product</option>
+        <option value="price_low">Sort by : Lowets Price</option>
+        <option value="price_high">Sort by : Highest Price</option>
+        <option value="products_asc">Sort by : Name A-Z</option>
+        <option value="products_desc">Sort by : Name Z-A</option>
+      </select>
+    </div>
+  </div>
+  </form>
 
+    <!-- <form action="/product" method="GET">
+      <div class="input-group">
+        <input type="search" class="form-control rounded" name="price" autocomplete="off" placeholder="Price" aria-label="Search" aria-describedby="search-addon" />
+        <button type="submit" class="btn btn-outline-primary">search</button>
+      </div>
+    </form> -->
 
   <!-- produk Terbaru-->
   <div class="row mt-4" style="margin-top: 30px; margin-bottom: 30px;">

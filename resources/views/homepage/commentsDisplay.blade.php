@@ -4,7 +4,6 @@
         <div class="user d-flex flex-row align-items-center">
             <img src="{{ asset('img/user1-128x128.jpg') }}" style="max-height: 40px;max-width: 40px;" class="user-img rounded-circle mr-2">
             <strong>{{ $comment->user->name }}</strong>
-            
         </div>
     <small>{{ $comment->created_at }} </small>
     </div>
