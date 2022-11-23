@@ -5,7 +5,7 @@
     <div class="col col-lg-8 col-md-8">
       @foreach($itemproduk->images as $index => $image)
       @if($index == 0)
-        <img src="{{ \Storage::url($image->foto) }}" class="d-block w-100" alt="..." style="max-height: 750px; width: 100%; box-shadow: 5px 6px 6px 2px #e9ecef;">
+        <img src="{{ \Storage::url($image->foto) }}" class="d-block w-100" alt="..." style="max-height: 750px; width: 100%;">
       @else
         <img src="{{ asset('images/KOJO 1.png') }}" class="d-block w-100" alt="..." style="max-height: 750px; width: 100%;">
       @endif
@@ -16,7 +16,7 @@
     <div class="col col-lg-4 col-md-4">
       <div class="row">
         <div class="col">
-          <div class="card" style="border:none; background-color: #ADC178; box-shadow: 5px 6px 6px 2px #e9ecef;">
+          <div class="card" style="border:none; background-color: #ADC178;">
             <div class="card-body card-yellow">
               @if(count($errors) > 0)
               @foreach($errors->all() as $error)
@@ -85,7 +85,7 @@
 <!-- Description -->
       <div class="row mt-4">
         <div class="col">
-          <div class="card" style="border-color:#ADC178; box-shadow: 5px 6px 6px 2px #e9ecef;">
+          <div class="card" style="border-color:#ADC178;">
             <div class="card-header" style="border:none; background-color: #ADC178;">
               <h5>Description</h5>
             </div>
@@ -100,7 +100,7 @@
 <!-- Comment -->
       <div class="row mt-4">
         <div class="col">
-          <div class="card" style="border-color:#ADC178; box-shadow: 5px 6px 6px 2px #e9ecef;">
+          <div class="card" style="border-color:#ADC178;">
             <div class="card-header" style="border:none; background-color: #ADC178;">
               <h5>Add Review</h5>
             </div>
@@ -135,7 +135,7 @@
 <!-- DisplayComment -->
   <div class="row mt-4">
     <div class="col">
-      <div class="card" style="border-color:#ADC178; box-shadow: 5px 6px 6px 2px #e9ecef;">
+      <div class="card" style="border-color:#ADC178;">
         <div class="card-header" style="border:none; background-color: #ADC178;">
           <h5>Display Comment</h5>
         </div>
