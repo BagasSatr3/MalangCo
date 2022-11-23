@@ -33,8 +33,18 @@ class UserController extends Controller
         return view('user.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
     }
 
-    public function setting() {
-        $data = array('title' => 'Setting Profile');
+    public function setting(Request $request) {
+        $itemuser = $request->user();
+        $data = array('title' => 'Setting Profile',
+                    'itemuser' => $itemuser);
         return view('user.setting', $data);
+    }
+    
+    public function update(Request $request){
+    $request->user()->update(
+        $request->all()
+    );
+
+    return redirect()->route('user.index')->drakify('success');
     }
 }

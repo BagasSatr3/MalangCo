@@ -7,7 +7,7 @@
             class="img" alt="" style="width: 125px; height: 125px; border-radius: 6px; object-fit: cover;">
         <div class="pl-sm-4 pl-2" id="img-section">
             <b style="margin-left:14px">Profile Photo</b></br>
-            <button class="btn border button flex-row-reverse" style="color:black;">Update profile</button>
+            <a href="{{ URL::to('profile/setting') }}" class="btn border button flex-row-reverse" style="color:black;">Update profile</a>
         </div>
     </div>
     <div class="py-2">
@@ -37,6 +37,9 @@
                 <input type="text" class="bg-light form-control" placeholder="jalan-jalan" style="border-radius: 10px;" value="{{ Auth::user()->alamat }}" disabled>
             </div>
         </div>
+        <button type="submit" class="btn btn-primary">
+                                    Update Profile
+                                </button>
     </div>
 </div>
 

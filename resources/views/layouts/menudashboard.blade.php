@@ -105,6 +105,14 @@
       </ul>
       <ul class="nav nav-treeview">
         <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="far fa-images nav-icon"></i>
+            <p>About Us</p>
+          </a>
+        </li>
+      </ul>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
           <a href="{{ route('customer.index') }}" class="nav-link">
             <i class="far fa-circle nav-icon"></i>
             <p>Customer</p>

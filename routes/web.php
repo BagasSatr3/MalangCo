@@ -44,6 +44,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::post('produkimage',[\App\Http\Controllers\ProdukController::class,'uploadimage']);
     Route::delete('produkimage/{id}',[\App\Http\Controllers\ProdukController::class,'deleteimage']);
     Route::resource('slideshow',\App\Http\Controllers\SlideshowController::class);
+    Route::resource('about',\App\Http\Controllers\AboutController::class);
     Route::resource('promo',\App\Http\Controllers\ProdukPromoController::class);
     Route::get('loadprodukasync/{id}',[\App\Http\Controllers\ProdukController::class,'loadasync']);
 });
@@ -52,7 +53,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::resource('cart', \App\Http\Controllers\CartController::class);
     Route::resource('wishlist',\App\Http\Controllers\WishlistController::class);
     Route::get('profile',[\App\Http\Controllers\UserController::class,'index']);
-    Route::get('setting',[\App\Http\Controllers\UserController::class,'setting']);
+    Route::get('profile/setting',[\App\Http\Controllers\UserController::class,'setting']);
+    Route::patch('profile', [\App\Http\Controllers\UserController::class,'update'])->name('user.update');
     Route::resource('transaksi',\App\Http\Controllers\TransaksiController::class);
     Route::patch('kosongkan/{id}', [\App\Http\Controllers\CartController::class,'kosongkan']);
     Route::resource('cartdetail', \App\Http\Controllers\CartDetailController::class);
