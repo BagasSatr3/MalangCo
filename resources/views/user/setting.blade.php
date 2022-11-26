@@ -10,34 +10,36 @@
             <button class="btn border button flex-row-reverse" style="color:black;">Upload profile image</button>
         </div>
     </div>
-    <form action="{{ route('user.update') }}" method="POST">
+    <form action="{{ url('profile') }}" method="POST">
+        @crmf
     <div class="py-2">
         <div class="row py-2"> 
             <div class="col-md-6">
                 <label for="name" style="margin-bottom: 0;font-size: 14px;font-weight: 500;color: #777;padding-left: 3px;">Name</label>
-                <input type="text" class="bg-light form-control" placeholder="Steve" style="border-radius: 10px;" value="{{ Auth::user()->name }}">
+                <input type="text" class="bg-light form-control" placeholder="Steve" style="border-radius: 10px;" value="{{ $itemuser->name }}">
             </div>
             <div class="col-md-6 pt-md-0 pt-3">
                 <label for="lastname" style="margin-bottom: 0;font-size: 14px;font-weight: 500;color: #777;padding-left: 3px;">Role</label>
-                <input type="text" class="bg-light form-control" placeholder="Smith" style="border-radius: 10px;" value="{{ Auth::user()->role }}">
+                <input type="text" class="bg-light form-control" placeholder="Smith" style="border-radius: 10px;" value="{{ $itemuser->role }}">
             </div>
         </div>
         <div class="row py-2">
             <div class="col-md-6">
                 <label for="email" style="margin-bottom: 0;font-size: 14px;font-weight: 500;color: #777;padding-left: 3px;">Email Address</label>
-                <input type="text" class="bg-light form-control" placeholder="user@email.com" style="border-radius: 10px;" value="{{ Auth::user()->email }}">
+                <input type="text" class="bg-light form-control" placeholder="user@email.com" style="border-radius: 10px;" value="{{ $itemuser->email }}">
             </div>
             <div class="col-md-6 pt-md-0 pt-3">
                 <label for="phone" style="margin-bottom: 0;font-size: 14px;font-weight: 500;color: #777;padding-left: 3px;">Phone Number</label>
-                <input type="text" class="bg-light form-control" placeholder="+1 213-548-6015" style="border-radius: 10px;" value="{{ Auth::user()->phone }}">
+                <input type="text" class="bg-light form-control" placeholder="+1 213-548-6015" style="border-radius: 10px;" value="{{ $itemuser->phone }}">
             </div>
         </div>
         <div class="row py-2">
             <div class="col">
                 <label for="email" style="margin-bottom: 0;font-size: 14px;font-weight: 500;color: #777;padding-left: 3px;">Address</label>
-                <input type="text" class="bg-light form-control" placeholder="jalan-jalan" style="border-radius: 10px;" value="{{ Auth::user()->alamat }}">
+                <input type="text" class="bg-light form-control" placeholder="jalan-jalan" style="border-radius: 10px;" value="{{ $itemuser->alamat }}">
             </div>
         </div>
+        <button type="submit" class="btn btn-primary">Update</button>
     </div>
     </form>
 </div>

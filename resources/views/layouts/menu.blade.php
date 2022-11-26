@@ -10,11 +10,12 @@
           <li class="nav-item active">
             <a class="nav-link" href="/">Home</a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ URL::to('product') }}">Product</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ URL::to('contact') }}">Contact</a>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+            <div class="dropdown-menu" style="background: #DDE5B6;" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item nice" href="{{ URL::to('product') }}">Product</a>
+              <a class="dropdown-item nice" href="{{ URL::to('category') }}">Category</a>
+            </div>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="{{ URL::to('about') }}">About</a>
@@ -23,24 +24,35 @@
             <input type="search" class="form-search mx-sm-2 rounded-0 shadow-none" placeholder="Search..." name="q" autocomplete="off">
           </form>
           <li class="nav-item">
-            <a class="bi bi-bookmark-fill fa-lg nav-link ml-4" href="{{ URL::to('wishlist') }}"></a>
+            <a class="bi bi-bookmark-fill fa-lg nav-link ml-4" href="{{ URL::to('wishlist') }}">
+              @auth
+                @if(isset($wishcount))
+                  <span>{{$wishcount}}</span>
+                @endif
+              @endauth
+            </a>
           </li>
           @guest
-          <li class="nav-item active">
-            <a class="btn btn-outline" style="margin-right:5px;" href="{{ URL::to('login') }}">Sign In</a>
-          </li>
-          <li class="nav-item active">
-            <a class="btn btn-outline" href="{{ URL::to('register') }}">Sign Up</a>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle bi-person-circle fa-lg nav-link" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            </a>
+            <div class="dropdown-menu" style="background: #DDE5B6;" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item nice" href="{{ URL::to('login') }}">Sign In</a>
+              <a class="dropdown-item nice" href="{{ URL::to('register') }}">Sign Up</a>
+            </div>
           </li>
           @endguest
           @auth
-          <li class="nav-item">
-            <a href="{{ URL::to('profile') }} " class="bi bi-person-circle fa-lg nav-link"><small class="ml-1" >{{ Auth::user()->name }}</small></a>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle bi-person-circle fa-lg nav-link" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <small class="ml-1" >{{ Auth::user()->name }}</small>
+            </a>
+            <div class="dropdown-menu" style="background: #DDE5B6;" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item nice" href="{{ URL::to('profile') }}">Profile</a>
+              <a class="dropdown-item nice" href="{{ route('logout') }}">Logout</a>
+            </div>
           </li>
-          <li class="nav-item">
-            <a href="{{ route('logout') }}" class="bi bi-arrow-right-square-fill fa-lg nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></a>
-          </li>
-
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
           </form>

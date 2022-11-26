@@ -54,7 +54,7 @@
     @foreach($itemproduk as $produk)
     <!-- produk pertama -->
     <div class="col-md-4">
-      <div class="card mb-4">
+      <div class="card mb-4" style="box-shadow: 5px 6px 6px 2px #e9ecef;">
       <div style="height: 190px; max-width: 270px; display: flex; align-items: center; margin-left: auto; margin-right: auto;">
         <a href="{{ URL::to('product/'.$produk->slug_produk ) }}">
           @if($produk->foto != null)

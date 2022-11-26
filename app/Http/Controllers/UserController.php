@@ -33,18 +33,24 @@ class UserController extends Controller
         return view('user.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
     }
 
-    public function setting(Request $request) {
-        $itemuser = $request->user();
-        $data = array('title' => 'Setting Profile',
-                    'itemuser' => $itemuser);
-        return view('user.setting', $data);
-    }
-    
-    public function update(Request $request){
-    $request->user()->update(
-        $request->all()
-    );
+    public function store(Request $request){
 
-    return redirect()->route('user.index')->drakify('success');
+    $this->validate($request, [
+        'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048'
+    ]);
+    // ambil data user yang login
+    $itemuser = $request->user();
+    $itemprofile = User::findOrFail();
+    // masukkan data yang dikirim ke dalam variable $inputan
+    $inputan = $request->all();
+    $inputan['user_id'] = $itemuser->id;
+    // ambil url foto yang diupload
+    $fileupload = $request->file('image');
+    $folder = 'assets/images';
+    $itemgambar = (new ImageController)->upload($fileupload, $itemuser, $folder);
+    // masukkan url yang telah diupload ke $inputan
+    $inputan['foto'] = $itemgambar->url;
+    $itemprofile->update($inputan);
+    return back()->with('success', 'Image uploaded successfully');  
     }
 }

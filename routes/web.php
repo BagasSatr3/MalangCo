@@ -44,7 +44,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::post('produkimage',[\App\Http\Controllers\ProdukController::class,'uploadimage']);
     Route::delete('produkimage/{id}',[\App\Http\Controllers\ProdukController::class,'deleteimage']);
     Route::resource('slideshow',\App\Http\Controllers\SlideshowController::class);
-    Route::resource('about',\App\Http\Controllers\AboutController::class);
+    Route::resource('add-dev',\App\Http\Controllers\SettingDevController::class);
+    Route::resource('setting',\App\Http\Controllers\SettingController::class);
     Route::resource('promo',\App\Http\Controllers\ProdukPromoController::class);
     Route::get('loadprodukasync/{id}',[\App\Http\Controllers\ProdukController::class,'loadasync']);
 });

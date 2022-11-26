@@ -91,7 +91,7 @@
       <a href="#" class="nav-link">
         <i class="nav-icon fas fa-cogs"></i>
         <p>
-          Setting
+          Admin Setting
           <i class="right fas fa-angle-left"></i>
         </p>
       </a>
@@ -105,17 +105,9 @@
       </ul>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="far fa-images nav-icon"></i>
-            <p>About Us</p>
-          </a>
-        </li>
-      </ul>
-      <ul class="nav nav-treeview">
-        <li class="nav-item">
-          <a href="{{ route('customer.index') }}" class="nav-link">
-            <i class="far fa-circle nav-icon"></i>
-            <p>Customer</p>
+          <a href="{{ route('setting.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-info-circle"></i>
+            <p>Information</p>
           </a>
         </li>
       </ul>

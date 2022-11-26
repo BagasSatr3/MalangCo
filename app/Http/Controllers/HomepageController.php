@@ -8,20 +8,33 @@ use App\Models\Kategori;
 use App\Models\Slideshow;
 use App\Models\ProdukPromo;
 use App\Models\Wishlist;
+use App\Models\CartDetail;
+use App\Models\Setting;
+use App\Models\SettingDev;
 use Auth;
 
 class HomepageController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
+        $itemuser = $request->user();
         $itemproduk = Produk::orderBy('created_at', 'desc')->limit(3)->get();
         $itempromo = ProdukPromo::orderBy('created_at', 'desc')->limit(3)->get();
         $itemkategori = Kategori::orderBy('nama_kategori', 'asc')->limit(6)->get();
         $itemslide = Slideshow::get();
+        if(isset($itemuser)){
+            $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
+            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+        }else{
+            $wishcount = 0;
+            $cartcount = 0;
+        }
         $data = array('title' => 'Kojo',
             'itemproduk' => $itemproduk,
             'itempromo' => $itempromo,
             'itemkategori' => $itemkategori,
-            'itemslide' => $itemslide
+            'itemslide' => $itemslide,
+            'wishcount' => $wishcount,
+            'cartcount' => $cartcount
         );
         return view('homepage.index', $data);
     }
@@ -40,13 +53,19 @@ class HomepageController extends Controller
         return view('homepage.item', $data);
     }
 
-    public function about() {
-        $data = array('title' => 'About');
-        return view('homepage.about', $data);
+    public function about(Request $request) {
+        $setting = Setting::first();
+        $dev = SettingDev::get();
+        $data = array('title' => 'About',
+                    'setting' => $setting,
+                    'dev' => $dev);
+        return view('homepage.about', $data)->with('no', ($request->input('page', 1) - 1) * 20);
     }
 
     public function kontak() {
-        $data = array('title' => 'Contact');
+        $setting = Setting::first();
+        $data = array('title' => 'Contact',
+                    'setting' => $setting);
         return view('homepage.kontak', $data);
     }
 

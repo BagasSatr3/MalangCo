@@ -7,14 +7,19 @@
             class="img" alt="" style="width: 125px; height: 125px; border-radius: 6px; object-fit: cover;">
         <div class="pl-sm-4 pl-2" id="img-section">
             <b style="margin-left:14px">Profile Photo</b></br>
-            <a href="{{ URL::to('profile/setting') }}" class="btn border button flex-row-reverse" style="color:black;">Update profile</a>
+            <form action="{{route('/profile')}}" method="post">
+                @crsf
+                <div class="form-group">
+                    <label for="foto">Foto</label><br />
+                    <input type="file" name="image" id="image">
+                </div>
         </div>
     </div>
     <div class="py-2">
         <div class="row py-2"> 
             <div class="col-md-6">
                 <label for="name" style="margin-bottom: 0;font-size: 14px;font-weight: 500;color: #777;padding-left: 3px;">Name</label>
-                <input type="text" class="bg-light form-control" placeholder="Steve" style="border-radius: 10px;" value="{{ Auth::user()->name }}" disabled>
+                <input type="text" class="bg-light form-control" placeholder="Steve" style="border-radius: 10px;" value="{{ Auth::user()->name }}">
             </div>
             <div class="col-md-6 pt-md-0 pt-3">
                 <label for="lastname" style="margin-bottom: 0;font-size: 14px;font-weight: 500;color: #777;padding-left: 3px;">Role</label>
@@ -24,23 +29,22 @@
         <div class="row py-2">
             <div class="col-md-6">
                 <label for="email" style="margin-bottom: 0;font-size: 14px;font-weight: 500;color: #777;padding-left: 3px;">Email Address</label>
-                <input type="text" class="bg-light form-control" placeholder="user@email.com" style="border-radius: 10px;" value="{{ Auth::user()->email }}" disabled>
+                <input type="text" class="bg-light form-control" placeholder="user@email.com" style="border-radius: 10px;" value="{{ Auth::user()->email }}">
             </div>
             <div class="col-md-6 pt-md-0 pt-3">
                 <label for="phone" style="margin-bottom: 0;font-size: 14px;font-weight: 500;color: #777;padding-left: 3px;">Phone Number</label>
-                <input type="text" class="bg-light form-control" placeholder="+1 213-548-6015" style="border-radius: 10px;" value="{{ Auth::user()->phone }}" disabled>
+                <input type="text" class="bg-light form-control" placeholder="+1 213-548-6015" style="border-radius: 10px;" value="{{ Auth::user()->phone }}">
             </div>
         </div>
         <div class="row py-2">
             <div class="col">
                 <label for="email" style="margin-bottom: 0;font-size: 14px;font-weight: 500;color: #777;padding-left: 3px;">Address</label>
-                <input type="text" class="bg-light form-control" placeholder="jalan-jalan" style="border-radius: 10px;" value="{{ Auth::user()->alamat }}" disabled>
+                <input type="text" class="bg-light form-control" placeholder="jalan-jalan" style="border-radius: 10px;" value="{{ Auth::user()->alamat }}">
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">
-                                    Update Profile
-                                </button>
+        <button type="submit" class="btn btn-primary">Update Profile</button>
     </div>
+    </form>
 </div>
 
 @endsection
