@@ -20,6 +20,7 @@ class CommentController extends Controller
         $input['user_id'] = auth()->user()->id;
         Comment::create($input);
 
+        notify()->success('Thanks for your review!');
         return back();
     }
 }

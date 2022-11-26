@@ -10,15 +10,19 @@
           <li class="nav-item active">
             <a class="nav-link" href="/">Home</a>
           </li>
-          <li class="nav-item dropdown active">
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
             <div class="dropdown-menu" style="background: #DDE5B6;" aria-labelledby="navbarDropdown">
               <a class="dropdown-item nice" href="{{ URL::to('product') }}">Product</a>
               <a class="dropdown-item nice" href="{{ URL::to('category') }}">Category</a>
             </div>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ URL::to('about') }}">About</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+            <div class="dropdown-menu" style="background: #DDE5B6;" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item nice" href="{{ URL::to('about') }}">About</a>
+              <a class="dropdown-item nice" href="{{ URL::to('contact') }}">Contact</a>
+            </div>
           </li>
           <form action="/product" method="GET">
             <input type="search" class="form-search mx-sm-2 rounded-0 shadow-none" placeholder="Search..." name="q" autocomplete="off">
@@ -33,7 +37,7 @@
             </a>
           </li>
           @guest
-          <li class="nav-item dropdown active">
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle bi-person-circle fa-lg nav-link" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
             </a>
@@ -44,13 +48,13 @@
           </li>
           @endguest
           @auth
-          <li class="nav-item dropdown active">
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle bi-person-circle fa-lg nav-link" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <small class="ml-1" >{{ Auth::user()->name }}</small>
             </a>
             <div class="dropdown-menu" style="background: #DDE5B6;" aria-labelledby="navbarDropdown">
               <a class="dropdown-item nice" href="{{ URL::to('profile') }}">Profile</a>
-              <a class="dropdown-item nice" href="{{ route('logout') }}">Logout</a>
+              <a class="dropdown-item nice" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>      
             </div>
           </li>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

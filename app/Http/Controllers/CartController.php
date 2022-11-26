@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\AlamatPengiriman;
 use App\Models\Order;
+use App\Models\Wishlist;
+use App\Models\CartDetail;
 class CartController extends Controller
 {
     /**
@@ -20,8 +22,17 @@ class CartController extends Controller
                         ->where('status_cart', 'cart')
                         ->first();
         if ($itemcart) {
+            if(isset($itemuser)){
+                $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
+                $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+            }else{
+                $wishcount = 0;
+                $cartcount = 0;
+            }
             $data = array('title' => 'Shopping Cart',
-                        'itemcart' => $itemcart);
+                        'itemcart' => $itemcart,
+                        'wishcount' => $wishcount,
+                        'cartcount' => $cartcount);
             return view('cart.index', $data)->with('no', 1);            
         } else {
             return abort('404');
@@ -98,7 +109,8 @@ class CartController extends Controller
         $itemcart = Cart::findOrFail($id);
         $itemcart->detail()->delete();//hapus semua item di cart detail
         $itemcart->updatetotal($itemcart, '-'.$itemcart->subtotal);
-        return back()->with('success', 'Cart has been emptied successfully');
+        notify()->success('Cart has been emptied successfully');
+        return back();
     }
 
     public function checkout(Request $request) {

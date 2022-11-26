@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Wishlist;
 use App\Models\Produk;
 use Illuminate\Http\Request;
+use App\Models\CartDetail;
 
 class WishlistController extends Controller
 {
@@ -19,9 +20,18 @@ class WishlistController extends Controller
         $itemwishlist = Wishlist::where('user_id', $itemuser->id)
                                 ->paginate(10);
         $itemproduk = Produk::orderBy('created_at', 'desc')->limit(3)->get();
+        if(isset($itemuser)){
+            $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
+            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+        }else{
+            $wishcount = 0;
+            $cartcount = 0;
+        }
         $data = array('title' => 'Wishlist',
                     'itemwishlist' => $itemwishlist,
-                    'itemproduk' => $itemproduk);
+                    'itemproduk' => $itemproduk,
+                    'wishcount' => $wishcount,
+                    'cartcount' => $cartcount);
         return view('wishlist.index', $data)->with('no', ($request->input('page', 1) - 1) * 10);
     }
 
@@ -51,13 +61,15 @@ class WishlistController extends Controller
                                     ->where('user_id', $itemuser->id)
                                     ->first();
         if ($validasiwishlist) {
-            $validasiwishlist->delete();//kalo udah ada, berarti wishlist dihapus
-            return back()->with('success', 'Wishlist deleted successfully');
+            $validasiwishlist->delete();
+            notify()->success('Wishlist deleted successfully');//kalo udah ada, berarti wishlist dihapus
+            return back();
         } else {
             $inputan = $request->all();
             $inputan['user_id'] = $itemuser->id;
             $itemwishlist = Wishlist::create($inputan);
-            return back()->with('success', 'Product successfully added to wishlist');
+            notify()->success('Product successfully added to wishlist');
+            return back();
         }
     }
 
@@ -105,9 +117,11 @@ class WishlistController extends Controller
     {
         $itemwishlist = Wishlist::findOrFail($id);
         if ($itemwishlist->delete()) {
-            return back()->with('success', 'Wishlist deleted successfully');
+            notify()->success('Wishlist deleted successfully');
+            return back();
         } else {
-            return back()->with('error', 'Wishlist failed to delete');
+            notify()->success('Wishlist failed to delete');
+            return back();
         }
     }
 }

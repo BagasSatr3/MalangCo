@@ -53,7 +53,8 @@ class SlideshowController extends Controller
         // masukkan url yang telah diupload ke $inputan
         $inputan['foto'] = $itemgambar->url;
         $itemslideshow = Slideshow::create($inputan);
-        return back()->with('success', 'Image uploaded successfully');
+        notify()->success('Image uploaded successfully');
+        return back();
     }
 
     /**
@@ -104,9 +105,11 @@ class SlideshowController extends Controller
             \Storage::delete($itemslideshow->foto);
         }
         if ($itemslideshow->delete()) {
-            return back()->with('success', 'Data deleted successfully');
+            notify()->success('Data deleted successfully');
+            return back();
         } else {
-            return back()->with('error', 'Data failed to delete');
+            notify()->error('Data failed to delete');
+            return back();
         }
     }
 }

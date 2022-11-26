@@ -216,3 +216,15 @@ display: flex;
     outline: none;
     border:0; 
 }
+
+
+
+.member-profile {
+    top: -50px;
+    left: 0;
+}
+
+.member-profile img {
+    width: 100px;
+    height: 100px;
+}

@@ -43,8 +43,8 @@ class SettingController extends Controller
                 'foto_dev' => $request->name_dev ?? '',
                 'desc_dev' => $request->name_dev ?? '',
             ]);
-
-            return redirect()->back()->with('message','Settings Saved');
+            notify()->success('Settings Saved');
+            return redirect()->back();
         }else {
             // Create Data
             Setting::create([
@@ -67,8 +67,8 @@ class SettingController extends Controller
                 'foto_dev' => $request->name_dev ?? '',
                 'desc_dev' => $request->name_dev ?? '',
             ]);
-
-            return redirect()->back()->with('message','Settings Created');
+            notify()->success('Settings Created');
+            return redirect()->back();
         }
     }
     // public function upload(Request $request)

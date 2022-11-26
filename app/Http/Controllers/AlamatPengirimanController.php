@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AlamatPengiriman;
+use App\Models\Wishlist;
+use App\Models\CartDetail;
 
 class AlamatPengirimanController extends Controller
 {
@@ -16,8 +18,17 @@ class AlamatPengirimanController extends Controller
     {
         $itemuser = $request->user();
         $itemalamatpengiriman = AlamatPengiriman::where('user_id', $itemuser->id)->paginate(10);
+        if(isset($itemuser)){
+            $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
+            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+        }else{
+            $wishcount = 0;
+            $cartcount = 0;
+        }
         $data = array('title' => 'Shipping Address',
-                    'itemalamatpengiriman' => $itemalamatpengiriman);
+                    'itemalamatpengiriman' => $itemalamatpengiriman,
+                    'wishcount' => $wishcount,
+                    'cartcount' => $cartcount);
         return view('alamatpengiriman.index', $data)->with('no', ($request->input('page', 1) - 1) * 10);
     }
 
@@ -57,7 +68,8 @@ class AlamatPengirimanController extends Controller
         // set semua status alamat pengiriman bukan utama
         AlamatPengiriman::where('id', '!=', $itemalamatpengiriman->id)
                     ->update(['status' => 'tidak']);
-        return back()->with('success', 'Shipping address saved successfully');
+        notify()->success('Shipping address saved successfully');
+        return back();
     }
 
     /**
@@ -94,7 +106,8 @@ class AlamatPengirimanController extends Controller
         $itemalamatpengiriman = AlamatPengiriman::findOrFail($id);
         $itemalamatpengiriman->update(['status' => 'utama']);
         AlamatPengiriman::where('id', '!=', $id)->update(['status' => 'tidak']);
-        return back()->with('success', 'Data successfully updated');
+        notify()->success('Data successfully updated');
+        return back();
     }
 
     /**

@@ -7,6 +7,8 @@ use App\Models\Cart;
 use App\Models\AlamatPengiriman;
 use App\Models\Order;
 use App\Models\Produk;
+use App\Models\Wishlist;
+use App\Models\CartDetail;
 
 class TransaksiController extends Controller
 {
@@ -17,9 +19,19 @@ class TransaksiController extends Controller
      */
     public function index(Request $request)
     {
+        $itemuser = $request->user();
         $itemorder = Order::orderBy('created_at', 'desc')->paginate(20);
+        if(isset($itemuser)){
+            $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
+            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+        }else{
+            $wishcount = 0;
+            $cartcount = 0;
+        }
         $data = array('title' => 'Transaction Data',
-                    'itemorder' => $itemorder);
+                    'itemorder' => $itemorder,
+                    'wishcount' => $wishcount,
+                    'cartcount' => $cartcount);
                     return view('transaksi.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
         // $itemuser = $request->user();
         // if ($itemuser->role == 'admin') {
@@ -89,9 +101,11 @@ class TransaksiController extends Controller
                 $itemorder = Order::create($inputanorder);
                 $itemcart->update(['status_cart' => 'checkout']);
                 // $itemcart->update($produk->qty - $itemcart->detail->qty);
-                return redirect()->route('transaksi.index')->with('success', 'Order successfully saved');
+                notify()->success('Order successfully saved');
+                return redirect()->route('transaksi.index');
             } else {
-                return back()->with('error', 'The shipping address has not been filled in');
+                notify()->error('The shipping address has not been filled in');
+                return back();
             }
         } else {
             return abort('404');//kalo ternyata ga ada shopping cart, maka akan menampilkan error halaman tidak ditemukan
@@ -173,7 +187,8 @@ class TransaksiController extends Controller
         $inputan['total'] = str_replace(',','',$request->total);
         $itemorder = Order::findOrFail($id);
         $itemorder->cart->update($inputan);
-        return back()->with('success','Order successfully updated');
+        notify()->success('Order successfully updated');
+        return back();
     }
 
     /**

@@ -31,7 +31,8 @@ class SettingDevController extends Controller
         // masukkan url yang telah diupload ke $inputan
         $inputan['foto'] = $itemgambar->url;
         $itemdev = SettingDev::create($inputan);
-        return back()->with('success', 'Image uploaded successfully');
+        notify()->success('Image uploaded successfully');
+        return back();
     }
     public function destroy($id)
     {
@@ -41,9 +42,11 @@ class SettingDevController extends Controller
             \Storage::delete($itemdev->foto);
         }
         if ($itemdev->delete()) {
-            return back()->with('success', 'Data deleted successfully');
+            notify()->success('Data deleted successfully');
+            return back();
         } else {
-            return back()->with('error', 'Data failed to delete');
+            notify()->error('Data failed to delete');
+            return back();
         }
     }
 }

@@ -85,7 +85,8 @@ class CartDetailController extends Controller
             // update subtotal dan total di table cart
             $itemdetail->cart->updatetotal($itemdetail->cart, $subtotal);
         }
-        return redirect()->route('cart.index')->with('success', 'Product successfully added to cart');
+        notify()->success('Product successfully added to cart');
+        return redirect()->route('cart.index');
     }
 
     /**
@@ -128,7 +129,8 @@ class CartDetailController extends Controller
             $itemdetail->updatedetail($itemdetail, $qty, $itemdetail->harga, $itemdetail->diskon);
             // update total cart
             $itemdetail->cart->updatetotal($itemdetail->cart, ($itemdetail->harga - $itemdetail->diskon));
-            return back()->with('success', 'Item successfully updated');
+            notify()->success('Item successfully updated');
+            return back();
         }
         if ($param == 'kurang') {
             // update detail cart
@@ -136,7 +138,8 @@ class CartDetailController extends Controller
             $itemdetail->updatedetail($itemdetail, '-'.$qty, $itemdetail->harga, $itemdetail->diskon);
             // update total cart
             $itemdetail->cart->updatetotal($itemdetail->cart, '-'.($itemdetail->harga - $itemdetail->diskon));
-            return back()->with('success', 'Item successfully updated');
+            notify()->success('Item successfully updated');
+            return back();
         }
     }
 
@@ -152,9 +155,11 @@ class CartDetailController extends Controller
         // update total cart dulu
         $itemdetail->cart->updatetotal($itemdetail->cart, '-'.$itemdetail->subtotal);
         if ($itemdetail->delete()) {
-            return back()->with('success', 'Item deleted successfully');
+            notify()->success('Item deleted successfully');
+            return back();
         } else {
-            return back()->with('error', 'Item failed to delete');
+            notify()->error('Item failed to delete');
+            return back();
         }
     }
 }

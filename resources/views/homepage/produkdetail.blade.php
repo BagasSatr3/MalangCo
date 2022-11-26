@@ -67,7 +67,7 @@
                 </button>
               </form>
               </div>
-              <div class="col" style="margin-top: -5px">
+              <div class="col" style="margin-top:   px">
               <form action="{{ route('cartdetail.store') }}" method="POST">
                 @csrf
                 <input type="hidden" name="produk_id" value={{$itemproduk->id}}>
@@ -122,7 +122,7 @@
                   <input type="hidden" name="produk_id" value="{{ $itemproduk->id }}" />
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn-sm btn-outline-info py-0" style="font-size: 0.8em;" value="Submit" />
+                    <input type="submit" class="btn-sm btn-info py-1" style="font-size: 0.8em;" value="Submit" />
                 </div>
               </form>
             </div>
@@ -140,7 +140,7 @@
           <h5>Display Comment</h5>
         </div>
         <div class="card-body">
-        @include('homepage.commentsDisplay', ['comments' => $itemproduk->comments, 'produk_id' => $itemproduk->id])
+        @include('homepage.commentsDisplay')
         </div>
       </div>
     </div>

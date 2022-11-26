@@ -62,7 +62,8 @@ class ProdukController extends Controller
         $inputan['user_id'] = $itemuser->id;
         $inputan['status'] = 'publish';
         $itemproduk = Produk::create($inputan);
-        return redirect()->route('produk.index')->with('success', 'Data berhasil disimpan');
+        notify()->success('Data Save Successfully');
+        return redirect()->route('produk.index');
     }
 
     /**
@@ -122,12 +123,14 @@ class ProdukController extends Controller
                                 ->where('slug_produk', $slug)
                                 ->first();
         if ($validasislug) {
-            return back()->with('error', 'Slug already exists, try something else');
+            notify()->error('Slug already exists, try something else');
+            return back();
         } else {
             $inputan = $request->all();
             $inputan['slug'] = $slug;
             $itemproduk->update($inputan);
-            return redirect()->route('produk.index')->with('success', 'Data successfully updated');
+            notify()->success('Data successfully updated');
+            return redirect()->route('produk.index');
         }
     }
 
@@ -142,9 +145,11 @@ class ProdukController extends Controller
         $itemproduk = Produk::findOrFail($id);//cari berdasarkan id = $id, 
         // kalo ga ada error page not found 404
         if ($itemproduk->delete()) {
-            return back()->with('success', 'Data deleted successfully');
+            notify()->success('Data deleted successfully');
+            return back();
         } else {
-            return back()->with('error', 'Data failed to delete');
+            notify()->error('Data failed to delete');
+            return back();
         }
     }
     public function uploadimage(Request $request) {
@@ -168,9 +173,11 @@ class ProdukController extends Controller
             // update banner produk
             $itemproduk->update(['foto' => $itemgambar->url]);
             // end update banner produk
-            return back()->with('success', 'Image uploaded successfully');
+            notify()->success('Image uploaded successfully');
+            return back();
         } else {
-            return back()->with('error', 'Category not found');
+            notify()->error('Category not found');
+            return back();
         }
     }
 
@@ -196,7 +203,8 @@ class ProdukController extends Controller
             $itemproduk->update(['foto' => null]);
         }
         //end update jadi banner produk
-        return back()->with('success', 'Data deleted successfully');
+        notify()->success('Data deleted successfully');
+        return back();
     }
     public function loadasync($id) {
         $itemproduk = Produk::findOrFail($id);

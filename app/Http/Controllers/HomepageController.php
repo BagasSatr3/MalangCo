@@ -11,6 +11,7 @@ use App\Models\Wishlist;
 use App\Models\CartDetail;
 use App\Models\Setting;
 use App\Models\SettingDev;
+use App\Models\Comment;
 use Auth;
 
 class HomepageController extends Controller
@@ -39,46 +40,87 @@ class HomepageController extends Controller
         return view('homepage.index', $data);
     }
 
-    public function item() {
+    public function item(Request $request) {
+        $itemuser = $request->user();
         $itemproduk = Produk::orderBy('created_at', 'desc')->limit(6)->get();
         $itempromo = ProdukPromo::orderBy('created_at', 'desc')->limit(6)->get();
         $itemkategori = Kategori::orderBy('nama_kategori', 'asc')->limit(6)->get();
         $itemslide = Slideshow::get();
+        if(isset($itemuser)){
+            $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
+            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+        }else{
+            $wishcount = 0;
+            $cartcount = 0;
+        }
         $data = array('title' => 'Kojo',
             'itemproduk' => $itemproduk,
             'itempromo' => $itempromo,
             'itemkategori' => $itemkategori,
             'itemslide' => $itemslide,
+            'wishcount' => $wishcount,
+            'cartcount' => $cartcount,
         );
         return view('homepage.item', $data);
     }
 
     public function about(Request $request) {
+        $itemuser = $request->user();
         $setting = Setting::first();
         $dev = SettingDev::get();
+        if(isset($itemuser)){
+            $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
+            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+        }else{
+            $wishcount = 0;
+            $cartcount = 0;
+        }
         $data = array('title' => 'About',
                     'setting' => $setting,
-                    'dev' => $dev);
+                    'dev' => $dev,
+                    'wishcount' => $wishcount,
+                    'cartcount' => $cartcount,);
         return view('homepage.about', $data)->with('no', ($request->input('page', 1) - 1) * 20);
     }
 
-    public function kontak() {
+    public function kontak(Request $request) {
+        $itemuser = $request->user();
         $setting = Setting::first();
+        if(isset($itemuser)){
+            $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
+            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+        }else{
+            $wishcount = 0;
+            $cartcount = 0;
+        }
         $data = array('title' => 'Contact',
-                    'setting' => $setting);
+                    'setting' => $setting,
+                    'wishcount' => $wishcount,
+                    'cartcount' => $cartcount,);
         return view('homepage.kontak', $data);
     }
 
-    public function kategori() {
+    public function kategori(Request $request) {
+        $itemuser = $request->user();
         $itemkategori = Kategori::orderBy('nama_kategori', 'asc')->limit(6)->get();
         $itemproduk = Produk::orderBy('created_at', 'desc')->limit(6)->get();
+        if(isset($itemuser)){
+            $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
+            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+        }else{
+            $wishcount = 0;
+            $cartcount = 0;
+        }
         $data = array('title' => 'Product Category',
                     'itemkategori' => $itemkategori,
-                    'itemproduk' => $itemproduk);
+                    'itemproduk' => $itemproduk,
+                    'wishcount' => $wishcount,
+                    'cartcount' => $cartcount,);
         return view('homepage.kategori', $data);
     }
 
     public function kategoribyslug(Request $request, $slug) {
+        $itemuser = $request->user();
         $itemproduk = Produk::orderBy('nama_produk', 'desc')
                             ->where('status', 'publish')
                             ->whereHas('kategori', function($q) use ($slug) {
@@ -92,10 +134,19 @@ class HomepageController extends Controller
                                 ->where('status', 'publish')
                                 ->first();
         if ($itemkategori) {
+            if(isset($itemuser)){
+                $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
+                $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+            }else{
+                $wishcount = 0;
+                $cartcount = 0;
+            }
             $data = array('title' => $itemkategori->nama_kategori,
                         'itemproduk' => $itemproduk,
                         'listkategori' => $listkategori,
-                        'itemkategori' => $itemkategori);
+                        'itemkategori' => $itemkategori,
+                        'wishcount' => $wishcount,
+                        'cartcount' => $cartcount,);
             return view('homepage.produk', $data)->with('no', ($request->input('page') - 1) * 18);            
         } else {
             return abort('404');
@@ -104,7 +155,7 @@ class HomepageController extends Controller
 
     public function produk(Request $request) {
         $search = $request->query('q');
-        
+        $itemuser = $request->user();
         
         if($search == 'low-to-high'){
             $product_search = Produk::orderBy('harga', 'asc')->where('status', 'publish')->paginate(18);
@@ -127,18 +178,35 @@ class HomepageController extends Controller
         $listkategori = Kategori::orderBy('nama_kategori', 'asc')
                                 ->where('status', 'publish')
                                 ->get();
-
+        if(isset($itemuser)){
+            $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
+            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+        }else{
+            $wishcount = 0;
+            $cartcount = 0;
+        }
         $data = array('title' => 'Product',
                     'itemproduk' => $product_search,
                     'listkategori' => $listkategori,
+                    'wishcount' => $wishcount,
+                    'cartcount' => $cartcount,
                 );
         return view('homepage.produk', $data)->with('no', ($request->input('page') - 1) * 18);
     }
 
-    public function produkdetail($id) {
+    public function produkdetail(Request $request, $id) {
+        $itemuser = $request->user();
         $itemproduk = Produk::where('slug_produk', $id)
                             ->where('status', 'publish')
                             ->first();
+        if(isset($itemuser)){
+            $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
+            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+        }else{
+            $wishcount = 0;
+            $cartcount = 0;
+        }
+        $comments = Comment::get();
         if ($itemproduk) {
             if (Auth::user()) {//cek kalo user login 
                 $itemuser = Auth::user();
@@ -147,90 +215,21 @@ class HomepageController extends Controller
                                         ->first();
                 $data = array('title' => $itemproduk->nama_produk,
                         'itemproduk' => $itemproduk,
-                        'itemwishlist' => $itemwishlist);
+                        'wishcount' => $wishcount,
+                        'cartcount' => $cartcount,
+                        'itemwishlist' => $itemwishlist,
+                        'comments' => $comments);
             } else {
                 $data = array('title' => $itemproduk->nama_produk,
-                            'itemproduk' => $itemproduk);
+                            'itemproduk' => $itemproduk,
+                            'wishcount' => $wishcount,
+                            'cartcount' => $cartcount,
+                            'comments' => $comments);
             }
             return view('homepage.produkdetail', $data);            
         } else {
             // kalo produk ga ada, jadinya tampil halaman tidak ditemukan (error 404)
             return abort('404');
         }
-    }
-    public function minprice(Request $request) {
-        $itemproduk = Produk::orderBy('harga', 'asc')
-                                ->where('status', 'publish')
-                                ->get();
-
-        $listkategori = Kategori::orderBy('nama_kategori', 'asc')
-                                ->where('status', 'publish')
-                                ->get();
-
-        $data = array('title' => 'Product',
-                    'itemproduk' => $itemproduk,
-                    'listkategori' => $listkategori,
-                );
-        return view('homepage.filter.minprice', $data)->with('no', ($request->input('page') - 1) * 18);
-    }
-    public function maxprice(Request $request) {
-        $itemproduk = Produk::orderBy('harga', 'desc')
-                                ->where('status', 'publish')
-                                ->get();
-
-        $listkategori = Kategori::orderBy('nama_kategori', 'asc')
-                                ->where('status', 'publish')
-                                ->get();
-
-        $data = array('title' => 'Product',
-                    'itemproduk' => $itemproduk,
-                    'listkategori' => $listkategori,
-                );
-        return view('homepage.filter.maxprice', $data)->with('no', ($request->input('page') - 1) * 18);
-    }
-    public function newproduct(Request $request) {
-        $itemproduk = Produk::orderBy('created_at', 'desc')
-                                ->where('status', 'publish')
-                                ->get();
-
-        $listkategori = Kategori::orderBy('nama_kategori', 'asc')
-                                ->where('status', 'publish')
-                                ->get();
-
-        $data = array('title' => 'Product',
-                    'itemproduk' => $itemproduk,
-                    'listkategori' => $listkategori,
-                );
-        return view('homepage.filter.newproduct', $data)->with('no', ($request->input('page') - 1) * 18);
-    }
-    public function ascname(Request $request) {
-        $itemproduk = Produk::orderBy('nama_produk', 'asc')
-                                ->where('status', 'publish')
-                                ->get();
-
-        $listkategori = Kategori::orderBy('nama_kategori', 'asc')
-                                ->where('status', 'publish')
-                                ->get();
-
-        $data = array('title' => 'Product',
-                    'itemproduk' => $itemproduk,
-                    'listkategori' => $listkategori,
-                );
-        return view('homepage.filter.ascname', $data)->with('no', ($request->input('page') - 1) * 18);
-    }
-    public function descname(Request $request) {
-        $itemproduk = Produk::orderBy('nama_produk', 'desc')
-                                ->where('status', 'publish')
-                                ->get();
-
-        $listkategori = Kategori::orderBy('nama_kategori', 'asc')
-                                ->where('status', 'publish')
-                                ->get();
-
-        $data = array('title' => 'Product',
-                    'itemproduk' => $itemproduk,
-                    'listkategori' => $listkategori,
-                );
-        return view('homepage.filter.descname', $data)->with('no', ($request->input('page') - 1) * 18);
     }
 }

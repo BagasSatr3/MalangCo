@@ -16,6 +16,7 @@ class ProdukPromoController extends Controller
     public function index(Request $request)
     {
         $itempromo = ProdukPromo::orderBy('id','desc')->paginate(20);
+        if($itempromo)
         $data = array('title' => 'Product Promotions',
                     'itempromo'=>$itempromo);
         return view('promo.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
@@ -55,13 +56,15 @@ class ProdukPromoController extends Controller
         // cek dulu apakah sudah ada, produk hanya bisa masuk 1 promo
         $cekpromo = ProdukPromo::where('produk_id', $request->produk_id)->first();
         if ($cekpromo) {
-            return back()->with('error', 'Data already exists');
+            notify()->error('Data already exists');
+            return back();
         } else {
             $itemuser = $request->user();
             $inputan = $request->all();
             $inputan['user_id'] = $itemuser->id;
             $itempromo = ProdukPromo::create($inputan);
-            return redirect()->route('promo.index')->with('success', 'Data saved successfully');
+            notify()->success('Data saved successfully');
+            return redirect()->route('promo.index');
         }
     }
 
@@ -112,13 +115,15 @@ class ProdukPromoController extends Controller
                             ->where('id', '!=', $itempromo->id)
                             ->first();
         if ($cekpromo) {
-            return back()->with('error', 'Data already exists');
+            notify()->error('Data already exists');
+            return back();
         } else {
             $itemuser = $request->user();
             $inputan = $request->all();
             $inputan['user_id'] = $itemuser->id;
             $itempromo->update($inputan);
-            return redirect()->route('promo.index')->with('success', 'Data successfully updated');
+            notify()->success('Data successfully updated');
+            return redirect()->route('promo.index');
         }
     }
 
@@ -132,9 +137,11 @@ class ProdukPromoController extends Controller
     {
         $itempromo = ProdukPromo::findOrFail($id);
         if ($itempromo->delete()) {
-            return back()->with('success', 'Data deleted successfully');
+            notify()->success('Data deleted successfully');
+            return back();
         } else {
-            return back()->with('error', 'Data deleted failed');
+            notify()->error('Data deleted failed');
+            return back();
         }
     }
 }

@@ -27,23 +27,7 @@
     <li class="breadcrumb-item"><a href="{{ URL::to('product?q=a-z-products') }}">A-Z Products</a></li>
     <li class="breadcrumb-item"><a href="{{ URL::to('product?q=z-a-products') }}">Z-A Products</a></li>
   </ol>
-  <!-- <div class="toolbar-sorted">
-    <div class="select-box-wrapper">
-      <label for="sort-by" class="sr-only">Sort By</label>
-      <select name="sort" class="select-box" id="sort-by">
-        <option value="" name="q" selected="selected">Price</option>
-        <option value="" name="q"><a href="{{ URL::to('product?q=high-to-low') }}">High to Low</a></option>
-        <option value="" name="q"><a href="{{ URL::to('product?q=low-to-high') }}">Low to High</a></option>
-      </select>
-    </div>
-  </div> -->
 
-    <!-- <form action="/product" method="GET">
-      <div class="input-group">
-        <input type="search" class="form-control rounded" name="price" autocomplete="off" placeholder="Price" aria-label="Search" aria-describedby="search-addon" />
-        <button type="submit" class="btn btn-outline-primary">search</button>
-      </div>
-    </form> -->
 
     
   <!-- produk Terbaru-->
@@ -54,7 +38,7 @@
     @foreach($itemproduk as $produk)
     <!-- produk pertama -->
     <div class="col-md-4">
-      <div class="card mb-4" style="box-shadow: 5px 6px 6px 2px #e9ecef;">
+      <div class="card mb-4" c>
       <div style="height: 190px; max-width: 270px; display: flex; align-items: center; margin-left: auto; margin-right: auto;">
         <a href="{{ URL::to('product/'.$produk->slug_produk ) }}">
           @if($produk->foto != null)

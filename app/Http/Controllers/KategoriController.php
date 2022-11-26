@@ -54,7 +54,8 @@ class KategoriController extends Controller
         //slug kita gunakan nanti pas buka produk per kategori
         $inputan['status'] = 'publish';//status kita set langsung publish saja
         $itemkategori = Kategori::create($inputan);
-        return redirect()->route('kategori.index')->with('success', 'Category successfully saved');
+        notify()->success('Category successfully saved');
+        return redirect()->route('kategori.index');
     }
 
     /**
@@ -105,12 +106,14 @@ class KategoriController extends Controller
                                 ->where('slug_kategori', $slug)
                                 ->first();
         if ($validasislug) {
-            return back()->with('error', 'Slug already exists, try something else');
+            notify()->error('Slug already exists, try something else');
+            return back();
         } else {
             $inputan = $request->all();
             $inputan['slug'] = $slug;
             $itemkategori->update($inputan);
-            return redirect()->route('kategori.index')->with('success', 'Data successfully updated');
+            notify()->success('Data successfully updated');
+            return redirect()->route('kategori.index');
         }
     }
 
@@ -126,12 +129,15 @@ class KategoriController extends Controller
         // kalo ga ada error page not found 404
         if (($itemkategori->produk) > 0) {
             // dicek dulu, kalo ada produk di dalam kategori maka proses hapus dihentikan
-            return back()->with('error', 'Delete the product in this category first, the process is stopped');
+            notify()->error('Delete the product in this category first, the process is stopped');
+            return back();
         } else {
             if ($itemkategori->delete()) {
-                return back()->with('success', 'Data deleted successfully');
+                notify()->success('success', 'Data deleted successfully');
+                return back();
             } else {
-                return back()->with('error', 'Data failed to delete');
+                notify()->error('Data failed to delete');
+                return back();
             }
         }
     }
@@ -150,9 +156,11 @@ class KategoriController extends Controller
             $itemgambar = (new ImageController)->upload($fileupload, $itemuser, $folder);
             $inputan['foto'] = $itemgambar->url;//ambil url file yang barusan diupload
             $itemkategori->update($inputan);
-            return back()->with('success', 'Image uploaded successfully');
+            success('Image uploaded successfully');
+            return back()->notify();
         } else {
-            return back()->with('error', 'Category not found');
+            notify()->error('Category not found');
+            return back();
         }
     }
 
@@ -171,9 +179,11 @@ class KategoriController extends Controller
             }
             // baru update foto kategori
             $itemkategori->update(['foto' => null]);
-            return back()->with('success', 'Data deleted successfully');
+            notify()->success('Data deleted successfully');
+            return back();
         } else {
-            return back()->with('error', 'Data not found');
+            notify()->error('Data not found');
+            return back();
         }
     }
 }
