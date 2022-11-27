@@ -14,6 +14,8 @@ class SettingDev extends Model
         'name_dev',
         'job_dev',
         'desc',
+        'insta',
+        'git',
         'user_id',
     ];
 

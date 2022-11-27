@@ -21,13 +21,9 @@
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
           <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3"></i>KOJO
+            <i class="fas fa-gem me-3"></i>{{$setting->website_name}}
           </h6>
-          <p>
-            Selamat datang di Kojo!
-            Sebuah platform jual beli berbagai macam
-            alat dan bahan perkebunan yang berkualitas
-          </p>
+          <p>{{$setting->meta_keyword}}</p>
         </div>
         <!-- Grid column -->
 
@@ -37,12 +33,9 @@
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3"></i> SMK Negeri 8 Malang</p>
-          <p>
-            <i class="fas fa-envelope me-3"></i>
-            info@example.com
-          </p>
-          <p><i class="fas fa-phone me-3"></i> + 628 1234 5678</p>
+          <p><i class="fas fa-home me-3"></i>{{$setting->address}}</p>
+          <p><i class="fas fa-envelope me-3"></i>{{$setting->email1}}</p>
+          <p><i class="fas fa-phone me-3"></i>{{$setting->phone1}}</p>
         </div>
         <!-- Grid column -->
       </div>

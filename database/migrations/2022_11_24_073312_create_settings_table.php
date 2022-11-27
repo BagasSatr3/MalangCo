@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('meta_description',500)->nullable();
 
             $table->string('address',500)->nullable();
+            $table->string('address_url')->nullable();
             $table->string('phone1')->nullable();
             $table->string('phone2')->nullable();
             $table->string('email1')->nullable();
@@ -32,11 +33,6 @@ return new class extends Migration
             $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();
             $table->string('youtube')->nullable();
-
-            $table->string('name_dev')->nullable();
-            $table->string('job_dev')->nullable();
-            $table->string('foto_dev')->nullable();
-            $table->string('desc_dev')->nullable();
 
             $table->timestamps();
         });

@@ -9,11 +9,13 @@ use App\Models\Order;
 use App\Models\User;
 use App\Models\Wishlist;
 use App\Models\CartDetail;
+use App\Models\Setting;
 
 class UserController extends Controller
 {
     public function index(Request $request) {
         $itemuser = $request->user();
+        $setting = Setting::first();
         if(isset($itemuser)){
             $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
             $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
@@ -41,62 +43,10 @@ class UserController extends Controller
                     'itemorder' => $itemorder,
                     'itemuser' => $itemuser,
                     'wishcount' => $wishcount,
-                    'cartcount' => $cartcount);
+                    'cartcount' => $cartcount,
+                    'setting' => $setting);
         return view('user.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
     }
 
-    public function store(Request $request)
-    {
-        $setting = Setting::first();
-        $title = 'Setting';
-        if($setting){
-            // Update data
-            $setting->update([
-                'website_name' => $request->website_name ?? '', 
-                'website_url' => $request->website_url ?? '',
-                'page_title' => $request->page_title ?? '',
-                'meta_keyword' => $request->meta_keyword ?? '',
-                'meta_description' => $request->meta_description ?? '',
-                'address' => $request->address ?? '',
-                'phone1' => $request->phone1 ?? '',
-                'phone2' => $request->phone2 ?? '',
-                'email1' => $request->email1 ?? '',
-                'email2' => $request->email2 ?? '',
-                'facebook' => $request->facebook ?? '',
-                'twitter' => $request->twitter ?? '',
-                'instagram' => $request->instagram ?? '',
-                'youtube' => $request->youtube ?? '',
-                'name_dev' => $request->name_dev ?? '',
-                'job_dev' => $request->name_dev ?? '',
-                'foto_dev' => $request->name_dev ?? '',
-                'desc_dev' => $request->name_dev ?? '',
-            ]);
-            notify()->success('Settings Saved');
-            return redirect()->back();
-        }else {
-            // Create Data
-            Setting::create([
-                'website_name' => $request->website_name ?? '', 
-                'website_url' => $request->website_url ?? '',
-                'page_title' => $request->page_title ?? '',
-                'meta_keyword' => $request->meta_keyword ?? '',
-                'meta_description' => $request->meta_description ?? '',
-                'address' => $request->address ?? '',
-                'phone1' => $request->phone1 ?? '',
-                'phone2' => $request->phone2 ?? '',
-                'email1' => $request->email1 ?? '',
-                'email2' => $request->email2 ?? '',
-                'facebook' => $request->facebook ?? '',
-                'twitter' => $request->twitter ?? '',
-                'instagram' => $request->instagram ?? '',
-                'youtube' => $request->youtube ?? '',
-                'name_dev' => $request->name_dev ?? '',
-                'job_dev' => $request->name_dev ?? '',
-                'foto_dev' => $request->name_dev ?? '',
-                'desc_dev' => $request->name_dev ?? '',
-            ]);
-            notify()->success('Settings Created');
-            return redirect()->back();
-        }
-    }
+    
 }

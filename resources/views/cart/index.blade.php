@@ -58,7 +58,7 @@
                     @method('patch')
                     @csrf()
                       <input type="hidden" name="param" value="kurang">
-                      <button class="btn btn-outline btn-sm"> 
+                      <button class="btn-sm btn-warning py-1"> 
                       -
                       </button>
                     </form>
@@ -69,7 +69,7 @@
                     @method('patch')
                     @csrf()
                       <input type="hidden" name="param" value="tambah">
-                      <button class="btn btn-outline btn-sm">
+                      <button class="btn-sm btn-warning py-1">
                       +
                       </button>
                     </form>
@@ -82,7 +82,7 @@
                 <form action="{{ route('cartdetail.destroy', $detail->id) }}" method="post" style="display:inline;">
                   @csrf
                   {{ method_field('delete') }}
-                  <button type="submit" class="btn btn-outline mb-2">
+                  <button type="submit" class="btn-sm btn-danger py-1">
                     Hapus
                   </button>
                 </form>
@@ -130,13 +130,13 @@
         <div class="card-footer">
           <div class="row">
             <div class="col">
-            <a href="{{ URL::to('checkout') }}" class="btn btn-outline">Checkout</a>
+            <a href="{{ URL::to('checkout') }}" class="btn-sm btn-info py-1">Checkout</a>
             </div>
             <div class="col">
               <form action="{{ url('kosongkan').'/'.$itemcart->id }}" method="post">
                 @method('patch')
                 @csrf()
-                <button type="submit" class="btn btn btn-outline" style="margin-left:40px;">Kosongkan</button>
+                <button type="submit" class="btn-sm btn-danger py-1" style="margin-left:60px;">Kosongkan</button>
               </form>
             </div>
           </div>

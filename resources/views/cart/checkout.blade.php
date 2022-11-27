@@ -106,7 +106,7 @@
               </div>
             </div>
             <div class="card-footer">
-              <a href="{{ route('alamatpengiriman.index') }}" class="btn btn-sm btn-primary">
+              <a href="{{ route('alamatpengiriman.index') }}" class="btn-sm btn-warning py-2 px-5 text-decoration-none">
                 Tambah Alamat
               </a>
             </div>
@@ -150,7 +150,7 @@
         <div class="card-footer">
           <form action="{{ route('transaksi.store') }}" method="post">
             @csrf()
-            <button type="submit" class="btn btn-danger btn-block">Buat Pesanan</button>
+            <button type="submit" class="btn-sm btn-info py-2 px-5">Buat Pesanan</button>
           </form>
         </div>
       </div>

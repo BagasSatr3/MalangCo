@@ -8,6 +8,7 @@ use App\Models\AlamatPengiriman;
 use App\Models\Order;
 use App\Models\Wishlist;
 use App\Models\CartDetail;
+use App\Models\Setting;
 class CartController extends Controller
 {
     /**
@@ -18,6 +19,7 @@ class CartController extends Controller
     public function index(Request $request)
     {
         $itemuser = $request->user();//ambil data user
+        $setting = Setting::first();
         $itemcart = Cart::where('user_id', $itemuser->id)
                         ->where('status_cart', 'cart')
                         ->first();
@@ -32,7 +34,8 @@ class CartController extends Controller
             $data = array('title' => 'Shopping Cart',
                         'itemcart' => $itemcart,
                         'wishcount' => $wishcount,
-                        'cartcount' => $cartcount);
+                        'cartcount' => $cartcount,
+                        'setting' => $setting);
             return view('cart.index', $data)->with('no', 1);            
         } else {
             return abort('404');
@@ -115,6 +118,7 @@ class CartController extends Controller
 
     public function checkout(Request $request) {
         $itemuser = $request->user();
+        $setting = Setting::first();
         $itemcart = Cart::where('user_id', $itemuser->id)
                         ->where('status_cart', 'cart')
                         ->first();
@@ -124,7 +128,8 @@ class CartController extends Controller
         if ($itemcart) {
             $data = array('title' => 'Checkout',
                         'itemcart' => $itemcart,
-                        'itemalamatpengiriman' => $itemalamatpengiriman);
+                        'itemalamatpengiriman' => $itemalamatpengiriman,
+                        'setting' => $setting);
             return view('cart.checkout', $data)->with('no', 1);
         } else {
             return abort('404');

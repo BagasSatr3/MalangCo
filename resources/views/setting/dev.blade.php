@@ -32,6 +32,8 @@
                   <th>Gambar</th>
                   <th>Nama</th>
                   <th>Job</th>
+                  <th>Instagram</th>
+                  <th>Github</th>
                   <th>Deskripsi</th>
                   <th></th>
                 </tr>
@@ -52,6 +54,12 @@
                   </td>
                   <td>
                   {{ $slide->job_dev }}
+                  </td>
+                  <td>
+                  {{ $slide->insta }}
+                  </td>
+                  <td>
+                  {{ $slide->git }}
                   </td>
                   <td>
                   {{ $slide->desc }}
@@ -88,6 +96,14 @@
                 </div>
                 <div class="form-group">
                   <label for="job_dev">Job</label>
+                  <input type="text" name="job_dev" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="job_dev">Instagram</label>
+                  <input type="text" name="job_dev" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="job_dev">Github</label>
                   <input type="text" name="job_dev" class="form-control">
                 </div>
                 <div class="form-group">

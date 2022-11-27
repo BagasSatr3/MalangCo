@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Produk;
 use App\Models\Wishlist;
 use App\Models\CartDetail;
+use App\Models\Setting;
 
 class TransaksiController extends Controller
 {
@@ -21,6 +22,7 @@ class TransaksiController extends Controller
     {
         $itemuser = $request->user();
         $itemorder = Order::orderBy('created_at', 'desc')->paginate(20);
+        $setting = Setting::first();
         if(isset($itemuser)){
             $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
             $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
@@ -31,7 +33,8 @@ class TransaksiController extends Controller
         $data = array('title' => 'Transaction Data',
                     'itemorder' => $itemorder,
                     'wishcount' => $wishcount,
-                    'cartcount' => $cartcount);
+                    'cartcount' => $cartcount,
+                'setting' => $setting);
                     return view('transaksi.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
         // $itemuser = $request->user();
         // if ($itemuser->role == 'admin') {
@@ -95,12 +98,9 @@ class TransaksiController extends Controller
                 $inputanorder['kodepos'] = $itemalamatpengiriman->kodepos;
                 // $inputanorder['qty'] = $itemcart->detail->qty;
                 // $produk = Produk::findOrFail($itemcart->detail->produk_id);
-                // if($produk->qty == 0){
-                //     return back()->with('error', 'Quantity is empty');
-                // }
                 $itemorder = Order::create($inputanorder);
                 $itemcart->update(['status_cart' => 'checkout']);
-                // $itemcart->update($produk->qty - $itemcart->detail->qty);
+                // $produk->decrement('qty', $itemcart->detail->qty);
                 notify()->success('Order successfully saved');
                 return redirect()->route('transaksi.index');
             } else {

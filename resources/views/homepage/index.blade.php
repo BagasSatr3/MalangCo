@@ -43,7 +43,7 @@
 
 
 <!-- produk Promo-->
-  <div class="row mt-4">
+  <!-- <div class="row mt-4">
     <div class="col col-md-12 col-sm-12 mb-4">
       <h2 class="text-left" style="font-weight:bold;">Product Promo</h2>
     </div>
@@ -81,7 +81,7 @@
         </div>
     </div>
     @endforeach
-  </div>
+  </div> -->
   
   <!-- end produk promo -->
 
@@ -102,10 +102,19 @@
               @else
               <img src="{{ asset('images/bag.jpg') }}" alt="{{ $produk->nama_produk }}" class="card-img-top"/>
               @endif
-                <h3 class="h5"><a href="#" class="text-decoration-none">{{ $produk->nama_produk }}</a></h3>
+                <h3 class="h5" style=""><a href="{{ URL::to('product/'.$produk->slug_produk) }}" class="text-decoration-none" onclick="">{{ $produk->nama_produk }}</a></h3>
+                @if (isset($produk->promo->produk_id))
+                  @if($produk->id == $produk->promo->produk_id)
+                  <p>
+                  <span class="text-success">Rp. {{ number_format($produk->promo->harga_akhir, 2) }}</span>
+                  <del class="text-muted">Rp. {{ number_format($produk->promo->harga_awal, 2) }}</del>
+                  </p>
+                  @endif
+                @else
                 <p>
                 <span class="text-success">Rp. {{ number_format($produk->harga, 2) }}</span>
                 </p>
+                @endif
                 <div class="row" style="margin-top:20px; margin-bottom:-10px;">
                 <div class="col">
                   <form action="{{ route('cartdetail.store') }}" method="POST">
@@ -118,10 +127,19 @@
                 </div>
                 </div>
             </div>
+            @if (isset($produk->promo->produk_id))
+              @if($produk->id == $produk->promo->produk_id)
             <div class="bg-danger text-white small position-absolute end-0 top-0 px-2 py-2 lh-1 text-center">
-                <span class="d-block">0%</span>
+                <span class="d-block">{{ $produk->promo->diskon_persen, 2 }}%</span>
                 <span class="d-block">OFF</span>
             </div>
+              @endif
+            @else
+            <div class="bg-danger text-white small position-absolute end-0 top-0 px-2 py-2 lh-1 text-center">
+                <span class="d-block">ON</span>
+                <span class="d-block">SALE</span>
+            </div>
+            @endif
         </div>
     </div>
     @endforeach

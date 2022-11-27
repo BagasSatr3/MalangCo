@@ -24,7 +24,7 @@ Route::get('/product/latest-product', [\App\Http\Controllers\HomepageController:
 Route::get('/product/A-Z-name', [\App\Http\Controllers\HomepageController::class,'ascname']);
 Route::get('/product/Z-A-name', [\App\Http\Controllers\HomepageController::class,'descname']);
 Route::get('/product/{id}', [\App\Http\Controllers\HomepageController::class,'produkdetail']);
-
+Route::post('contact', [\App\Http\Controllers\MessageController::class, 'store']);
 Route::get('admin/login', [\App\Http\Controllers\AdminAuthControllerController::class,'getLogin'])->name('admin.login');
 Route::post('admin/login', [\App\Http\Controllers\AdminAuthControllerController::class,'postLogin']);
 

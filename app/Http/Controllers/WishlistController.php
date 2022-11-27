@@ -6,6 +6,7 @@ use App\Models\Wishlist;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 use App\Models\CartDetail;
+use App\Models\Setting;
 
 class WishlistController extends Controller
 {
@@ -17,6 +18,7 @@ class WishlistController extends Controller
     public function index(Request $request)
     {
         $itemuser = $request->user();
+        $setting = Setting::first();
         $itemwishlist = Wishlist::where('user_id', $itemuser->id)
                                 ->paginate(10);
         $itemproduk = Produk::orderBy('created_at', 'desc')->limit(3)->get();
@@ -31,7 +33,8 @@ class WishlistController extends Controller
                     'itemwishlist' => $itemwishlist,
                     'itemproduk' => $itemproduk,
                     'wishcount' => $wishcount,
-                    'cartcount' => $cartcount);
+                    'cartcount' => $cartcount,
+                    'setting' => $setting);
         return view('wishlist.index', $data)->with('no', ($request->input('page', 1) - 1) * 10);
     }
 

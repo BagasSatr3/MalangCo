@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\AlamatPengiriman;
 use App\Models\Wishlist;
 use App\Models\CartDetail;
+use App\Models\Setting;
 
 class AlamatPengirimanController extends Controller
 {
@@ -18,6 +19,7 @@ class AlamatPengirimanController extends Controller
     {
         $itemuser = $request->user();
         $itemalamatpengiriman = AlamatPengiriman::where('user_id', $itemuser->id)->paginate(10);
+        $setting = Setting::first();
         if(isset($itemuser)){
             $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
             $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
@@ -28,7 +30,9 @@ class AlamatPengirimanController extends Controller
         $data = array('title' => 'Shipping Address',
                     'itemalamatpengiriman' => $itemalamatpengiriman,
                     'wishcount' => $wishcount,
-                    'cartcount' => $cartcount);
+                    'cartcount' => $cartcount,
+                    'setting' => $setting
+                    );
         return view('alamatpengiriman.index', $data)->with('no', ($request->input('page', 1) - 1) * 10);
     }
 

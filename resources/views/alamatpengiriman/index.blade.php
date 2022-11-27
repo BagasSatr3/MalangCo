@@ -10,7 +10,7 @@
               Alamat Pengiriman
             </div>
             <div class="col-auto">
-              <a href="{{ URL::to('checkout') }}" class="btn btn-sm btn-danger">
+              <a href="{{ URL::to('checkout') }}" class="btn-sm btn-danger text-decoration-none">
                 Tutup
               </a>
             </div>
@@ -46,9 +46,9 @@
                       @method('patch')
                       @csrf()
                       @if($pengiriman->status == 'utama')
-                      <button type="submit" class="btn btn-primary btn-sm" disabled>Set Utama</button>
+                      <button type="submit" class="btn-warning btn-sm" disabled>Set Utama</button>
                       @else
-                      <button type="submit" class="btn btn-primary btn-sm">Set Utama</button>
+                      <button type="submit" class="btn-warning btn-sm">Set Utama</button>
                       @endif
                     </form>
                   </td>
@@ -87,15 +87,15 @@
               <div class="col">
                 <div class="form-group">
                   <label for="nama_penerima">Nama Penerima</label>
-                  <input type="text" name="nama_penerima" class="form-control" value={{old('nama_penerima') }}>
+                  <input type="text" name="nama_penerima" class="form-control" value={{Auth::user()->name}}>
                 </div>
                 <div class="form-group">
                   <label for="alamat">Alamat</label>
-                  <input type="text" name="alamat" class="form-control" value={{old('alamat') }}>
+                  <input type="text" name="alamat" class="form-control" value={{Auth::user()->alamat}}>
                 </div>
                 <div class="form-group">
                   <label for="no_tlp">No Tlp</label>
-                  <input type="text" name="no_tlp" class="form-control" value={{old('no_tlp') }}>
+                  <input type="text" name="no_tlp" class="form-control" value={{Auth::user()->phone}}>
                 </div>
                 <div class="form-group">
                   <label for="provinsi">Provinsi</label>
@@ -120,7 +120,7 @@
                   <input type="text" name="kodepos" class="form-control" value={{old('kodepos') }}>
                 </div>
                 <div class="form-group">
-                  <button type="submit" class="btn btn-primary">Simpan</button>
+                  <button type="submit" class="btn-sm btn-info py-2 px-5">Simpan</button>
                 </div>
               </div>
             </div>

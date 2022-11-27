@@ -38,7 +38,7 @@
                                 <label>Website URL</label>
                                 <input type="text" name="website_url" value="{{ $setting->website_url ?? ''}}" class="form-control">
                             </div>
-                            <div class="col-md-12 mb-3 d-none">
+                            <div class="col-md-12 mb-3">
                                 <label>Page Title</label>
                                 <input type="text" name="page_title" value="{{ $setting->page_title ?? ''}}" class="form-control">
                             </div>
