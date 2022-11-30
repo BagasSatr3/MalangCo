@@ -99,12 +99,12 @@
                   <input type="text" name="job_dev" class="form-control">
                 </div>
                 <div class="form-group">
-                  <label for="job_dev">Instagram</label>
-                  <input type="text" name="job_dev" class="form-control">
+                  <label for="insta">Instagram</label>
+                  <input type="text" name="insta" class="form-control">
                 </div>
                 <div class="form-group">
-                  <label for="job_dev">Github</label>
-                  <input type="text" name="job_dev" class="form-control">
+                  <label for="git">Github</label>
+                  <input type="text" name="git" class="form-control">
                 </div>
                 <div class="form-group">
                   <label for="desc">Deskripsi</label>

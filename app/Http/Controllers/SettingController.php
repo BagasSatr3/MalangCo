@@ -37,11 +37,7 @@ class SettingController extends Controller
                 'facebook' => $request->facebook ?? '',
                 'twitter' => $request->twitter ?? '',
                 'instagram' => $request->instagram ?? '',
-                'youtube' => $request->youtube ?? '',
-                'name_dev' => $request->name_dev ?? '',
-                'job_dev' => $request->name_dev ?? '',
-                'foto_dev' => $request->name_dev ?? '',
-                'desc_dev' => $request->name_dev ?? '',
+                'youtube' => $request->youtube ?? ''
             ]);
             notify()->success('Settings Saved');
             return redirect()->back();
@@ -61,11 +57,8 @@ class SettingController extends Controller
                 'facebook' => $request->facebook ?? '',
                 'twitter' => $request->twitter ?? '',
                 'instagram' => $request->instagram ?? '',
-                'youtube' => $request->youtube ?? '',
-                'name_dev' => $request->name_dev ?? '',
-                'job_dev' => $request->name_dev ?? '',
-                'foto_dev' => $request->name_dev ?? '',
-                'desc_dev' => $request->name_dev ?? '',
+                'youtube' => $request->youtube ?? ''
+                
             ]);
             notify()->success('Settings Created');
             return redirect()->back();

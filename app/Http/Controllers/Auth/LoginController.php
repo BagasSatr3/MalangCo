@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Setting;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -39,7 +40,9 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        $data = array('title' => 'Sign In');
+        $setting = Setting::first();
+        $data = array('title' => 'Sign In',
+                        'setting' => $setting);
         return view('auth.login', $data);
     }
     

@@ -24,7 +24,7 @@ class WishlistController extends Controller
         $itemproduk = Produk::orderBy('created_at', 'desc')->limit(3)->get();
         if(isset($itemuser)){
             $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
-            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+            
         }else{
             $wishcount = 0;
             $cartcount = 0;
@@ -33,7 +33,7 @@ class WishlistController extends Controller
                     'itemwishlist' => $itemwishlist,
                     'itemproduk' => $itemproduk,
                     'wishcount' => $wishcount,
-                    'cartcount' => $cartcount,
+                    
                     'setting' => $setting);
         return view('wishlist.index', $data)->with('no', ($request->input('page', 1) - 1) * 10);
     }

@@ -18,17 +18,17 @@ class HomepageController extends Controller
 {
     public function index(Request $request) {
         $itemuser = $request->user();
-        $itemproduk = Produk::orderBy('created_at', 'desc')->limit(3)->get();
+        $itemproduk = Produk::orderBy('created_at', 'desc')->limit(4)->get();
         $itempromo = ProdukPromo::orderBy('created_at', 'desc')->limit(3)->get();
         $itemkategori = Kategori::orderBy('nama_kategori', 'asc')->limit(6)->get();
         $itemslide = Slideshow::get();
         $setting = Setting::first();
         if(isset($itemuser)){
             $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
-            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+            
         }else{
             $wishcount = 0;
-            $cartcount = 0;
+            
         }
         $data = array('title' => 'Kojo',
             'itemproduk' => $itemproduk,
@@ -36,7 +36,7 @@ class HomepageController extends Controller
             'itemkategori' => $itemkategori,
             'itemslide' => $itemslide,
             'wishcount' => $wishcount,
-            'cartcount' => $cartcount,
+            
             'setting' => $setting
         );
         return view('homepage.index', $data);
@@ -51,10 +51,10 @@ class HomepageController extends Controller
         $setting = Setting::first();
         if(isset($itemuser)){
             $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
-            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+            
         }else{
             $wishcount = 0;
-            $cartcount = 0;
+            
         }
         $data = array('title' => 'Kojo',
             'itemproduk' => $itemproduk,
@@ -62,7 +62,7 @@ class HomepageController extends Controller
             'itemkategori' => $itemkategori,
             'itemslide' => $itemslide,
             'wishcount' => $wishcount,
-            'cartcount' => $cartcount,
+            
             'setting' => $setting
         );
         return view('homepage.item', $data);
@@ -74,16 +74,16 @@ class HomepageController extends Controller
         $dev = SettingDev::get();
         if(isset($itemuser)){
             $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
-            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+            
         }else{
             $wishcount = 0;
-            $cartcount = 0;
+            
         }
         $data = array('title' => 'About',
                     'setting' => $setting,
                     'dev' => $dev,
                     'wishcount' => $wishcount,
-                    'cartcount' => $cartcount,);
+                    );
         return view('homepage.about', $data)->with('no', ($request->input('page', 1) - 1) * 20);
     }
 
@@ -92,15 +92,15 @@ class HomepageController extends Controller
         $setting = Setting::first();
         if(isset($itemuser)){
             $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
-            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+            
         }else{
             $wishcount = 0;
-            $cartcount = 0;
+            
         }
         $data = array('title' => 'Contact',
                     'setting' => $setting,
                     'wishcount' => $wishcount,
-                    'cartcount' => $cartcount,);
+                    );
         return view('homepage.kontak', $data);
     }
 
@@ -111,16 +111,16 @@ class HomepageController extends Controller
         $setting = Setting::first();
         if(isset($itemuser)){
             $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
-            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+            
         }else{
             $wishcount = 0;
-            $cartcount = 0;
+            
         }
         $data = array('title' => 'Product Category',
                     'itemkategori' => $itemkategori,
                     'itemproduk' => $itemproduk,
                     'wishcount' => $wishcount,
-                    'cartcount' => $cartcount,
+                    
                     'setting' => $setting);
         return view('homepage.kategori', $data);
     }
@@ -143,17 +143,17 @@ class HomepageController extends Controller
         if ($itemkategori) {
             if(isset($itemuser)){
                 $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
-                $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+                
             }else{
                 $wishcount = 0;
-                $cartcount = 0;
+                
             }
             $data = array('title' => $itemkategori->nama_kategori,
                         'itemproduk' => $itemproduk,
                         'listkategori' => $listkategori,
                         'itemkategori' => $itemkategori,
                         'wishcount' => $wishcount,
-                        'cartcount' => $cartcount,
+                        
                         'setting' => $setting);
             return view('homepage.produk', $data)->with('no', ($request->input('page') - 1) * 18);            
         } else {
@@ -188,16 +188,16 @@ class HomepageController extends Controller
                                 ->get();
         if(isset($itemuser)){
             $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
-            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+            
         }else{
             $wishcount = 0;
-            $cartcount = 0;
+            
         }
         $data = array('title' => 'Product',
                     'itemproduk' => $product_search,
                     'listkategori' => $listkategori,
                     'wishcount' => $wishcount,
-                    'cartcount' => $cartcount,
+                    
                     'setting' => $setting
                 );
         return view('homepage.produk', $data)->with('no', ($request->input('page') - 1) * 18);
@@ -208,33 +208,36 @@ class HomepageController extends Controller
         $itemproduk = Produk::where('slug_produk', $id)
                             ->where('status', 'publish')
                             ->first();
-        $setting = Setting::first();
+                            $setting = Setting::first();
         if(isset($itemuser)){
             $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
-            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+            
         }else{
             $wishcount = 0;
-            $cartcount = 0;
+            
         }
         $comments = Comment::get();
         if ($itemproduk) {
             if (Auth::user()) {//cek kalo user login 
                 $itemuser = Auth::user();
+                $setting = Setting::first();
                 $itemwishlist = Wishlist::where('produk_id', $itemproduk->id)
                                         ->where('user_id', $itemuser->id)
                                         ->first();
                 $data = array('title' => $itemproduk->nama_produk,
                         'itemproduk' => $itemproduk,
                         'wishcount' => $wishcount,
-                        'cartcount' => $cartcount,
+                        
                         'itemwishlist' => $itemwishlist,
-                        'comments' => $comments);
+                        'comments' => $comments,
+                        'setting' => $setting);
             } else {
                 $data = array('title' => $itemproduk->nama_produk,
                             'itemproduk' => $itemproduk,
                             'wishcount' => $wishcount,
-                            'cartcount' => $cartcount,
-                            'comments' => $comments);
+                            
+                            'comments' => $comments,
+                            'setting' => $setting);
             }
             return view('homepage.produkdetail', $data);            
         } else {

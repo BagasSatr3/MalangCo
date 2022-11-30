@@ -26,15 +26,15 @@ class CartController extends Controller
         if ($itemcart) {
             if(isset($itemuser)){
                 $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
-                $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+                
             }else{
                 $wishcount = 0;
-                $cartcount = 0;
+                
             }
             $data = array('title' => 'Shopping Cart',
                         'itemcart' => $itemcart,
                         'wishcount' => $wishcount,
-                        'cartcount' => $cartcount,
+                       
                         'setting' => $setting);
             return view('cart.index', $data)->with('no', 1);            
         } else {

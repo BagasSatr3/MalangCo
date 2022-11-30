@@ -25,15 +25,15 @@ class TransaksiController extends Controller
         $setting = Setting::first();
         if(isset($itemuser)){
             $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
-            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+        
         }else{
             $wishcount = 0;
-            $cartcount = 0;
+        
         }
         $data = array('title' => 'Transaction Data',
                     'itemorder' => $itemorder,
                     'wishcount' => $wishcount,
-                    'cartcount' => $cartcount,
+        
                 'setting' => $setting);
                     return view('transaksi.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
         // $itemuser = $request->user();

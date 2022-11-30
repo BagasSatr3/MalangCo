@@ -18,10 +18,10 @@ class UserController extends Controller
         $setting = Setting::first();
         if(isset($itemuser)){
             $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
-            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+            
         }else{
             $wishcount = 0;
-            $cartcount = 0;
+            
         }
         if ($itemuser->role == 'admin') {
             // kalo admin maka menampilkan semua cart
@@ -43,7 +43,7 @@ class UserController extends Controller
                     'itemorder' => $itemorder,
                     'itemuser' => $itemuser,
                     'wishcount' => $wishcount,
-                    'cartcount' => $cartcount,
+                    
                     'setting' => $setting);
         return view('user.index', $data)->with('no', ($request->input('page', 1) - 1) * 20);
     }

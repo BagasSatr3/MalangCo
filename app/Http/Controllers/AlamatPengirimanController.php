@@ -22,15 +22,15 @@ class AlamatPengirimanController extends Controller
         $setting = Setting::first();
         if(isset($itemuser)){
             $wishcount = Wishlist::where('user_id', $itemuser->id)->get()->count();
-            $cartcount = CartDetail::where('user_id', $itemuser->id)->get()->count();
+            
         }else{
             $wishcount = 0;
-            $cartcount = 0;
+           
         }
         $data = array('title' => 'Shipping Address',
                     'itemalamatpengiriman' => $itemalamatpengiriman,
                     'wishcount' => $wishcount,
-                    'cartcount' => $cartcount,
+                    
                     'setting' => $setting
                     );
         return view('alamatpengiriman.index', $data)->with('no', ($request->input('page', 1) - 1) * 10);

@@ -53,13 +53,13 @@
               <small class="ml-1" >{{ Auth::user()->name }}</small>
             </a>
             <div class="dropdown-menu" style="background: #DDE5B6;" aria-labelledby="navbarDropdown">
-              @if(Auth::user()->role != "admin"))
+              @if(Auth::user()->role != "admin")
               <a class="dropdown-item nice" href="{{ URL::to('profile') }}"><i class="bi bi-person-fill-gear"></i> Profile</a>
-              <a class="dropdown-item nice" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>      
+              <a class="dropdown-item nice" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign Out</a>      
               @else
               <a class="dropdown-item nice" href="{{ URL::to('admin') }}"><i class="bi bi-person-fill-gear"></i> Admin</a>
               <a class="dropdown-item nice" href="{{ URL::to('profile') }}"><i class="bi bi-person-fill-gear"></i> Profile</a>
-              <a class="dropdown-item nice" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>      
+              <a class="dropdown-item nice" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign Out</a>      
               @endif
             </div>
           </li>

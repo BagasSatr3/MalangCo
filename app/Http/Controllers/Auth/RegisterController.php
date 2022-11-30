@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\Setting;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -74,7 +75,9 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        $data = array('title'=> 'Sign Up');
+        $setting = Setting::first();
+        $data = array('title'=> 'Sign Up',
+        'setting' => $setting);
         return view('auth.register', $data);
     }
 }
